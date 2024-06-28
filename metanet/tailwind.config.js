@@ -12,6 +12,8 @@ module.exports = {
       lightpurple: '#9755B2',
       darkpink: '#E413C4',
       lightpink: '#F07DDA',
+      purple1: '#18061F',
+      purple2: '#3C0D3B',
       pink1:'#EC4899',
       pink2:'#9D174D',
       metawhite: '#FFFFFF',
