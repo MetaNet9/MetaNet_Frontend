@@ -5,13 +5,12 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 @Component({
-  selector: 'app-model1',
+  selector: 'app-model2',
   standalone: true,
-  imports: [],
-  templateUrl: './model1.component.html',
-  styleUrls: ['./model1.component.css']
+  templateUrl: './model2.component.html',
+  styleUrls: ['./model2.component.css']
 })
-export class Model1Component implements OnInit, AfterViewInit {
+export class Model2Component implements OnInit, AfterViewInit {
   @ViewChild('rendererContainer') rendererContainer!: ElementRef;
 
   private scene!: THREE.Scene;
@@ -28,9 +27,6 @@ export class Model1Component implements OnInit, AfterViewInit {
   private walkAction!: THREE.AnimationAction;
   private runAction!: THREE.AnimationAction;
 
-  private singleStepMode: boolean = false;
-  private sizeOfNextStep: number = 0;
-
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngOnInit(): void {}
@@ -45,8 +41,8 @@ export class Model1Component implements OnInit, AfterViewInit {
     const container = this.rendererContainer.nativeElement;
 
     this.camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 1, 1000);
-    this.camera.position.set(2, 2, -3);
-    this.camera.lookAt(0, 1, 0);
+    this.camera.position.set(-3, 1, 3); // Front view position
+    this.camera.lookAt(0, 2, 0); // Look at the model's center
 
     this.clock = new THREE.Clock();
 
@@ -60,23 +56,23 @@ export class Model1Component implements OnInit, AfterViewInit {
     const dirLight = new THREE.DirectionalLight(0xffffff, 3);
     dirLight.position.set(-3, 10, -10);
     dirLight.castShadow = true;
-    dirLight.shadow.camera.top = 2;
+    dirLight.shadow.camera.top = 0;
     dirLight.shadow.camera.bottom = -2;
     dirLight.shadow.camera.left = -2;
-    dirLight.shadow.camera.right = 2;
+    dirLight.shadow.camera.right = 5;
     dirLight.shadow.camera.near = 0.1;
     dirLight.shadow.camera.far = 40;
     this.scene.add(dirLight);
 
-    // ground
-    const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2, 4), new THREE.MeshPhongMaterial({ color: 0xcbcbcb, depthWrite: false, transparent: true, opacity: 0.06 }));
-    mesh.rotation.x = -Math.PI / 2;
-    mesh.receiveShadow = true;
-    this.scene.add(mesh);
+    // Ground
+    // const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2, 4), new THREE.MeshPhongMaterial({ color: 0xcbcbcb, depthWrite: false, transparent: true, opacity: 0.06 }));
+    // mesh.rotation.x = -Math.PI / 2;
+    // mesh.receiveShadow = true;
+    // this.scene.add(mesh);
 
     // GLTF model loader
     const loader = new GLTFLoader();
-    const modelPath = 'assets/models/Soldier.glb';
+    const modelPath = 'assets/models/RobotExpressive.glb';
     loader.load(
       modelPath,
       (gltf) => {
@@ -87,10 +83,8 @@ export class Model1Component implements OnInit, AfterViewInit {
           if ((object as THREE.Mesh).isMesh) (object as THREE.Mesh).castShadow = true;
         });
 
-        const scaleFactor = 1.35; // Adjust this value as needed
+        const scaleFactor = 0.5; // Smaller scale factor
         this.model.scale.set(scaleFactor, scaleFactor, scaleFactor);
-
-        this.scene.add(this.model);
 
         this.skeleton = new THREE.SkeletonHelper(this.model);
         this.skeleton.visible = false;
@@ -100,7 +94,7 @@ export class Model1Component implements OnInit, AfterViewInit {
         this.mixer = new THREE.AnimationMixer(this.model);
 
         this.idleAction = this.mixer.clipAction(animations[0]);
-        this.walkAction = this.mixer.clipAction(animations[3]);
+        this.walkAction = this.mixer.clipAction(animations[6]);
         this.runAction = this.mixer.clipAction(animations[1]);
 
         this.actions = [this.idleAction, this.walkAction, this.runAction];
@@ -126,7 +120,7 @@ export class Model1Component implements OnInit, AfterViewInit {
 
     // Add OrbitControls
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
-    this.controls.target.set(0, 1, 0);
+    this.controls.target.set(0, 1, 0); // Adjust controls to center on model
     this.controls.update();
     this.controls.enableZoom = false; // Disable zooming
 
@@ -157,17 +151,7 @@ export class Model1Component implements OnInit, AfterViewInit {
 
   private animate(): void {
     const dt = this.clock.getDelta();
-
-    if (this.singleStepMode) {
-      this.sizeOfNextStep -= dt;
-
-      if (this.sizeOfNextStep <= 0) {
-        this.mixer.update(dt);
-      }
-    } else {
-      this.mixer.update(dt);
-    }
-
+    this.mixer.update(dt);
     this.controls.update();
     this.renderer.render(this.scene, this.camera);
   }
