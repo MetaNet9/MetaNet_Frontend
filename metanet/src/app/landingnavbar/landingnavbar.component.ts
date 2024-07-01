@@ -1,10 +1,10 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-landingnavbar',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet,RouterModule],
   templateUrl: './landingnavbar.component.html',
   styleUrl: './landingnavbar.component.css'
 })

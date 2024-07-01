@@ -6,6 +6,7 @@ import { Model2Component } from '../model2/model2.component';
 
 
 
+
 @Component({
   selector: 'app-homepage',
   standalone: true,
