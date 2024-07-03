@@ -28,8 +28,4 @@
 }
 
 
-/* remove scrollbar */
-body{
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
+
