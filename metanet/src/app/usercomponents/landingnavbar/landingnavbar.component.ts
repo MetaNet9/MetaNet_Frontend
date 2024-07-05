@@ -1,10 +1,12 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterModule, RouterOutlet } from '@angular/router';
+import { LoginComponent } from '../login/login.component';
+import { DialogModule } from 'primeng/dialog';
 @Component({
   selector: 'app-landingnavbar',
   standalone: true,
-  imports: [RouterOutlet,RouterModule],
+  imports: [RouterOutlet,RouterModule,DialogModule],
   templateUrl: './landingnavbar.component.html',
   styleUrl: './landingnavbar.component.css'
 })
@@ -56,5 +58,33 @@ export class LandingnavbarComponent implements OnInit {
         }
       });
     }
+  }
+
+
+  // login dialog
+  visibleLogin: boolean = false;
+  showLogin() {
+      this.visibleLogin = true;
+  }
+
+
+  // register dialog
+  visibleRegister: boolean = false;
+
+  showRegister() {
+      this.visibleRegister = true;
+  }
+
+
+  // close login dialog and open register dialog
+  openRegister(){
+    this.visibleRegister = true;
+    this.visibleLogin = false;
+  }
+
+  // close register dialog and open login dialog
+  openLogin(){
+    this.visibleLogin = true;
+    this.visibleRegister = false;
   }
 }

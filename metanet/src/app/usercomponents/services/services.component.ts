@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Model1Component } from '../model1/model1.component';
 import { FooterComponent } from '../footer/footer.component';
 import { LandingnavbarComponent } from '../landingnavbar/landingnavbar.component';
+import { Model1Component } from 'src/app/3Dmodels/model1/model1.component';
 
 @Component({
   selector: 'app-services',

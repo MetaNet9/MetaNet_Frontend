@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { LandingnavbarComponent } from '../landingnavbar/landingnavbar.component';
 import { FooterComponent } from '../footer/footer.component';
-import { Model1Component } from '../model1/model1.component';
-import { Model2Component } from '../model2/model2.component';
+import { Model1Component } from 'src/app/3Dmodels/model1/model1.component';
+import { Model2Component } from 'src/app/3Dmodels/model2/model2.component';
+
 
 
 
