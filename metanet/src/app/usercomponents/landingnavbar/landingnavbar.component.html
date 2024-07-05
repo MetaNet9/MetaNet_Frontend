@@ -11,29 +11,29 @@
       </svg>
     </button>
   </div>
-  <ul class="hidden absolute top-1/2 left-1/4 transform -translate-y-1/2 -translate-x-1/2  lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
-    <li><a  class="text-sm text-metawhite hover:text-lightpink" href="#">Home</a></li>
-    <li class="text-metawhite">
+  <ul class="hidden absolute top-1/2 left-1/4 transform -translate-y-1/2 -translate-x-1/2  lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-16">
+    <li><a routerLink="/home"  class="text-sm text-metawhite hover:text-lightpink" >Home</a></li>
+    <!-- <li class="text-metawhite">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
       </svg>
-    </li>
-    <li><a class="text-sm text-metawhite hover:text-lightpink" href="#">About Us</a></li>
-    <li class="text-metawhite">
+    </li> -->
+    <li><a routerLink="/aboutus" class="text-sm text-metawhite hover:text-lightpink">About Us</a></li>
+    <!-- <li class="text-metawhite">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
       </svg>
-    </li>
-    <li><a class="text-sm text-metawhite hover:text-lightpink" href="#">Services</a></li>
-    <li class="text-metawhite">
+    </li> -->
+    <li><a routerLink="/services" class="text-sm text-metawhite hover:text-lightpink">Services</a></li>
+    <!-- <li class="text-metawhite">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
       </svg>
-    </li>
-    <li><a class="text-sm text-metawhite hover:text-lightpink" href="#">Contact Us</a></li>
+    </li> -->
+    <li><a routerLink="/contactus" class="text-sm text-metawhite hover:text-lightpink">Contact Us</a></li>
   </ul>
-  <a class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-metawhite hover:bg-darkpurple hover:text-metawhite text-sm text-metablack font-bold rounded-xl transition duration-200" href="#">Sign In</a>
-  <a class="hidden lg:inline-block py-2 px-6  bg-lightpurple hover:bg-darkpurple text-sm text-metawhite font-bold rounded-xl transition duration-200" href="#">Sign up</a>
+  <button (click)="showDialog()" class="hidden lg:inline-block lg:ml-auto lg:mr-3 h-8 w-32 bg-metawhite hover:bg-darkpurple hover:text-metawhite text-sm text-metablack font-bold rounded-xl transition duration-200" >Sign In</button>
+  <button class="hidden lg:inline-block h-8 w-32  bg-lightpurple hover:bg-darkpurple text-sm text-metawhite font-bold rounded-xl transition duration-200">Sign up</button>
 </nav>
 
 <!-- mobile view -->
@@ -53,24 +53,94 @@
     <div class="flex justify-center items-center text-center">
       <ul>
         <li class="mb-1">
-          <a class="block p-4 text-sm font-semibold text-metawhite  hover:text-lightpink rounded" href="#">Home</a>
+          <a routerLink="/home" class="block p-4 text-sm font-semibold text-metawhite  hover:text-lightpink rounded">Home</a>
         </li>
         <li class="mb-1">
-          <a class="block p-4 text-sm font-semibold text-metawhite  hover:text-lightpink rounded" href="#">About Us</a>
+          <a routerLink="/aboutus" class="block p-4 text-sm font-semibold text-metawhite  hover:text-lightpink rounded">About Us</a>
         </li>
         <li class="mb-1">
-          <a class="block p-4 text-sm font-semibold text-metawhite  hover:text-lightpink rounded" href="#">Services</a>
+          <a routerLink="/services" class="block p-4 text-sm font-semibold text-metawhite  hover:text-lightpink rounded">Services</a>
         </li>
         <li class="mb-1">
-          <a class="block p-4 text-sm font-semibold text-metawhite  hover:text-lightpink rounded" href="#">Contact Us</a>
+          <a routerLink="/contactus" class="block p-4 text-sm font-semibold text-metawhite  hover:text-lightpink rounded">Contact Us</a>
         </li>
       </ul>
     </div>
     <div class="mt-auto">
       <div class="pt-6">
-        <a class="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold bg-metawhite hover:text-metawhite hover:bg-darkpurple rounded-xl" href="#">Sign in</a>
-        <a class="block px-4 py-3 mb-2 leading-loose text-xs text-center text-metawhite font-semibold bg-lightpurple hover:bg-darkpurple rounded-xl" href="#">Sign Up</a>
+        <button (click)="showDialog()" class="block h-8 w-full mb-3 leading-loose text-xs text-center font-semibold bg-metawhite hover:text-metawhite hover:bg-darkpurple rounded-xl" >Sign in</button>
+        <button class="block px-4 h-8 w-full leading-loose text-xs text-center text-metawhite font-semibold bg-lightpurple hover:bg-darkpurple rounded-xl" href="#">Sign Up</button>
       </div>
     </div>
   </nav>
 </div>
+
+
+
+
+
+
+<!-- Login Popup -->
+
+<div class="flex justify-center">
+  <!-- <button (click)="showDialog()" class="bg-purple2 text-white py-2 px-4 rounded">Show</button> -->
+  <p-dialog
+    header=""
+    [(visible)]="visible"
+    [modal]="true"
+    [draggable]="false"
+    [resizable]="false"
+    styleClass="custom-dialog">
+
+    <div class="flex flex-col md:flex-row max-w-4xl w-full bg-bgpurple text-metawhite shadow-lg rounded-lg overflow-hidden">
+      <div class="w-full md:w-1/2 bg-gradient-to-b from-black to-zinc-900 p-8">
+        <div class="flex flex-col items-center">
+          <img src="./assets/images/logo1.png" alt="MetaNet Logo" class="mb-6 w-20" />
+          <h2 class="text-3xl font-bold mb-6">LOGIN</h2>
+          <form class="w-full">
+            <div class="mb-4">
+              <input type="email" placeholder="Email" class=" p-3 w-full h-10   bg-purple1 border border-lightpink rounded-lg text-metawhite placeholder-lightpink focus:outline-none focus:ring-1 focus:ring-darkpink inputbar"/>
+            </div>
+            <div class="mb-4">
+              <input type="password" placeholder="Password"  class=" p-3 w-full h-10   bg-purple1 border border-lightpink rounded-lg text-metawhite placeholder-lightpink focus:outline-none focus:ring-1 focus:ring-darkpink inputbar"/>
+            </div>
+            <div class="flex items-center font-light justify-between mb-6">
+              <a href="#" class="text-sm text-pink-500 hover:underline">Forgot Password?</a>
+              <label class="inline-flex items-center">
+                <input type="checkbox" class="form-checkbox text-metawhite" />
+                <span class="ml-2 text-sm">Remember Me</span>
+              </label>
+            </div>
+            <button class="w-full h-10 bg-darkpurple hover:bg-lightpurple text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500">Login Now</button>
+          </form>
+          <div class="mt-6 mb-3 text-center">
+            <span class="text-sm text-lightpurple">Login with Others</span>
+          </div>
+          <div class="flex justify-center space-x-4">
+            <a href="#" class="flex items-center border  border-lightpink justify-center  text-black font-bold w-40 py-2 px-4 rounded-lg">
+              <i class="pi pi-google mr-3" style="font-size: 1.5rem"></i>
+              Google
+            </a>
+            <a href="#" class="flex items-center border  border-lightpink justify-center  text-black font-bold w-40 py-2 px-4 rounded-lg">
+              <i class="pi pi-facebook mr-3" style="font-size: 1.5rem"></i>
+              Facebook
+            </a>
+          </div>
+          <div class="mt-6 text-center">
+            <span class="text-sm">New to MetaNet? <a href="#" class="text-darkpink hover:underline">Create Your Account</a></span>
+          </div>
+        </div>
+      </div>
+
+      <div class=" hidden md:block md:w-1/2">
+        <img src="./assets/images/img18.png" alt="VR Experience" class="object-cover w-full h-full" />
+      </div>
+    </div>
+</p-dialog>
+
+</div>
+
+
+
+
+
