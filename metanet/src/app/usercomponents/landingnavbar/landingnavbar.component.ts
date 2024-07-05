@@ -60,9 +60,31 @@ export class LandingnavbarComponent implements OnInit {
     }
   }
 
-  visible: boolean = false;
 
-  showDialog() {
-      this.visible = true;
+  // login dialog
+  visibleLogin: boolean = false;
+  showLogin() {
+      this.visibleLogin = true;
+  }
+
+
+  // register dialog
+  visibleRegister: boolean = false;
+
+  showRegister() {
+      this.visibleRegister = true;
+  }
+
+
+  // close login dialog and open register dialog
+  openRegister(){
+    this.visibleRegister = true;
+    this.visibleLogin = false;
+  }
+
+  // close register dialog and open login dialog
+  openLogin(){
+    this.visibleLogin = true;
+    this.visibleRegister = false;
   }
 }

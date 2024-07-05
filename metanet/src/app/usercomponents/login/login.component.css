@@ -12,7 +12,9 @@
   align-self: flex-end !important;
 }
 
-
+::-webkit-scrollbar {
+  display: none;
+}
 
 ::ng-deep .p-dialog .p-dialog-content {
   background-color: #f0f0f0 !important;
@@ -22,9 +24,4 @@
 
 input{
   padding-left: 5px !important;
-}
-
-
-a{
-  cursor: pointer;
 }
