@@ -6,6 +6,7 @@ import { ContactusComponent } from './usercomponents/contactus/contactus.compone
 import { SidebarComponent } from './admincomponents/sidebar/sidebar.component';
 import { Component } from '@angular/core';
 import { LoginComponent } from './usercomponents/login/login.component';
+import {RegistrationsuccessComponent } from './usercomponents/registrationsuccess/registrationsuccess.component';
 
 export const routes: Routes = [
   { path: '', component: HomepageComponent},
@@ -14,7 +15,7 @@ export const routes: Routes = [
   { path: 'services', component: ServicesComponent},
   { path: 'contactus', component : ContactusComponent},
   { path: 'login', component: LoginComponent},
-
+  { path: 'registrationsuccess', component: RegistrationsuccessComponent},
 
   {path:'sidebar', component: SidebarComponent}
 
