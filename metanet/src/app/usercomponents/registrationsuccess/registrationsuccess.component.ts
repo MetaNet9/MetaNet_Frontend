@@ -5,7 +5,7 @@ import { FooterComponent } from '../footer/footer.component';
 @Component({
   selector: 'app-registrationsuccess',
   standalone: true,
-  imports: [],
+  imports: [LandingnavbarComponent, FooterComponent],
   templateUrl: './registrationsuccess.component.html',
   styleUrl: './registrationsuccess.component.css'
 })
