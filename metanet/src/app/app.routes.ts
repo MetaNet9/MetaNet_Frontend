@@ -3,9 +3,8 @@ import { HomepageComponent } from './usercomponents/homepage/homepage.component'
 import { AboutusComponent } from './usercomponents/aboutus/aboutus.component';
 import { ServicesComponent } from './usercomponents/services/services.component';
 import { ContactusComponent } from './usercomponents/contactus/contactus.component';
-import { SidebarComponent } from './admincomponents/sidebar/sidebar.component';
-import { Component } from '@angular/core';
 import { LoginComponent } from './usercomponents/login/login.component';
+import { AdminDashboardComponent } from './admincomponents/admin-dashboard/admin-dashboard.component';
 
 export const routes: Routes = [
   { path: '', component: HomepageComponent},
@@ -16,6 +15,10 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent},
 
 
-  {path:'sidebar', component: SidebarComponent}
+  // admin routes
+  { path: 'adminDashboard', component: AdminDashboardComponent}
+
+
+
 
 ];
