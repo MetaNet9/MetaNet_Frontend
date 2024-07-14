@@ -3,10 +3,12 @@ import { HomepageComponent } from './usercomponents/homepage/homepage.component'
 import { AboutusComponent } from './usercomponents/aboutus/aboutus.component';
 import { ServicesComponent } from './usercomponents/services/services.component';
 import { ContactusComponent } from './usercomponents/contactus/contactus.component';
-import { SidebarComponent } from './admincomponents/sidebar/sidebar.component';
-import { Component } from '@angular/core';
 import { LoginComponent } from './usercomponents/login/login.component';
+<<<<<<< HEAD
 import {RegistrationsuccessComponent } from './usercomponents/registrationsuccess/registrationsuccess.component';
+=======
+import { AdminDashboardComponent } from './admincomponents/admin-dashboard/admin-dashboard.component';
+>>>>>>> 3292f20feee2c9fe3bd1ab606d4c8953f8b16bad
 
 export const routes: Routes = [
   { path: '', component: HomepageComponent},
@@ -17,6 +19,10 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'registrationsuccess', component: RegistrationsuccessComponent},
 
-  {path:'sidebar', component: SidebarComponent}
+  // admin routes
+  { path: 'adminDashboard', component: AdminDashboardComponent}
+
+
+
 
 ];
