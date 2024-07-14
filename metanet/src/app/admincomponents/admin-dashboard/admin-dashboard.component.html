@@ -1,0 +1,107 @@
+<div class="p-6 bg-lightpink/5">
+
+  <!-- top bar -->
+  <div class="flex items-center justify-between mb-6 p-4 bg-lightpurple/35 text-card-foreground shadow-md rounded-lg">
+    <div class="flex items-center space-x-4">
+      <button class="p-2 text-primary">
+        <i class="pi pi-bars" style="font-size: 1.5rem"></i>
+      </button>
+      <span class="text-primary">Dashboard</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button class="relative p-2 text-primary flex justify-content-center">
+        <i class="pi pi-bell text-2xl" pBadge value="5"></i>
+      </button>
+      <img class="w-10 h-10 rounded-full" src="assets/images/avata.jpg" alt="User profile picture" />
+    </div>
+  </div>
+
+  <!-- greeting -->
+  <div class="flex items-center mb-6">
+    <img src="assets/images/avata.jpg" alt="User profile picture" class="w-12 h-12 rounded-full mr-4" />
+    <h1 class="text-2xl font-bold text-primary">Welcome Josephin</h1>
+  </div>
+
+  <!-- admin cards -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="card bg-metawhite p-4 grid grid-cols-2 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite">
+      <div>
+        <h2 class="text-lg font-semibold text-metablack">Total Models</h2>
+        <p class="text-3xl font-bold text-purple1">2500</p>
+        <p class="text-sm text-pink1">+12% ↑</p>
+      </div>
+      <div class="card">
+        <p-chart type="line" [data]="totalmodeldata" [options]="options" height=100 />
+      </div>
+    </div>
+
+    <div class="card bg-metawhite p-4 grid grid-cols-2 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite">
+      <div>
+        <h2 class="text-lg font-semibold text-metablack">New Models</h2>
+        <p class="text-3xl font-bold text-purple1">25</p>
+        <p class="text-sm text-pink1">+12% ↑</p>
+      </div>
+    </div>
+
+    <div class="card bg-metawhite p-4 grid grid-cols-2 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite">
+      <div>
+        <h2 class="text-lg font-semibold text-metablack">Pending Models</h2>
+        <p class="text-3xl font-bold text-purple1">85</p>
+        <p class="text-sm text-pink1">+12% ↑</p>
+      </div>
+    </div>
+
+    <div class="card bg-metawhite p-4 grid grid-cols-2 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite">
+      <div>
+        <h2 class="text-lg font-semibold text-metablack">Total Users</h2>
+        <p class="text-3xl font-bold text-purple1">5680</p>
+        <p class="text-sm text-pink1">+12% ↑</p>
+      </div>
+      <div class="card">
+        <p-chart type="line" [data]="totalUsers" [options]="options" height=100 />
+      </div>
+    </div>
+
+    <div class="card bg-metawhite p-4 grid grid-cols-2 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite">
+      <div>
+        <h2 class="text-lg font-semibold text-metablack">Total Revenue</h2>
+        <p class="text-3xl font-bold text-purple1">$56,800</p>
+        <p class="text-sm text-pink1">+12% ↑</p>
+      </div>
+      <div class="card">
+        <p-chart type="line" [data]="totalRevenue" [options]="options" height=100 />
+      </div>
+    </div>
+
+    <div class="card bg-metawhite p-4 grid grid-cols-2 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite">
+      <div>
+        <h2 class="text-lg font-semibold text-metablack">Monthly Revenue</h2>
+        <p class="text-3xl font-bold text-purple1">$780</p>
+        <p class="text-sm text-pink1">+12% ↑</p>
+      </div>
+      <div class="card">
+        <p-chart type="line" [data]="monthlyRevenue" [options]="options" height=100 />
+      </div>
+    </div>
+
+    <div class="card bg-metawhite p-4 grid grid-cols-2 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite">
+      <div>
+        <h2 class="text-lg font-semibold text-metablack">System Admin</h2>
+        <p class="text-3xl font-bold text-purple1">85</p>
+        <p class="text-sm text-pink1">+12% ↑</p>
+      </div>
+    </div>
+
+    <div class="card bg-metawhite p-4 grid grid-cols-2 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite">
+      <div>
+        <h2 class="text-lg font-semibold text-metablack">Active Users</h2>
+        <p class="text-3xl font-bold text-purple1">85</p>
+        <p class="text-sm text-pink1">+12% ↑</p>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- top models table -->
+</div>
