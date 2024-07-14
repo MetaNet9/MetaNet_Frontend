@@ -4,11 +4,9 @@ import { AboutusComponent } from './usercomponents/aboutus/aboutus.component';
 import { ServicesComponent } from './usercomponents/services/services.component';
 import { ContactusComponent } from './usercomponents/contactus/contactus.component';
 import { LoginComponent } from './usercomponents/login/login.component';
-<<<<<<< HEAD
 import {RegistrationsuccessComponent } from './usercomponents/registrationsuccess/registrationsuccess.component';
-=======
 import { AdminDashboardComponent } from './admincomponents/admin-dashboard/admin-dashboard.component';
->>>>>>> 3292f20feee2c9fe3bd1ab606d4c8953f8b16bad
+import { OrdersuccessfulComponent } from './usercomponents/ordersuccessful/ordersuccessful.component';
 
 export const routes: Routes = [
   { path: '', component: HomepageComponent},
@@ -18,7 +16,9 @@ export const routes: Routes = [
   { path: 'contactus', component : ContactusComponent},
   { path: 'login', component: LoginComponent},
   { path: 'registrationsuccess', component: RegistrationsuccessComponent},
+  { path: 'ordersuccessful', component: OrdersuccessfulComponent},
 
+  
   // admin routes
   { path: 'adminDashboard', component: AdminDashboardComponent}
 
