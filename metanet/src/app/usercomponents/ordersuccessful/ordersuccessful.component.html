@@ -2,48 +2,46 @@
 <app-landingnavbar></app-landingnavbar>
 
 <!-- main -->
-<div class="bg-background pb-6">
+<div class="bg-background pb-6 mt-16">
 
-<div class="relative h-96 md:h-[15rem] bg-background flex items-center justify-center text-center">
+<div class="relative h-20 md:h-24 bg-background flex items-center justify-center text-center">
     <img src="assets/images/Register complete.png" alt="abstract-mountain-background" class="absolute w-full h-full object-cover bg-repeat opacity-85" />
     <div class="relative z-10 items-center md:mr-16 text-center px-0">
-      <p class="text-5xl md:text-6xl font-extrabold mb-5 text-metawhite opacity-80 ">Order Completed ! </p>
+      <p class="text-4xl md:text-5xl font-extrabold  text-metawhite opacity-80 ">Order Completed ! </p>
     </div>
 </div>
 
 
-<div class="relative h-96 md:h-[27rem] bg-black flex flex-col items-center justify-center text-center">
-    <img src="assets/images/complete mark.png" alt="abstract-mountain-background" class="w-80 mb-5" /><br>
-    <div class="relative z-10 items-center text-center">
-      <h1 class="text-2xl md:text-4xl font-extrabold mb-5 text-metawhite opacity-80">Thank You For Your Purchase!</h1>
-      <p class="text-pink1 text-lg md:text-xl font-light">Your order has been successfully proceed.</p><br><br>
-      <p class="text-metawhite text-lg md:text-xl font-light">Here are the order details</p>
-
-
+<div class="relative  bg-black flex flex-col items-center justify-center text-center">
+    <img src="assets/images/complete mark.png" alt="abstract-mountain-background" class="w-48 " /><br>
+    <div class="relative  items-center text-center">
+      <h1 class="text-2xl md:text-3xl font-extrabold mb-2 text-metawhite opacity-80">Thank You For Your Purchase!</h1>
+      <p class="text-pink1 text-lg md:text-xl font-light mb-4">Your order has been successfully proceed.</p>
+      <p class="text-metawhite text-lg md:text-xl font-light mb-2">Here are the order details</p>
     </div>
   </div>
-  
-  <div class="order-summary">
-    <div class="summary-header">Order Summary</div>
-    <div class="summary-details">
-        <div class="summary-item">
+
+  <div class="bg-purple3 rounded-3xl p-4 w-11/12 max-w-md text-metawhite mx-auto shadow-lg">
+    <div class="bg-purple1 p-2 rounded-3xl text-center text-lg leading-8 font-bold text-metawhite">Order Summary</div>
+    <div class="my-6 text-sm">
+        <div class="flex justify-between my-2">
             <span>Sub Total</span>
             <span>$76.04</span>
         </div>
-        <div class="summary-item">
+        <div class="flex justify-between my-2">
             <span>Platform Charges</span>
             <span>$10.00</span>
         </div>
-        <div class="summary-item">
+        <div class="flex justify-between my-2">
             <span>Items Purchased</span>
             <span>3 Items</span>
         </div>
     </div>
-    <div class="summary-total">
+    <div class="flex justify-between text-lg font-bold border-t border-metawhite pt-2">
         <span>Total</span>
         <span>$86.04</span>
     </div>
-    <button class="view-details" onclick="viewOrderDetails()">View Order Details</button>
+    <button class="bg-lightpink hover:bg-darkpink border-none rounded-2xl text-white p-2 text-center w-full text-base cursor-pointer mt-4" onclick="viewOrderDetails()">View Order Details</button>
 </div>
 </div>
 
