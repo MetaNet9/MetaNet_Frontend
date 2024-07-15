@@ -19,12 +19,35 @@
       <h1 class="text-2xl md:text-4xl font-extrabold mb-5 text-metawhite opacity-80">Thank You For Your Purchase!</h1>
       <p class="text-pink1 text-lg md:text-xl font-light">Your order has been successfully proceed.</p><br><br>
       <p class="text-metawhite text-lg md:text-xl font-light">Here are the order details</p>
+
+
     </div>
   </div>
   
-
-
+  <div class="order-summary">
+    <div class="summary-header">Order Summary</div>
+    <div class="summary-details">
+        <div class="summary-item">
+            <span>Sub Total</span>
+            <span>$76.04</span>
+        </div>
+        <div class="summary-item">
+            <span>Platform Charges</span>
+            <span>$10.00</span>
+        </div>
+        <div class="summary-item">
+            <span>Items Purchased</span>
+            <span>3 Items</span>
+        </div>
+    </div>
+    <div class="summary-total">
+        <span>Total</span>
+        <span>$86.04</span>
+    </div>
+    <button class="view-details" onclick="viewOrderDetails()">View Order Details</button>
 </div>
+</div>
+
 
 <!-- footer -->
 <app-footer></app-footer>
