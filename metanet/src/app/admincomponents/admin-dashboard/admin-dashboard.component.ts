@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartModule } from 'primeng/chart';
-import { BadgeModule } from 'primeng/badge';
+import { AdminnavbarComponent } from 'src/app/commonComponents/adminnavbar/adminnavbar.component';
 
 @Component({
   selector: 'app-admin-dashboard',
   standalone: true,
-  imports: [ChartModule, BadgeModule],
+  imports: [ChartModule,AdminnavbarComponent ],
   templateUrl: './admin-dashboard.component.html',
   styleUrl: './admin-dashboard.component.css'
 })
