@@ -1,11 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartModule } from 'primeng/chart';
 import { AdminnavbarComponent } from 'src/app/commonComponents/adminnavbar/adminnavbar.component';
+import { SalesByCategoryPieChartComponent } from 'src/app/commonComponents/sales-by-category-pie-chart/sales-by-category-pie-chart.component';
+import { TopModelsTableComponent } from 'src/app/commonComponents/top-models-table/top-models-table.component';
+import { WeeklyRevenueChartComponent } from 'src/app/commonComponents/weekly-revenue-chart/weekly-revenue-chart.component';
 
 @Component({
   selector: 'app-admin-dashboard',
   standalone: true,
-  imports: [ChartModule,AdminnavbarComponent ],
+  imports: [
+    ChartModule,
+    AdminnavbarComponent,
+    WeeklyRevenueChartComponent,
+    TopModelsTableComponent,
+    SalesByCategoryPieChartComponent
+  ],
   templateUrl: './admin-dashboard.component.html',
   styleUrl: './admin-dashboard.component.css'
 })
@@ -84,9 +93,9 @@ export class AdminDashboardComponent implements OnInit {
 
 
 
-
+      let delayed: boolean;
       this.options = {
-        maintainAspectRatio: false,
+        maintainAspectRatio: true,
         aspectRatio: 0.6,
         plugins: {
           legend: {
@@ -97,6 +106,7 @@ export class AdminDashboardComponent implements OnInit {
             display: false
           }
         },
+
         scales: {
           x: {
             ticks: {
@@ -122,7 +132,19 @@ export class AdminDashboardComponent implements OnInit {
             },
             display: false
           }
-        }
+        },
+        animation: {
+          onComplete: () => {
+            delayed = true;
+          },
+          delay: (context: { type: string; mode: string; dataIndex: number; datasetIndex: number; }) => {
+            let delay = 0;
+            if (context.type === 'data' && context.mode === 'default' && !delayed) {
+              delay = context.dataIndex * 200 + context.datasetIndex * 10;
+            }
+            return delay;
+          },
+        },
       };
     }
   }
