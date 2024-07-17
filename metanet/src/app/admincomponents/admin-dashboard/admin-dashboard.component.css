@@ -1,4 +1,4 @@
-.bg-metawhite:hover h2,
-.bg-metawhite:hover p{
+.card:hover h2,
+.card:hover p{
   color: #ffffff; /* meta-white */
 }
