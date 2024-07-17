@@ -7,6 +7,7 @@ import { LoginComponent } from './usercomponents/login/login.component';
 import {RegistrationsuccessComponent } from './usercomponents/registrationsuccess/registrationsuccess.component';
 import { AdminDashboardComponent } from './admincomponents/admin-dashboard/admin-dashboard.component';
 import { OrdersuccessfulComponent } from './usercomponents/ordersuccessful/ordersuccessful.component';
+import { MarketplaceCheckoutComponent } from './usercomponents/marketplace-checkout/marketplace-checkout.component';
 
 export const routes: Routes = [
   { path: '', component: HomepageComponent},
@@ -17,6 +18,8 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'registrationsuccess', component: RegistrationsuccessComponent},
   { path: 'ordersuccessful', component: OrdersuccessfulComponent},
+  { path: 'marketplace-checkout', component: MarketplaceCheckoutComponent},
+
 
   
   // admin routes
