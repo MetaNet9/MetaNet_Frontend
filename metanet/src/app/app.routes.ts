@@ -8,6 +8,7 @@ import {RegistrationsuccessComponent } from './usercomponents/registrationsucces
 import { AdminDashboardComponent } from './admincomponents/admin-dashboard/admin-dashboard.component';
 import { OrdersuccessfulComponent } from './usercomponents/ordersuccessful/ordersuccessful.component';
 import { MarketplaceCheckoutComponent } from './usercomponents/marketplace-checkout/marketplace-checkout.component';
+import { MarketplaceShoppingcartComponent } from './usercomponents/marketplace-shoppingcart/marketplace-shoppingcart.component';
 
 export const routes: Routes = [
   { path: '', component: HomepageComponent},
@@ -19,6 +20,7 @@ export const routes: Routes = [
   { path: 'registrationsuccess', component: RegistrationsuccessComponent},
   { path: 'ordersuccessful', component: OrdersuccessfulComponent},
   { path: 'marketplace-checkout', component: MarketplaceCheckoutComponent},
+  { path: 'marketplace-shoppingcart', component: MarketplaceShoppingcartComponent},
 
 
   
