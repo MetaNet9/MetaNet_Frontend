@@ -1,0 +1,93 @@
+<div class="p-6 bg-lightpink/5 lg:ml-80">
+  <!-- top bar -->
+  <app-adminnavbar></app-adminnavbar>
+
+  <div class="flex items-center mb-6">
+    <h1 class="text-2xl font-bold text-primary">All Transactions</h1>
+  </div>
+
+  <!-- tool bar -->
+  <div class="flex items-center mb-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4">
+      <p-calendar [(ngModel)]="date1" [showIcon]="true" [showOnFocus]="false" inputId="buttondisplay"
+        dateFormat="yy-mm-dd" [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" placeholder="From"
+        [showButtonBar]="true" />
+
+      <p-calendar [(ngModel)]="date2" [showIcon]="true" [showOnFocus]="false" inputId="buttondisplay"
+        dateFormat="yy-mm-dd" [readonlyInput]="true" [monthNavigator]="true" [yearNavigator]="true"
+        yearRange="2000:2030" placeholder="To" [showButtonBar]="true" />
+    </div>
+  </div>
+
+  <!-- cards -->
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-6">
+    <div
+      class="card bg-metawhite p-4 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite justify-center items-center ">
+      <h2 class="text-lg font-semibold text-metablack">Total Revenue</h2>
+      <p class="text-xl lg:text-3xl font-bold text-purple1">$21500</p>
+      <p class="text-xs text-pink1">+12% ↑</p>
+    </div>
+
+    <div
+      class="card bg-metawhite p-4 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite justify-center items-center ">
+      <h2 class="text-lg font-semibold text-metablack">Total Sales</h2>
+      <p class="text-xl lg:text-3xl font-bold text-purple1">2500</p>
+      <p class="text-xs text-pink1">+12% ↑</p>
+    </div>
+
+    <div
+      class="card bg-metawhite p-4 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite justify-center items-center ">
+      <h2 class="text-lg font-semibold text-metablack">Total Payout</h2>
+      <p class="text-xl lg:text-3xl font-bold text-purple1">$25123</p>
+      <p class="text-xs text-pink1">+12% ↑</p>
+    </div>
+
+    <div
+      class="card bg-metawhite p-4 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite justify-center items-center ">
+      <h2 class="text-lg font-semibold text-metablack">Total Refund</h2>
+      <p class="text-xl lg:text-3xl font-bold text-purple1">$225</p>
+      <p class="text-xs text-pink1">+12% ↑</p>
+    </div>
+
+    <div
+      class="card bg-metawhite p-4 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite justify-center items-center ">
+      <h2 class="text-lg font-semibold text-metablack">Average Revenue per User</h2>
+      <p class="text-xl lg:text-3xl font-bold text-purple1">$25</p>
+      <p class="text-xs text-pink1">+12% ↑</p>
+    </div>
+
+    <div
+      class="card bg-metawhite p-4 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite justify-center items-center ">
+      <h2 class="text-lg font-semibold text-metablack">Monthly Revenue Growth</h2>
+      <p class="text-xl lg:text-3xl font-bold text-purple1">25%</p>
+    </div>
+
+  </div>
+
+  <!-- charts -->
+  <div class=" grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+    <!-- weekly revenue bar chart -->
+    <div class="col-span-2  bg-metawhite p-4 rounded-lg shadow-md">
+      <h2 class="text-lg font-semibold text-metablack">Revenue Overview</h2>
+      <app-weekly-revenue-chart></app-weekly-revenue-chart>
+    </div>
+
+    <div class="col-span-2 md:col-span-1 bg-metawhite p-4 rounded-lg shadow-md">
+      <h2 class="text-lg font-semibold text-metablack">Revenue by User Type</h2>
+      <app-sales-by-category-pie-chart></app-sales-by-category-pie-chart>
+    </div>
+  </div>
+
+  <div class=" grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+    <!-- weekly revenue bar chart -->
+    <div class="col-span-1  bg-metawhite p-4 rounded-lg shadow-md">
+      <h2 class="text-lg font-semibold text-metablack">Revenue Overview</h2>
+      <app-weekly-revenue-chart></app-weekly-revenue-chart>
+    </div>
+
+    <div class="col-span-1  bg-metawhite p-4 rounded-lg shadow-md">
+      <h2 class="text-lg font-semibold text-metablack">Revenue Breakdown</h2>
+      <app-weekly-revenue-chart></app-weekly-revenue-chart>
+    </div>
+  </div>
+</div>

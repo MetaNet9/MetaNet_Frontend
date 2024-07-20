@@ -5,7 +5,7 @@
   <!-- greeting -->
   <div class="flex items-center mb-6">
     <img src="assets/images/avata.jpg" alt="User profile picture" class="w-12 h-12 rounded-full mr-4" />
-    <h1 class="text-2xl font-bold text-primary">Welcome Josephin</h1>
+    <h1 class="text-2xl font-bold text-purple4">Welcome Josephin</h1>
   </div>
 
   <!-- admin cards -->
@@ -13,7 +13,7 @@
     <div class="card bg-metawhite p-4 grid grid-cols-2 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite">
       <div>
         <h2 class="text-lg font-semibold text-metablack">Total Models</h2>
-        <p class="text-3xl font-bold text-purple1">2500</p>
+        <p class="text-2xl lg:text-3xl font-bold text-purple1">2500</p>
         <p class="text-sm text-pink1">+12% ↑</p>
       </div>
       <div class="card">
@@ -24,7 +24,7 @@
     <div class="card bg-metawhite p-4 grid grid-cols-2 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite">
       <div>
         <h2 class="text-lg font-semibold text-metablack">New Models</h2>
-        <p class="text-3xl font-bold text-purple1">25</p>
+        <p class="text-2xl lg:text-3xl font-bold text-purple1">25</p>
         <p class="text-sm text-pink1">+12% ↑</p>
       </div>
     </div>
@@ -32,7 +32,7 @@
     <div class="card bg-metawhite p-4 grid grid-cols-2 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite">
       <div>
         <h2 class="text-lg font-semibold text-metablack">Pending Models</h2>
-        <p class="text-3xl font-bold text-purple1">85</p>
+        <p class="text-2xl lg:text-3xl font-bold text-purple1">85</p>
         <p class="text-sm text-pink1">+12% ↑</p>
       </div>
     </div>
@@ -40,7 +40,7 @@
     <div class="card bg-metawhite p-4 grid grid-cols-2 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite">
       <div>
         <h2 class="text-lg font-semibold text-metablack">Total Users</h2>
-        <p class="text-3xl font-bold text-purple1">5680</p>
+        <p class="text-2xl lg:text-3xl font-bold text-purple1">5680</p>
         <p class="text-sm text-pink1">+12% ↑</p>
       </div>
       <div class="card">
@@ -51,7 +51,7 @@
     <div class="card bg-metawhite p-4 grid grid-cols-2 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite">
       <div>
         <h2 class="text-lg font-semibold text-metablack">Total Revenue</h2>
-        <p class="text-3xl font-bold text-purple1">$56,800</p>
+        <p class="text-2xl lg:text-3xl  font-bold text-purple1">$56,800</p>
         <p class="text-sm text-pink1">+12% ↑</p>
       </div>
       <div class="card">
@@ -62,7 +62,7 @@
     <div class="card bg-metawhite p-4 grid grid-cols-2 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite">
       <div>
         <h2 class="text-lg font-semibold text-metablack">Monthly Revenue</h2>
-        <p class="text-3xl font-bold text-purple1">$780</p>
+        <p class="text-2xl lg:text-3xl font-bold text-purple1">$780</p>
         <p class="text-sm text-pink1">+12% ↑</p>
       </div>
       <div class="card">
@@ -73,7 +73,7 @@
     <div class="card bg-metawhite p-4 grid grid-cols-2 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite">
       <div>
         <h2 class="text-lg font-semibold text-metablack">System Admin</h2>
-        <p class="text-3xl font-bold text-purple1">85</p>
+        <p class="text-2xl lg:text-3xl font-bold text-purple1">85</p>
         <p class="text-sm text-pink1">+12% ↑</p>
       </div>
     </div>
@@ -81,15 +81,15 @@
     <div class="card bg-metawhite p-4 grid grid-cols-2 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite">
       <div>
         <h2 class="text-lg font-semibold text-metablack">Active Users</h2>
-        <p class="text-3xl font-bold text-purple1">85</p>
+        <p class="text-2xl lg:text-3xl font-bold text-purple1">85</p>
         <p class="text-sm text-pink1">+12% ↑</p>
       </div>
     </div>
   </div>
 
   <!-- top models table -->
-   <div class="bg-metawhite p-4 rounded-lg shadow-md mb-6">
-    <h2 class="text-lg font-semibold text-metablack">Top Models</h2>
+   <div class="bg-metawhite  rounded-lg shadow-md mb-6">
+    <h2 class="text-lg font-semibold text-metablack ml-3 mt-3">Top Models</h2>
     <app-top-models-table></app-top-models-table>
    </div>
 
@@ -99,14 +99,14 @@
 
 
   <!-- charts -->
-  <div class=" grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
+  <div class=" grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
     <!-- weekly revenue bar chart -->
     <div class="col-span-2  bg-metawhite p-4 rounded-lg shadow-md">
       <h2 class="text-lg font-semibold text-metablack">Revenue Overview</h2>
       <app-weekly-revenue-chart></app-weekly-revenue-chart>
     </div>
 
-    <div class="col-span-2 lg:col-span-1 bg-metawhite p-4 rounded-lg shadow-md">
+    <div class="col-span-2 md:col-span-1 bg-metawhite p-4 rounded-lg shadow-md">
       <h2 class="text-lg font-semibold text-metablack">Top Models</h2>
       <app-sales-by-category-pie-chart></app-sales-by-category-pie-chart>
     </div>
