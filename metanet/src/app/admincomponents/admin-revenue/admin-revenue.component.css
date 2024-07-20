@@ -19,7 +19,7 @@
       --darkgray: #888888;
 }
 
-
+/* calander input */
 :host ::ng-deep .p-calendar {
   width: 100%;
   border: 1px solid #6E0E96;
@@ -42,4 +42,10 @@
   background-color: #6E0E96;
 }
 
+
+
+.card:hover h2,
+.card:hover p{
+  color: #ffffff; /* meta-white */
+}
 

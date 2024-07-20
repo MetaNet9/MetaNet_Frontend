@@ -30,6 +30,7 @@ export class TopModelsTableComponent implements OnInit {
     loading: boolean = true;
 
     activityValues: number[] = [0, 100];
+    selectedValue: any;
 
     constructor(private customerService: CustomerService) {}
 
