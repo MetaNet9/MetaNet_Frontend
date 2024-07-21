@@ -1,0 +1,45 @@
+:root{
+  --background: #18141A;
+      --bgpurple: #15001F;
+      --metablack: #1E1E1E;
+      --darkpurple : #6E0E96;
+      --lightpurple: #9755B2;
+      --darkpink: #E413C4;
+      --lightpink: #F07DDA;
+      --purple1: #18061F;
+      --purple2: #3C0D3B;
+      --purple3: #9755B2;
+      --purple4: #6a097d;
+      --pink1:#EC4899;
+      --pink2:#9D174D;
+      --pink3:#BF0B83;
+      --metawhite: #FFFFFF;
+      --metablack: #000000;
+      --lightgray: #D3d3D3;
+      --darkgray: #888888;
+}
+
+
+:host ::ng-deep .p-calendar {
+  width: 100%;
+  border: 1px solid #6E0E96;
+  border-radius: 5px;
+  background: #6E0E96;
+  color: #fff;
+
+}
+
+:host ::ng-deep .p-calendar .p-inputtext {
+  background: #ffffff;
+  padding-left: 3px;
+  border: none;
+  color: #18061F;
+}
+
+:host ::ng-deep .p-calendar .p-button-text {
+  font-size: 0.8rem;
+  color: #fff;
+  background-color: #6E0E96;
+}
+
+
