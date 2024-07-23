@@ -1,0 +1,78 @@
+<!-- nav bar -->
+<app-user-navbar></app-user-navbar>
+
+<!-- main -->
+<div class="bg-metablack py-6 mt-16">
+
+  <div class="bg-purple1 mx-6 p-6 rounded-lg shadow-lg">
+    <a href="#" class="text-pink2 text-sm mb-4 inline-block">← Back to Animals & Pets</a>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 ">
+      <div class="flex items-center justify-center">
+        <img
+          src="https://img.freepik.com/free-photo/dog-skeleton-studio_23-2150891618.jpg?size=626&ext=jpg&ga=GA1.1.1319243779.1711584000&semt=ais"
+          alt="3D model of a contemporary cultural center" class="rounded-lg" />
+      </div>
+      <div class="ml-6">
+        <!-- <button class="bg-s text-secondary-foreground hover:bg-secondary/80 mb-2">Save $10</button> -->
+        <h2 class="text-2xl font-bold text-metawhite">
+          Contemporary Cultural Center
+        </h2>
+        <p class="text-metawhite ml-6 mt-2">
+          This intricate 3D model depicts a modern architectural structure,
+          showcasing a sophisticated design with multiple layers, open spaces,
+          and detailed structural elements. The model highlights an innovative
+          blend of geometric precision and aesthetic appeal, making it an ideal
+          asset for architectural visualization, educational purposes, and
+          virtual reality (VR) experiences.
+        </p>
+        <div class="mt-4 text-metawhite">
+          <span class="text-xl font-semibold text-primary">$120.00</span>
+          <span class="line-through text-muted-foreground ml-3">$130.00</span>
+          <p class="text-sm text-muted-foreground">Model code: 985685</p>
+          <div class="text-xs text-lightgray flex items-center text-center space-x-2">
+            <p-rating [(ngModel)]="ratingvalue" [readonly]="true" [cancel]="false"></p-rating>
+            <span>4.9</span>
+            <span>14 Reviews</span>
+            <span><i class="pi pi-eye" style="font-size: 0.7rem"></i>148K</span>
+            <span><i class="pi pi-heart-fill" style="font-size: 0.7rem"></i>685</span>
+          </div>
+        </div>
+        <div class="flex items-center justify-between mt-4">
+          <div class="flex items-center space-x-2">
+            <p-inputNumber [(ngModel)]="countity" [showButtons]="true" size="2" buttonLayout="horizontal"
+              spinnerMode="horizontal" inputId="horizontal" decrementButtonClass="p-button-secondary"
+              incrementButtonClass="p-button-secondary" incrementButtonIcon="pi pi-plus"
+              decrementButtonIcon="pi pi-minus" />
+          </div>
+          <div class="flex items-center space-x-2">
+            <button
+              class="bg-darkpurple p-4 h-8 w-32 py-2 text-sm rounded-xl hover:bg-lightpurple text-metawhite items-center text-center space-x-2">
+              <i class="pi pi-dollar" style="font-size: 0.9rem"></i>Buy Now
+            </button>
+            <button
+              class="bg-lightpurple p-4 h-8 w-32 py-2 text-sm rounded-xl hover:bg-darkpurple text-metawhite items-center text-center space-x-2">
+              <i class="pi pi-shopping-cart" style="font-size: 0.9rem"></i>Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center mt-10 md:mt-4">
+      <img
+        src="https://img.freepik.com/free-psd/3d-render-avatar-character_23-2150611756.jpg?w=740&t=st=1721725981~exp=1721726581~hmac=7224dffda2f2901623a3dc3c85d338e491f0dd201f069f4cbf4aab9114699e45"
+        alt="User avatar" class="w-10 h-10 rounded-full" />
+      <span class="font-semibold text-metawhite">Pasco295</span>
+      <button
+        class="bg-pink3 text-metawhite ml-2 text-sm rounded-xl w-16 items-center text-center space-x-2 h-6 py-2 justify-center">
+        Follow
+      </button>
+    </div>
+    <div class="flex items-center mt-4 bg-darkpurple">
+
+    </div>
+    <p class="text-muted-foreground text-sm mt-2 ">Published 3 Months ago</p>
+  </div>
+</div>
+
+<!-- footer -->
+<app-footer></app-footer>
