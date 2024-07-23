@@ -26,7 +26,6 @@
   border-radius: 5px;
   background: #6E0E96;
   color: #fff;
-
 }
 
 :host ::ng-deep .p-calendar .p-inputtext {

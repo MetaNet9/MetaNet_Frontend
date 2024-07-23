@@ -4,7 +4,7 @@ import { AboutusComponent } from './usercomponents/aboutus/aboutus.component';
 import { ServicesComponent } from './usercomponents/services/services.component';
 import { ContactusComponent } from './usercomponents/contactus/contactus.component';
 import { LoginComponent } from './usercomponents/login/login.component';
-import {RegistrationsuccessComponent } from './usercomponents/registrationsuccess/registrationsuccess.component';
+import { RegistrationsuccessComponent } from './usercomponents/registrationsuccess/registrationsuccess.component';
 import { AdminDashboardComponent } from './admincomponents/admin-dashboard/admin-dashboard.component';
 import { OrdersuccessfulComponent } from './usercomponents/ordersuccessful/ordersuccessful.component';
 import { MarketplaceCheckoutComponent } from './usercomponents/marketplace-checkout/marketplace-checkout.component';
@@ -12,6 +12,8 @@ import { AdminTransactionsComponent } from './admincomponents/admin-transactions
 import { AdminRevenueComponent } from './admincomponents/admin-revenue/admin-revenue.component';
 
 import { MarketplaceShoppingcartComponent } from './usercomponents/marketplace-shoppingcart/marketplace-shoppingcart.component';
+import { MarketplaceProductDescriptionComponent } from './usercomponents/marketplace-product-description/marketplace-product-description.component';
+import { UserprofileModelsComponent } from './usercomponents/userprofile-models/userprofile-models.component';
 
 
 export const routes: Routes = [
@@ -25,6 +27,8 @@ export const routes: Routes = [
   { path: 'ordersuccessful', component: OrdersuccessfulComponent},
   { path: 'marketplace-checkout', component: MarketplaceCheckoutComponent},
   { path: 'marketplace-shoppingcart', component: MarketplaceShoppingcartComponent},
+  { path: 'marketplace-product-description', component: MarketplaceProductDescriptionComponent},
+  { path: 'userprofile-models', component: UserprofileModelsComponent},
 
 
 
