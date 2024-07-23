@@ -1,0 +1,57 @@
+:root {
+  --background: #18141A;
+  --bgpurple: #15001F;
+  --metablack: #1E1E1E;
+  --darkpurple: #6E0E96;
+  --lightpurple: #9755B2;
+  --darkpink: #E413C4;
+  --lightpink: #F07DDA;
+  --purple1: #18061F;
+  --purple2: #3C0D3B;
+  --purple3: #9755B2;
+  --purple4: #6a097d;
+  --pink1: #EC4899;
+  --pink2: #9D174D;
+  --pink3: #BF0B83;
+  --metawhite: #FFFFFF;
+  --metablack: #000000;
+  --lightgray: #D3d3D3;
+  --darkgray: #888888;
+}
+
+
+/* :host ::ng-deep  */
+:host ::ng-deep .p-inputnumber {
+  background-color: #6d487b;
+  border-radius: 20px;
+  font-size: 0.7;
+  padding: 3px 0;
+  height: 2rem;
+}
+
+:host ::ng-deep .p-inputnumber-input {
+  color: white;
+  font-size: 1em;
+  border: none;
+  background-color: #6d487b;
+  border-radius: 20px;
+  /* padding: 0 10px; */
+  /* margin: 0 10px; */
+  text-align: center;
+  ;
+}
+
+
+:host ::ng-deep .p-inputnumber-button-up,
+:host ::ng-deep .p-inputnumber-button-down {
+  background-color: #ffffffb3;
+  font-size: 0.5em;
+  color: #6a097d;
+  border-radius: 50%;
+  margin: 0 3px
+}
+
+:host ::ng-deep .p-inputnumber .pi {
+  font-size: 0.8rem;
+  color: #6a097d;
+}
