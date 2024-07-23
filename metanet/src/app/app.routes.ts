@@ -13,6 +13,7 @@ import { AdminRevenueComponent } from './admincomponents/admin-revenue/admin-rev
 
 import { MarketplaceShoppingcartComponent } from './usercomponents/marketplace-shoppingcart/marketplace-shoppingcart.component';
 import { MarketplaceProductDescriptionComponent } from './usercomponents/marketplace-product-description/marketplace-product-description.component';
+import { UserprofileModelsComponent } from './usercomponents/userprofile-models/userprofile-models.component';
 
 
 export const routes: Routes = [
@@ -27,6 +28,7 @@ export const routes: Routes = [
   { path: 'marketplace-checkout', component: MarketplaceCheckoutComponent},
   { path: 'marketplace-shoppingcart', component: MarketplaceShoppingcartComponent},
   { path: 'marketplace-product-description', component: MarketplaceProductDescriptionComponent},
+  { path: 'userprofile-models', component: UserprofileModelsComponent},
 
 
 
