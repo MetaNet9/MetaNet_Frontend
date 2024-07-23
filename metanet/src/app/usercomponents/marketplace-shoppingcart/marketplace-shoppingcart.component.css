@@ -23,8 +23,9 @@
 :host ::ng-deep .p-inputnumber-button-up ,
 :host ::ng-deep .p-inputnumber-button-down{
     background-color: #9755B2;
-    font-size: 1.5em;
+    font-size: 0.5em;
     color: white;
+    /* border-radius: 50%; */
     /* margin: 0 10px */
 }
 
