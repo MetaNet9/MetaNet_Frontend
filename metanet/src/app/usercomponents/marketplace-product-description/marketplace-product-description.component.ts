@@ -9,6 +9,7 @@ import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { DataViewModule } from 'primeng/dataview';
 import { CommonModule } from '@angular/common';
+import { MeterGroupModule } from 'primeng/metergroup';
 
 @Component({
   selector: 'app-marketplace-product-description',
@@ -23,7 +24,8 @@ import { CommonModule } from '@angular/common';
     AvatarModule,
     AvatarGroupModule,
     DataViewModule,
-    CommonModule
+    CommonModule,
+    MeterGroupModule
   ],
   templateUrl: './marketplace-product-description.component.html',
   styleUrl: './marketplace-product-description.component.css'
@@ -34,4 +36,16 @@ export class MarketplaceProductDescriptionComponent {
   reviweratingvalue: number = 4;
 
   countity: number = 0;
+
+  value = [
+    { value: 15 }
+];
+
+
+  // rating value
+  fivestar = [ { value: 65 } ];
+  fourstar = [ { value: 15 } ];
+  threestar = [ { value: 5 } ];
+  twostar = [ { value: 10 } ];
+  onestar = [ { value: 5 } ];
 }

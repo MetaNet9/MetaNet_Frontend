@@ -111,3 +111,13 @@
 :host ::ng-deep .p-tabview .p-tabview-panels {
   background: none;
 }
+
+
+/* metergroup */
+:host ::ng-deep .p-metergroup-label {
+  visibility: hidden;
+  height: 0px;
+  margin: 0;
+  padding: 0;
+  
+}
