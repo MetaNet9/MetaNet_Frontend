@@ -15,6 +15,7 @@ import { MarketplaceShoppingcartComponent } from './usercomponents/marketplace-s
 import { MarketplaceProductDescriptionComponent } from './usercomponents/marketplace-product-description/marketplace-product-description.component';
 
 import { UserProfileComponent } from './usercomponents/user-profile/user-profile.component';
+import { UserTransactionsComponent } from './usercomponents/user-transactions/user-transactions.component';
 
 
 export const routes: Routes = [
@@ -30,6 +31,7 @@ export const routes: Routes = [
   { path: 'marketplace-shoppingcart', component: MarketplaceShoppingcartComponent},
   { path: 'marketplace-product-description', component: MarketplaceProductDescriptionComponent},
   { path: 'userprofile', component: UserProfileComponent },
+  { path: 'usertransactions', component: UserTransactionsComponent },
 
 
 
