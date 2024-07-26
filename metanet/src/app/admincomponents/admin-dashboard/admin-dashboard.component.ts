@@ -4,6 +4,12 @@ import { AdminnavbarComponent } from 'src/app/commonComponents/adminnavbar/admin
 import { SalesByCategoryPieChartComponent } from 'src/app/commonComponents/sales-by-category-pie-chart/sales-by-category-pie-chart.component';
 import { TopModelsTableComponent } from 'src/app/commonComponents/top-models-table/top-models-table.component';
 import { WeeklyRevenueChartComponent } from 'src/app/commonComponents/weekly-revenue-chart/weekly-revenue-chart.component';
+import {AdminSidebarComponent} from "../../commonComponents/admin-sidebar/admin-sidebar.component";
+import {RouterOutlet} from "@angular/router";
+import {
+  AdminCardWithChartComponent
+} from "../../commonComponents/admin-card-with-chart/admin-card-with-chart.component";
+import {MenuItem} from "primeng/api";
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -13,7 +19,10 @@ import { WeeklyRevenueChartComponent } from 'src/app/commonComponents/weekly-rev
     AdminnavbarComponent,
     WeeklyRevenueChartComponent,
     TopModelsTableComponent,
-    SalesByCategoryPieChartComponent
+    SalesByCategoryPieChartComponent,
+    AdminSidebarComponent,
+    RouterOutlet,
+    AdminCardWithChartComponent
   ],
   templateUrl: './admin-dashboard.component.html',
   styleUrl: './admin-dashboard.component.css'
@@ -24,6 +33,9 @@ export class AdminDashboardComponent implements OnInit {
   totalRevenue: any;
   monthlyRevenue: any;
   options: any;
+
+
+
 
   ngOnInit() {
     if (typeof window !== 'undefined' && typeof document !== 'undefined') {
