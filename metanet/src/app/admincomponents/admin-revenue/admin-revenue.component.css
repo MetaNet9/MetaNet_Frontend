@@ -19,15 +19,32 @@
       --darkgray: #888888;
 }
 
+/* calander input */
+:host ::ng-deep .p-calendar {
+  width: 100%;
+  border: 1px solid #6E0E96;
+  border-radius: 5px;
+  background: #6E0E96;
+  color: #fff;
+}
 
-:host ::ng-deep .p-inputnumber-button-up ,
-:host ::ng-deep .p-inputnumber-button-down{
-    background-color: #9755B2;
-    font-size: 0.5em;
-    color: white;
-    /* border-radius: 50%; */
-    /* margin: 0 10px */
+:host ::ng-deep .p-calendar .p-inputtext {
+  background: #ffffff;
+  padding-left: 3px;
+  border: none;
+  color: #18061F;
+}
+
+:host ::ng-deep .p-calendar .p-button-text {
+  font-size: 0.8rem;
+  color: #fff;
+  background-color: #6E0E96;
 }
 
 
+
+.card:hover h2,
+.card:hover p{
+  color: #ffffff; /* meta-white */
+}
 

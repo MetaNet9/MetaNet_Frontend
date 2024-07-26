@@ -4,12 +4,18 @@ import { AboutusComponent } from './usercomponents/aboutus/aboutus.component';
 import { ServicesComponent } from './usercomponents/services/services.component';
 import { ContactusComponent } from './usercomponents/contactus/contactus.component';
 import { LoginComponent } from './usercomponents/login/login.component';
-import {RegistrationsuccessComponent } from './usercomponents/registrationsuccess/registrationsuccess.component';
+import { RegistrationsuccessComponent } from './usercomponents/registrationsuccess/registrationsuccess.component';
 import { AdminDashboardComponent } from './admincomponents/admin-dashboard/admin-dashboard.component';
 import { OrdersuccessfulComponent } from './usercomponents/ordersuccessful/ordersuccessful.component';
 import { MarketplaceCheckoutComponent } from './usercomponents/marketplace-checkout/marketplace-checkout.component';
 import { AdminTransactionsComponent } from './admincomponents/admin-transactions/admin-transactions.component';
+import { AdminRevenueComponent } from './admincomponents/admin-revenue/admin-revenue.component';
+
 import { MarketplaceShoppingcartComponent } from './usercomponents/marketplace-shoppingcart/marketplace-shoppingcart.component';
+import { MarketplaceProductDescriptionComponent } from './usercomponents/marketplace-product-description/marketplace-product-description.component';
+
+import { UserProfileComponent } from './usercomponents/user-profile/user-profile.component';
+import { UserTransactionsComponent } from './usercomponents/user-transactions/user-transactions.component';
 
 
 export const routes: Routes = [
@@ -23,12 +29,16 @@ export const routes: Routes = [
   { path: 'ordersuccessful', component: OrdersuccessfulComponent},
   { path: 'marketplace-checkout', component: MarketplaceCheckoutComponent},
   { path: 'marketplace-shoppingcart', component: MarketplaceShoppingcartComponent},
+  { path: 'marketplace-product-description', component: MarketplaceProductDescriptionComponent},
+  { path: 'userprofile', component: UserProfileComponent },
+  { path: 'usertransactions', component: UserTransactionsComponent },
 
 
 
   // admin routes
   { path: 'adminDashboard', component: AdminDashboardComponent},
-  { path: 'admintransactions', component: AdminTransactionsComponent}
+  { path: 'admintransactions', component: AdminTransactionsComponent},
+  { path: 'adminrevenue', component: AdminRevenueComponent}
 
 
 

@@ -1,0 +1,331 @@
+<!-- nav bar -->
+<app-user-navbar></app-user-navbar>
+
+<!-- main -->
+<div class="bg-background pb-6 mt-16">
+
+
+  <!-- header -->
+  <app-user-profile-header></app-user-profile-header>
+
+
+  <!-- details panel -->
+  <div class="bg-purple1  mt-3  p-6 rounded-lg shadow-lg">
+    <p-tabView selectOnFocus="true">
+      <p-tabPanel header="Summary">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </p>
+      </p-tabPanel>
+      <p-tabPanel header="Models">
+        <div class="flex justify-between mb-6 text-metawhite">
+          <div>
+            <span class="text-metawhite">Status</span>
+            <select class="bg-purple1 ml-6 border-background rounded ">
+              <option>All</option>
+              <option>Favorites</option>
+              <option>Recent</option>
+            </select>
+          </div>
+
+          <div>
+            Sort By
+            <p-button icon="pi pi-star" />
+            <p-button icon="pi pi-eye" />
+            <p-button icon="pi pi-clock" />
+          </div>
+        </div>
+        <div class="flex justify-center">
+          <div class="grid gap-4 mb-10 text-metawhite sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <!-- models -->
+            <div class="w-full h-80 mx-auto rounded-lg shadow-lg overflow-hidden hover:scale-105 transition-transform">
+              <div class="relative">
+                <img
+                  src="https://media.sketchfab.com/models/dda567d1ffbd40eabbce7625a48a39ef/thumbnails/84f3614735f048b5838b45f5eb5aa430/01ec6878522a49bc956f9ba4b9fe08f8.jpeg"
+                  alt="Elephant" class="w-full h-60 object-cover" />
+                <span class="absolute top-2 left-2 bg-pink1 text-white text-xs px-2 py-1 rounded-lg">-20%</span>
+                <button
+                  class="absolute top-2 right-2 bg-darkpurple hover:bg-pink1 text-metawhite rounded-full w-8 h-8 flex justify-center items-center">
+                  <i class="pi pi-heart" style="font-size: 1rem"></i>
+                </button>
+              </div>
+              <div class="px-4 py-2 bg-purple2 flex justify-between items-end h-20">
+                <div>
+                  <h2 class="text-lg font-semibold text-metawhite">Elephant</h2>
+                  <p class="text-lg font-bold text-lightgray">$2.99</p>
+                </div>
+                <button
+                  class="mt-4 bg-darkpurple text-metawhite hover:bg-darkpink rounded-full w-8 h-8 flex justify-center items-center">
+                  <i class="pi pi-cart-plus" style="font-size: 1rem"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="w-full h-80 mx-auto rounded-lg shadow-lg overflow-hidden hover:scale-105 transition-transform">
+              <div class="relative">
+                <img
+                  src="https://media.sketchfab.com/models/dda567d1ffbd40eabbce7625a48a39ef/thumbnails/84f3614735f048b5838b45f5eb5aa430/01ec6878522a49bc956f9ba4b9fe08f8.jpeg"
+                  alt="Elephant" class="w-full h-60 object-cover" />
+                <span class="absolute top-2 left-2 bg-pink1 text-white text-xs px-2 py-1 rounded-lg">-20%</span>
+                <button
+                  class="absolute top-2 right-2 bg-darkpurple hover:bg-pink1 text-metawhite rounded-full w-8 h-8 flex justify-center items-center">
+                  <i class="pi pi-heart" style="font-size: 1rem"></i>
+                </button>
+              </div>
+              <div class="px-4 py-2 bg-purple2 flex justify-between items-end h-20">
+                <div>
+                  <h2 class="text-lg font-semibold text-metawhite">Elephant</h2>
+                  <p class="text-lg font-bold text-lightgray">$2.99</p>
+                </div>
+                <button
+                  class="mt-4 bg-darkpurple text-metawhite hover:bg-darkpink rounded-full w-8 h-8 flex justify-center items-center">
+                  <i class="pi pi-cart-plus" style="font-size: 1rem"></i>
+                </button>
+              </div>
+            </div>
+            <div class="w-full h-80 mx-auto rounded-lg shadow-lg overflow-hidden hover:scale-105 transition-transform">
+              <div class="relative">
+                <img
+                  src="https://media.sketchfab.com/models/dda567d1ffbd40eabbce7625a48a39ef/thumbnails/84f3614735f048b5838b45f5eb5aa430/01ec6878522a49bc956f9ba4b9fe08f8.jpeg"
+                  alt="Elephant" class="w-full h-60 object-cover" />
+                <span class="absolute top-2 left-2 bg-pink1 text-white text-xs px-2 py-1 rounded-lg">-20%</span>
+                <button
+                  class="absolute top-2 right-2 bg-darkpurple hover:bg-pink1 text-metawhite rounded-full w-8 h-8 flex justify-center items-center">
+                  <i class="pi pi-heart" style="font-size: 1rem"></i>
+                </button>
+              </div>
+              <div class="px-4 py-2 bg-purple2 flex justify-between items-end h-20">
+                <div>
+                  <h2 class="text-lg font-semibold text-metawhite">Elephant</h2>
+                  <p class="text-lg font-bold text-lightgray">$2.99</p>
+                </div>
+                <button
+                  class="mt-4 bg-darkpurple text-metawhite hover:bg-darkpink rounded-full w-8 h-8 flex justify-center items-center">
+                  <i class="pi pi-cart-plus" style="font-size: 1rem"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="w-full h-80 mx-auto rounded-lg shadow-lg overflow-hidden hover:scale-105 transition-transform">
+              <div class="relative">
+                <img
+                  src="https://media.sketchfab.com/models/dda567d1ffbd40eabbce7625a48a39ef/thumbnails/84f3614735f048b5838b45f5eb5aa430/01ec6878522a49bc956f9ba4b9fe08f8.jpeg"
+                  alt="Elephant" class="w-full h-60 object-cover" />
+                <span class="absolute top-2 left-2 bg-pink1 text-white text-xs px-2 py-1 rounded-lg">-20%</span>
+                <button
+                  class="absolute top-2 right-2 bg-darkpurple hover:bg-pink1 text-metawhite rounded-full w-8 h-8 flex justify-center items-center">
+                  <i class="pi pi-heart" style="font-size: 1rem"></i>
+                </button>
+              </div>
+              <div class="px-4 py-2 bg-purple2 flex justify-between items-end h-20">
+                <div>
+                  <h2 class="text-lg font-semibold text-metawhite">Elephant</h2>
+                  <p class="text-lg font-bold text-lightgray">$2.99</p>
+                </div>
+                <button
+                  class="mt-4 bg-darkpurple text-metawhite hover:bg-darkpink rounded-full w-8 h-8 flex justify-center items-center">
+                  <i class="pi pi-cart-plus" style="font-size: 1rem"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="w-full h-80 mx-auto rounded-lg shadow-lg overflow-hidden hover:scale-105 transition-transform">
+              <div class="relative">
+                <img
+                  src="https://media.sketchfab.com/models/dda567d1ffbd40eabbce7625a48a39ef/thumbnails/84f3614735f048b5838b45f5eb5aa430/01ec6878522a49bc956f9ba4b9fe08f8.jpeg"
+                  alt="Elephant" class="w-full h-60 object-cover" />
+                <span class="absolute top-2 left-2 bg-pink1 text-white text-xs px-2 py-1 rounded-lg">-20%</span>
+                <button
+                  class="absolute top-2 right-2 bg-darkpurple hover:bg-pink1 text-metawhite rounded-full w-8 h-8 flex justify-center items-center">
+                  <i class="pi pi-heart" style="font-size: 1rem"></i>
+                </button>
+              </div>
+              <div class="px-4 py-2 bg-purple2 flex justify-between items-end h-20">
+                <div>
+                  <h2 class="text-lg font-semibold text-metawhite">Elephant</h2>
+                  <p class="text-lg font-bold text-lightgray">$2.99</p>
+                </div>
+                <button
+                  class="mt-4 bg-darkpurple text-metawhite hover:bg-darkpink rounded-full w-8 h-8 flex justify-center items-center">
+                  <i class="pi pi-cart-plus" style="font-size: 1rem"></i>
+                </button>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+      </p-tabPanel>
+      <p-tabPanel header="Collection">
+        <div class="flex justify-between mb-6 text-metawhite">
+          <div>
+            <span class="text-metawhite">Status</span>
+            <select class="bg-purple1 ml-6 border-background rounded ">
+              <option>All</option>
+              <option>Favorites</option>
+              <option>Recent</option>
+            </select>
+          </div>
+
+          <div>
+            Sort By
+            <p-button icon="pi pi-star" />
+            <p-button icon="pi pi-eye" />
+            <p-button icon="pi pi-clock" />
+          </div>
+        </div>
+
+        <div class="flex justify-center">
+          <div class="grid gap-4 mb-10 text-metawhite sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+            <div class="relative w-60 h-40 bg-metablack border border-darkpink  p-4 rounded-lg overflow-hidden">
+              <img src="assets/images/s5.jpeg" alt="background"
+                class="absolute inset-0 w-full h-full object-cover opacity-30">
+              <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
+                <p-button icon="pi pi-plus" />
+                <h1 class="text-2xl font-bold">Human Models</h1>
+                <p class="mt-2 text-sm">05 Models</p>
+              </div>
+            </div>
+
+            <div class="relative w-60 h-40 bg-metablack border border-darkpink  p-4 rounded-lg overflow-hidden">
+              <img src="assets/images/s5.jpeg" alt="background"
+                class="absolute inset-0 w-full h-full object-cover opacity-30">
+              <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
+                <p-button icon="pi pi-plus" />
+                <h1 class="text-2xl font-bold">Human Models</h1>
+                <p class="mt-2 text-sm">05 Models</p>
+              </div>
+            </div>
+
+            <div class="relative w-60 h-40 bg-metablack border border-darkpink  p-4 rounded-lg overflow-hidden">
+              <img src="assets/images/s5.jpeg" alt="background"
+                class="absolute inset-0 w-full h-full object-cover opacity-30">
+              <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
+                <p-button icon="pi pi-plus" />
+                <h1 class="text-2xl font-bold">Human Models</h1>
+                <p class="mt-2 text-sm">05 Models</p>
+              </div>
+            </div>
+
+            <div class="relative w-60 h-40 bg-metablack border border-darkpink  p-4 rounded-lg overflow-hidden">
+              <img src="assets/images/s5.jpeg" alt="background"
+                class="absolute inset-0 w-full h-full object-cover opacity-30">
+              <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
+                <p-button icon="pi pi-plus" />
+                <h1 class="text-2xl font-bold">Human Models</h1>
+                <p class="mt-2 text-sm">05 Models</p>
+              </div>
+            </div>
+
+            <div class="relative w-60 h-40 bg-metablack border border-darkpink  p-4 rounded-lg overflow-hidden">
+              <img src="assets/images/s5.jpeg" alt="background"
+                class="absolute inset-0 w-full h-full object-cover opacity-30">
+              <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
+                <p-button icon="pi pi-plus" />
+                <h1 class="text-2xl font-bold">Human Models</h1>
+                <p class="mt-2 text-sm">05 Models</p>
+              </div>
+            </div>
+
+            <div class="relative w-60 h-40 bg-metablack border border-darkpink  p-4 rounded-lg overflow-hidden">
+              <img src="assets/images/s5.jpeg" alt="background"
+                class="absolute inset-0 w-full h-full object-cover opacity-30">
+              <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
+                <p-button icon="pi pi-plus" />
+                <h1 class="text-2xl font-bold">Human Models</h1>
+                <p class="mt-2 text-sm">05 Models</p>
+              </div>
+            </div>
+
+            <div class="relative w-60 h-40 bg-metablack border border-darkpink  p-4 rounded-lg overflow-hidden">
+              <img src="assets/images/s5.jpeg" alt="background"
+                class="absolute inset-0 w-full h-full object-cover opacity-30">
+              <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
+                <p-button icon="pi pi-plus" />
+                <h1 class="text-2xl font-bold">Human Models</h1>
+                <p class="mt-2 text-sm">05 Models</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </p-tabPanel>
+      <p-tabPanel header="Likes">
+        <div class="flex justify-between mb-6 text-metawhite">
+          <div>
+            <span class="text-metawhite">Status</span>
+            <select class="bg-purple1 ml-6 border-background rounded ">
+              <option>All</option>
+              <option>Favorites</option>
+              <option>Recent</option>
+            </select>
+          </div>
+
+          <div>
+            Sort By
+            <p-button icon="pi pi-star" />
+            <p-button icon="pi pi-eye" />
+            <p-button icon="pi pi-clock" />
+          </div>
+        </div>
+
+        <div class="flex justify-center">
+          <div class="grid gap-4 mb-10 text-metawhite sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <!-- models -->
+            <div class="w-full h-80 mx-auto rounded-lg shadow-lg overflow-hidden hover:scale-105 transition-transform">
+              <div class="relative">
+                <img
+                  src="https://media.sketchfab.com/models/dda567d1ffbd40eabbce7625a48a39ef/thumbnails/84f3614735f048b5838b45f5eb5aa430/01ec6878522a49bc956f9ba4b9fe08f8.jpeg"
+                  alt="Elephant" class="w-full h-60 object-cover" />
+                <span class="absolute top-2 left-2 bg-pink1 text-white text-xs px-2 py-1 rounded-lg">-20%</span>
+                <button
+                  class="absolute top-2 right-2 bg-darkpurple hover:bg-pink1 text-metawhite rounded-full w-8 h-8 flex justify-center items-center">
+                  <i class="pi pi-heart" style="font-size: 1rem"></i>
+                </button>
+              </div>
+              <div class="px-4 py-2 bg-purple2 flex justify-between items-end h-20">
+                <div>
+                  <h2 class="text-lg font-semibold text-metawhite">Elephant</h2>
+                  <p class="text-lg font-bold text-lightgray">$2.99</p>
+                </div>
+                <button
+                  class="mt-4 bg-darkpurple text-metawhite hover:bg-darkpink rounded-full w-8 h-8 flex justify-center items-center">
+                  <i class="pi pi-cart-plus" style="font-size: 1rem"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </p-tabPanel>
+      <p-tabPanel header="Uploads">
+        <div class="flex justify-between mb-6 text-metawhite">
+          <div>
+            <span class="text-metawhite">Status</span>
+            <select class="bg-purple1 ml-6 border-background rounded ">
+              <option>All</option>
+              <option>Favorites</option>
+              <option>Recent</option>
+            </select>
+          </div>
+
+          <div>
+            Sort By
+            <p-button icon="pi pi-star" />
+            <p-button icon="pi pi-eye" />
+            <p-button icon="pi pi-clock" />
+          </div>
+        </div>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+
+
+</div>
+<!-- footer -->
+<app-footer></app-footer>

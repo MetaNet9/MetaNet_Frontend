@@ -28,7 +28,7 @@
 
   <!-- header -->
   <ng-template pTemplate="header">
-      <tr>
+      <tr class="tableheader" >
           <th style="width:25%">Name</th>
           <th style="width:25%">Country</th>
           <th style="width:25%">Agent</th>
@@ -41,7 +41,8 @@
                   type="text"
                   field="name"
                   placeholder="Search by name"
-                  ariaLabel="Filter Name" />
+                  ariaLabel="Filter Name"
+                   />
           </th>
           <th>
               <p-columnFilter
@@ -50,6 +51,9 @@
                   placeholder="Search by country"
                   ariaLabel="Filter Country" />
           </th>
+          <th></th>
+          <th></th>
+
           <!-- <th>
               <p-columnFilter field="representative" matchMode="in" [showMenu]="false">
                   <ng-template pTemplate="filter" let-value let-filter="filterCallback">
@@ -92,9 +96,7 @@
                   </ng-template>
               </p-columnFilter>
           </th> -->
-          <!-- <th>
-              <p-columnFilter type="boolean" field="verified" />
-          </th> -->
+
       </tr>
   </ng-template>
 
@@ -112,11 +114,11 @@
                   {{ customer.country.name }}
               </span>
           </td>
-          <td>
+          <td class="flex items-center ">
               <img
                   [alt]="customer.representative.name"
                   src="https://primefaces.org/cdn/primeng/images/demo/avatar/{{ customer.representative.image }}"
-                  width="32"
+                  width="40"
                   style="vertical-align: middle" />
               <span class="ml-1 vertical-align-middle">
                   {{ customer.representative.name }}
