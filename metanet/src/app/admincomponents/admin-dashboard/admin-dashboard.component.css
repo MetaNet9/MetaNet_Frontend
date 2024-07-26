@@ -1,0 +1,4 @@
+.card:hover h2,
+.card:hover p{
+  color: #ffffff; /* meta-white */
+}

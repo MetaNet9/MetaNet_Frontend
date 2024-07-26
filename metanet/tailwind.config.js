@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
   content: [
     "./src/**/*.{html,ts}",
@@ -15,8 +16,11 @@ module.exports = {
       lightpink: '#F07DDA',
       purple1: '#18061F',
       purple2: '#3C0D3B',
+      purple3: '#9755B2',
+      purple4: '#6a097d',
       pink1:'#EC4899',
       pink2:'#9D174D',
+      pink3:'#BF0B83',
       metawhite: '#FFFFFF',
       metablack: '#000000',
       lightgray: '#D3d3D3',

@@ -28,8 +28,16 @@
 }
 
 
-/* remove scrollbar */
-body{
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+      display: none;
+  }
 }
+
+
+button{
+  padding: 3px 6px;
+}
+
+
