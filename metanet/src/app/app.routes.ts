@@ -16,6 +16,7 @@ import { MarketplaceProductDescriptionComponent } from './usercomponents/marketp
 
 import { UserProfileComponent } from './usercomponents/user-profile/user-profile.component';
 import { UserTransactionsComponent } from './usercomponents/user-transactions/user-transactions.component';
+import { SettingsComponent } from './usercomponents/settings/settings.component';
 
 
 export const routes: Routes = [
@@ -32,6 +33,7 @@ export const routes: Routes = [
   { path: 'marketplace-product-description', component: MarketplaceProductDescriptionComponent},
   { path: 'userprofile', component: UserProfileComponent },
   { path: 'usertransactions', component: UserTransactionsComponent },
+  { path : 'usersettings', component: SettingsComponent},
 
 
 
