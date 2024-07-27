@@ -1,17 +1,31 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule, RouterOutlet } from '@angular/router';
-import { LoginComponent } from '../login/login.component';
 import { DialogModule } from 'primeng/dialog';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+
+
+
 @Component({
   selector: 'app-landingnavbar',
   standalone: true,
-  imports: [RouterOutlet,RouterModule,DialogModule],
+  imports: [
+    RouterOutlet,
+    RouterModule,
+    DialogModule,
+    ReactiveFormsModule,
+    FormsModule,
+    CommonModule
+  ],
   templateUrl: './landingnavbar.component.html',
   styleUrl: './landingnavbar.component.css'
 })
 export class LandingnavbarComponent implements OnInit {
   title = 'metanet';
+
+  loginForm!: FormGroup;
+
+
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
@@ -58,7 +72,25 @@ export class LandingnavbarComponent implements OnInit {
         }
       });
     }
+
+
+    this.createForm();
+
   }
+
+  private createForm() {
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [Validators.required , Validators.email]),
+      password: new FormControl('', Validators.required)
+    });
+  }
+
+  public login(){
+    const isFormValid = this.loginForm.valid;
+    debugger;
+    console.log(this.loginForm.value);
+  }
+
 
 
   // login dialog

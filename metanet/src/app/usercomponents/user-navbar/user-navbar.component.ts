@@ -87,9 +87,18 @@ export class UserNavbarComponent implements OnInit {
             },
           },
           {
-            label: 'External',
-            icon: 'pi pi-home',
-            url: 'https://angular.io//',
+            label: 'Settings',
+            icon: 'pi pi-cog',
+            command: () => {
+              this.router.navigate(['/usersettings']);
+            },
+          },
+          {
+            label: 'Logout',
+            icon: 'pi pi-power-off',
+            command: () => {
+              this.router.navigate(['/home']);
+            },
           },
         ],
       },
