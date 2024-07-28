@@ -13,8 +13,10 @@ import { AdminRevenueComponent } from './admincomponents/admin-revenue/admin-rev
 
 import { MarketplaceShoppingcartComponent } from './usercomponents/marketplace-shoppingcart/marketplace-shoppingcart.component';
 import { MarketplaceProductDescriptionComponent } from './usercomponents/marketplace-product-description/marketplace-product-description.component';
-import { UserprofileModelsComponent } from './usercomponents/userprofile-models/userprofile-models.component';
-import { UserprofileCollectionsComponent } from './usercomponents/userprofile-collections/userprofile-collections.component';
+
+import { UserProfileComponent } from './usercomponents/user-profile/user-profile.component';
+import { UserTransactionsComponent } from './usercomponents/user-transactions/user-transactions.component';
+import { SettingsComponent } from './usercomponents/settings/settings.component';
 
 
 export const routes: Routes = [
@@ -29,8 +31,9 @@ export const routes: Routes = [
   { path: 'marketplace-checkout', component: MarketplaceCheckoutComponent},
   { path: 'marketplace-shoppingcart', component: MarketplaceShoppingcartComponent},
   { path: 'marketplace-product-description', component: MarketplaceProductDescriptionComponent},
-  { path: 'userprofile-models', component: UserprofileModelsComponent},
-  { path: 'userprofile-collections', component: UserprofileCollectionsComponent},
+  { path: 'userprofile', component: UserProfileComponent },
+  { path: 'usertransactions', component: UserTransactionsComponent },
+  { path : 'settings', component: SettingsComponent},
 
 
 
