@@ -33,7 +33,7 @@ export const routes: Routes = [
   { path: 'marketplace-product-description', component: MarketplaceProductDescriptionComponent},
   { path: 'userprofile', component: UserProfileComponent },
   { path: 'usertransactions', component: UserTransactionsComponent },
-  { path : 'usersettings', component: SettingsComponent},
+  { path : 'settings', component: SettingsComponent},
 
 
 
