@@ -14,131 +14,129 @@
    
     <p-tabView selectOnFocus="true" orientation="" >
       
+<!--Profile--> 
       <p-tabPanel header="Profile">
-  <div class="flex justify-center">
+      <div class="flex justify-center">
 
       <div class="w-2/3">
         <div class="w-full mx-auto p-4">
 
         <div class="max-w-4xl mx-auto p-4 rounded border border-pink1 focus:border-pink1">
-          <form class=" p-6">
+          <form [formGroup]="profileDetails" class=" p-6">
             <h2 class="text-3xl text-center text-darkgray  mb-4">Edit Your Personal Profile</h2>
             <h3 class="text-xl  text-start font-bold text-pink3  mt-12 mb-4">Personal Details</h3>
             <div class="mb-4">
               <label class="block text-metawhite mb-2" for="user-name">Username</label>
-              <input class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-metawhite" 
+              <input class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-darkgray" 
               type="text" 
               id="user-name" 
               formControlName="userName"
               />
-            </div>
+              </div>
         
             <div class="mb-4">
               <label class="block text-metawhite mb-2" for="display-name">Display Name</label>
               <input
-                class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-metawhite" 
+                class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-darkgray" 
                 type="text"
                 id="display-name"
-                formControlName="displayName"
+                formControlName="displayName" 
               />
-            </div>
+              </div>
         
             <div class="mb-4">
               <label class="block text-metawhite mb-2" for="tagline">Your Tagline</label>
               <input
-                class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-metawhite"
+                class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-darkgray"
                 type="text"
                 id="tagline"
                 formControlName="tagline"
               />
-            </div>
+              </div>
            
         
             <div class="mb-4">
               <label class="block text-metawhite mb-2" for="acc-type">Account Type</label>
-              <select class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-metawhite" id="acc-type" >
+              <select class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-darkgray" id="acc-type" formControlName="accType" >
                 <option>Individual</option>
                 <option>Business</option>
               </select>
-              <!--formControlName="accType"-->
+              
             </div>
         
             <div class="mb-4">
               <label class="block text-metawhite mb-2" for="bio">Your Biography</label>
               <textarea
-                class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-metawhite"
+                class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-darkgray"
                 id="bio"
                 rows="4"
-
+                formControlName="bio"
               ></textarea>
-              <!-- formControlName="bio"-->
-            </div>
+              </div>
         
             <div class="mb-4">
               <label class="block text-metawhite mb-2" for="location">Your Location</label>
               <input
-                class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-metawhite"
+                class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-darkgray"
                 type="text"
                 id="location"
-                
-                
+                formControlName="location"
               />
-              <!--formControlName="location"-->
-            </div>
+              </div>
         
             
        
- <!--Links-->
+    <!--Links-->
             <h3 class="text-xl font-bold text-start text-pink3  mt-12 mb-4">Links</h3>
             <div class="mb-4">
               <label class="block text-metawhite mb-2" for="personal-website">Personal Website</label>
               <input
-                class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-metawhite"
+                class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-darkgray"
                 type="text"
                 id="personal-website"
-            
+                formControlName="personalWebsite"
               />
-              <!--    formControlName="personalWebsite"-->
+             
             </div>
             <div class="mb-4">
               <label class="block text-metawhite mb-2" for="twitter-username">Twitter Username</label>
               <input
-                class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-metawhite"
+                class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-darkgray"
                 type="text"
                 id="twitter-username"
-
+                formControlName="twitterAcc"
               />
-              <!--formControlName="twitterAcc"-->
+            
             </div>
             <div class="mb-4">
               <label class="block text-metawhite mb-2" for="facebook-username">Facebook Username</label>
               <input
-                class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-metawhite"
+                class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-darkgray"
                 type="text"
                 id="facebook-username"
-     
+                formControlName="fbAcc"
               />
-              <!--formControlName="fbAcc"-->
+              
             </div>
             <div class="mb-4">
               <label class="block text-metawhite mb-2" for="instagram-username">Instagram Username</label>
               <input
-                class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-metawhite"
+                class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 ttext-darkgray"
                 type="text"
                 id="instagram-username"
-                
+                formControlName="instaAcc"
               />
-              <!--formControlName="instaAcc"-->
+          
             </div>
             <div class="mb-4">
               <label class="block text-metawhite mb-2" for="linkedin-Username">LinkedIn Username</label>
               <input
-                class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-metawhite"
+                class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-darkgray"
                 type="text"
                 id="linkedin-username"
-                
+                formControlName="linkedInAcc"
               />
-              <!--formControlName="linkedInAcc"-->
+           
             </div>
         
             <h3 class="text-xl font-bold text-pink3 text-start mt-12 mb-4">Software & Skills</h3>
@@ -187,34 +185,81 @@
           </div>
 
           <div class="flex justify-center">
-          <input class=" rounded w-2/3 bg-pink3 hover:bg-pink1" type="file"></div>
-          <h6 class="block text-center text-metawhite mb-2" for="profile-picture">JPG or PNG and 10MB Max</h6>
-          
-          <!--   formControlName="profilePicture"-->
-          
-        </div>
+            <input class=" rounded w-2/3 bg-pink3 hover:bg-pink1" formControlName="profilePicture" type="file"></div>
+            <h6 class="block text-center text-metawhite mb-2" for="profile-picture">JPG or PNG and 10MB Max</h6>
+          </div>
+
       </div>
     </div>
 
         
       </p-tabPanel>
      
-     
+<!--Email-->     
       <p-tabPanel header="Email">
+
+        <div class="flex justify-center">
+          <div class="w-2/3">
+            <div class="w-full mx-auto p-4">
+              <div class="max-w-4xl mx-auto p-4 rounded border border-pink1 focus:border-pink1">
+                <form [formGroup]="newEmailAddress" class=" p-6">
+                  <h2 class="text-2xl text-center text-darkgray  mb-4"> Set or change your account's email address </h2>
+                  <h3 class="text-l  text-center text-darkgray  mb-2">This is the email associated with your MetaNet account. Your email address is not public.</h3>
+                  
+                  <div class="mb-4">
+                    <label class="block text-metawhite mb-2" for="current-email">Current Email Address</label>
+                    <input class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-darkgray" 
+                    type="text" 
+                    id="current-email" 
+                    formControlName="currentEmail"
+                    />
+                  </div>
+            
+                <div class="mb-4">
+                  <label class="block text-metawhite mb-2" for="new-email">New Email Address</label>
+                  <input
+                    class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-darkgray" 
+                    type="text"
+                    id="new-email"
+                    formControlName="newEmail"
+                    />
+                </div>
+            
+                <div class="mb-4">
+                  <label class="block text-metawhite mb-2" for="password">Password</label>
+                  <input
+                    class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-darkgray"
+                    type="text"
+                    id="password"
+                    formControlName="password"
+                    />
+                </div>
+          
+                <div class="flex justify-center">
+                  <button class="bg-pink3 hover:bg-darkpurple text-metawhite w-1/3 text-lg mt-4 rounded font-bold py-2 px-10">
+                    Save New Email Address
+                  </button>
+                </div>
+
+              </form>
+            </div>     
+          </div>            
+        </div>          
+      </div>
      
       </p-tabPanel>
       
-      
+<!--Password and API-->       
       <p-tabPanel header="Password & API">
       
       </p-tabPanel>
       
-      
-      <p-tabPanel header="Notifications">
+<!--Notifications-->       
+     <p-tabPanel header="Notifications">
       
       </p-tabPanel>
       
-      
+<!--Account-->       
       
     <p-tabPanel header="Account">
     
