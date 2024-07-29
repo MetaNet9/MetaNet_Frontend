@@ -1,0 +1,117 @@
+<!-- nav bar -->
+<app-user-navbar></app-user-navbar>
+
+<!-- main -->
+<div class="bg-background pb-6 mt-16">
+
+  <!-- Search Bar -->
+  <div class="search-bar flex justify-center p-6">
+    <div class="flex flex-row items-center w-full">
+      <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Search models..."
+        [(ngModel)]="searchQuery" (input)="applyFilters()"
+        class="w-1/4 h-12  text-lg   text-metawhite rounded-full border-2 border-darkpurple bg-background focus:outline-none search" />
+      <i class="pi pi-search text-darkpurple -ml-10" style="font-size: 1.5rem"></i>
+    </div>
+  </div>
+
+  <!-- Filter and Sort Bar -->
+  <div class="filter-bar flex justify-between items-center p-4 bg-darkpurple text-metawhite">
+    <div class="filter-group flex items-center space-x-4">
+      <div class="filter-item">
+        <label for="category">Category</label>
+        <select id="category" [(ngModel)]="selectedCategory" (change)="applyFilters()">
+          <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+        </select>
+      </div>
+      <div class="filter-item">
+        <label for="price">Price</label>
+        <input type="range" id="price" min="2" max="500" [(ngModel)]="selectedPrice" (change)="applyFilters()" />
+        <span>{{selectedPrice}}</span>
+      </div>
+      <div class="filter-item">
+        <label for="format">Formats</label>
+        <select id="format" [(ngModel)]="selectedFormat" (change)="applyFilters()">
+          <option *ngFor="let format of formats" [value]="format">{{format}}</option>
+        </select>
+      </div>
+      <div class="filter-item">
+        <label for="polycount">Poly Count</label>
+        <select id="polycount" [(ngModel)]="selectedPolyCount" (change)="applyFilters()">
+          <option *ngFor="let polycount of polyCounts" [value]="polycount">{{polycount}}</option>
+        </select>
+      </div>
+      <div class="filter-item">
+        <label for="license">Licenses</label>
+        <select id="license" [(ngModel)]="selectedLicense" (change)="applyFilters()">
+          <option *ngFor="let license of licenses" [value]="license">{{license}}</option>
+        </select>
+      </div>
+      <div class="filter-item">
+        <label for="rating">Rating</label>
+        <select id="rating" [(ngModel)]="selectedRating" (change)="applyFilters()">
+          <option *ngFor="let rating of ratings" [value]="rating">{{rating}}</option>
+        </select>
+      </div>
+      <div class="filter-item">
+        <label>
+          <input type="checkbox" [(ngModel)]="selectedPBR" (change)="applyFilters()" /> PBR
+        </label>
+      </div>
+      <div class="filter-item">
+        <label>
+          <input type="checkbox" [(ngModel)]="selectedAnimated" (change)="applyFilters()" /> Animated
+        </label>
+      </div>
+      <div class="filter-item">
+        <label>
+          <input type="checkbox" [(ngModel)]="selectedRigged" (change)="applyFilters()" /> Rigged
+        </label>
+      </div>
+    </div>
+    <div class="sort-group">
+      <label for="sort">Sort by</label>
+      <select id="sort" [(ngModel)]="selectedSort" (change)="applyFilters()">
+        <option *ngFor="let sort of sortOptions" [value]="sort">{{sort}}</option>
+      </select>
+    </div>
+  </div>
+
+
+  <div class="flex justify-center p-6">
+    <div class="grid gap-4 mb-10 text-metawhite sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <!-- Use ngFor to iterate over models array -->
+      <div *ngFor="let model of paginatedModels"
+        class="w-full h-80 mx-auto rounded-lg shadow-lg overflow-hidden hover:scale-105 transition-transform">
+        <div class="relative">
+          <img src="{{model.image}}" alt="{{model.name}}" class="w-full h-60 object-cover" />
+          <span
+            class="absolute top-2 left-2 bg-pink1 text-white text-xs px-2 py-1 rounded-lg">-{{model.discount}}%</span>
+          <button
+            class="absolute top-2 right-2 bg-darkpurple hover:bg-pink1 text-metawhite rounded-full w-8 h-8 flex justify-center items-center">
+            <i class="pi pi-heart" style="font-size: 1rem"></i>
+          </button>
+        </div>
+        <div class="px-4 py-2 bg-purple2 flex justify-between items-end h-20">
+          <div>
+            <h2 class="text-lg font-semibold text-metawhite">{{model.name}}</h2>
+            <p class="text-lg font-bold text-lightgray">{{model.price}}</p>
+          </div>
+          <button
+            class="mt-4 bg-darkpurple text-metawhite hover:bg-darkpink rounded-full w-8 h-8 flex justify-center items-center">
+            <i class="pi pi-cart-plus" style="font-size: 1rem"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card flex justify-center">
+    <p-paginator (onPageChange)="onModelPageChange($event)" [first]="first" [rows]="rows"
+      [totalRecords]="totalModelRecords" [rowsPerPageOptions]="[12,20,28]"></p-paginator>
+  </div>
+
+
+
+</div>
+<!-- footer -->
+<app-footer></app-footer>
