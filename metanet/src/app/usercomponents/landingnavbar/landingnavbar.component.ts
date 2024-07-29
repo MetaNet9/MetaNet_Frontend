@@ -26,7 +26,7 @@ export class LandingnavbarComponent implements OnInit {
 
   loginForm!: FormGroup;
   registerForm!: FormGroup;
-  
+
 
 
 
@@ -92,7 +92,7 @@ export class LandingnavbarComponent implements OnInit {
 
   public login(){
     const isFormValid = this.loginForm.valid;
-    debugger;
+    // debugger;
     console.log(this.loginForm.value);
   }
 
@@ -111,7 +111,7 @@ export class LandingnavbarComponent implements OnInit {
 
   public register(){
     const isFormValid = this.registerForm.valid;
-    debugger;
+    // debugger;
     console.log(this.registerForm.value);
   }
 
