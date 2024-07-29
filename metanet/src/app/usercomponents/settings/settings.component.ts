@@ -34,11 +34,18 @@ export class SettingsComponent {
   })
 
 
-
   newEmailAddress = new FormGroup({
     currentEmail: new FormControl(''),
     newEmail: new FormControl(''),
     password: new FormControl(''),
+    
+  })
+
+  changePassword = new FormGroup({
+    currentPassword: new FormControl(''),
+    newPassword: new FormControl(''),
+    confirmPassword: new FormControl(''),
+    apiToken: new FormControl(''),
     
   })
 }
