@@ -22,8 +22,9 @@ export class SettingsComponent {
   profileDetails = new FormGroup({
     userName: new FormControl('metanet.com/Josaphine5'),
     displayName: new FormControl('Josaphine54'),
-    tagline: new FormControl('Describe yourself within 150 words'),
+    tagline: new FormControl('Describe your tagline within 150 words'),
     accType: new FormControl(''),
+    bio: new FormControl('Describe yourself within 150 words'),
     location: new FormControl('Enter your location'),
     personalWebsite: new FormControl(''),
     twitterAcc: new FormControl(''),
@@ -32,5 +33,12 @@ export class SettingsComponent {
     linkedInAcc: new FormControl(''),
   })
 
+
+
+  newEmailAddress = new FormGroup({
+    currentEmail: new FormControl(''),
+    newEmail: new FormControl(''),
+    password: new FormControl(''),
+    
+  })
 }
-// bio: new FormControl(''),
