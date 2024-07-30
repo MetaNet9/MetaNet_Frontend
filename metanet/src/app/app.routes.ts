@@ -17,9 +17,10 @@ import { UserTransactionsComponent } from './usercomponents/user-transactions/us
 
 import {AdminPayoutsComponent} from "./admincomponents/admin-payouts/admin-payouts.component";
 import {AdminSysAdminComponent} from "./admincomponents/admin-sys-admin/admin-sys-admin.component";
-import {AdminModelsComponent} from "./admincomponents/admin-models/admin-models.component";
+// import {AdminModelsComponent} from "./admincomponents/admin-models/admin-models.component";
 import { SettingsComponent } from './usercomponents/settings/settings.component';
 import { MarketplaceProductsComponent } from './usercomponents/marketplace-products/marketplace-products.component';
+import { ModeratorDashboardComponent } from './moderatorcomponents/moderator-dashboard/moderator-dashboard.component';
 
 
 
@@ -42,13 +43,17 @@ export const routes: Routes = [
 
 
 
+
   // admin routes
   { path: 'admindashboard', component: AdminDashboardComponent},
   { path: 'admintransactions', component: AdminTransactionsComponent},
   { path: 'adminrevenue', component: AdminRevenueComponent},
   {path: 'adminpayouts', component: AdminPayoutsComponent},
   {path: 'adminsystem_admin', component: AdminSysAdminComponent},
-  {path: 'adminmodel', component: AdminModelsComponent}
+  // {path: 'adminmodel', component: AdminModelsComponent}
+
+  {path: 'moderatordashboard', component: ModeratorDashboardComponent},
+
 
 
 
