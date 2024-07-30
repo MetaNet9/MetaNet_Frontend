@@ -1,0 +1,117 @@
+<div>
+  <app-admin-sidebar ></app-admin-sidebar>
+  <div class="p-6 bg-lightpink/5 lg:ml-80">
+    <!-- top bar -->
+    <app-adminnavbar [bcitems]="[{label:'System Administrators'}]"></app-adminnavbar>
+
+    <div class="flex items-center mb-6">
+      <h1 class="text-2xl font-bold text-primary">System Administrators</h1>
+    </div>
+
+
+    <!-- tool bar -->
+    <div class="flex items-center mb-6">
+
+    </div>
+
+    <!-- cards -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 mb-6">
+      <div
+        class="card bg-metawhite p-4 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite flex flex-col  justify-center items-center ">
+        <h2 class="text-lg font-semibold text-metablack">Total System Admins</h2>
+        <p class="text-xl lg:text-3xl font-bold text-purple1">86</p>
+      </div>
+
+      <div
+        class="card bg-metawhite p-4 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite flex flex-col justify-center items-center ">
+        <h2 class="text-lg font-semibold text-metablack">Active System Admins</h2>
+        <p class="text-xl lg:text-3xl font-bold text-purple1">10</p>
+      </div>
+
+      <div
+        class="card bg-metawhite p-4 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite flex flex-col  justify-center items-center ">
+        <h2 class="text-lg font-semibold text-metablack">Deleted System Admins</h2>
+        <p class="text-xl lg:text-3xl font-bold text-purple1">3</p>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-end w-full mb-6">
+      <p-button [style]="{width: '200px'}" (onClick)="showDialog()" label="Add System Admin" icon="pi pi-plus" severity="primary" />
+
+    </div>
+    <p-dialog header="Register System Administrator" [modal]="true" [(visible)]="visible" [style]="{ width: '40rem' }">
+      <p class="p-text-secondary block mb-6 pl-4 text-purple4">System Administrator Information</p>
+      <div class="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-7 mb-3 px-8 ">
+        <p-floatLabel >
+          <input id="fname" type="text" pInputText [(ngModel)]="formdata.firstname" />
+          <label for="fname">First Name</label>
+        </p-floatLabel>
+        <p-floatLabel>
+          <input id="lname" type="text" pInputText [(ngModel)]="formdata.lastname" />
+          <label for="lname">Last Name</label>
+        </p-floatLabel>
+
+        <p-floatLabel>
+          <input id="username" type="text" pInputText [(ngModel)]="formdata.username" />
+          <label for="username">Username</label>
+        </p-floatLabel>
+        <p-floatLabel>
+          <input id="email" type="text" pInputText [(ngModel)]="formdata.email" />
+          <label for="email">Email</label>
+        </p-floatLabel>
+        <p-floatLabel>
+          <p-password id ="pass" [(ngModel)]="formdata.password" [toggleMask]="true" />
+          <label for="pass">Password</label>
+        </p-floatLabel>
+        <p-floatLabel>
+          <input id="contactno" type="text" pInputText [(ngModel)]="formdata.contactno" />
+          <label for="contactno">Contact Number</label>
+        </p-floatLabel>
+      </div>
+
+      <p-divider  />
+
+      <p class="p-text-secondary block mb-6 pl-4 text-purple4">Permissions</p>
+        <div class="flex flex-column justify-between px-8 mb-5">
+
+          <p-checkbox
+            [(ngModel)]="selectedCategories"
+            [label]="categories[0].name"
+
+            name="group"
+            [value]="categories[0].name" />
+          <p-checkbox
+            [(ngModel)]="selectedCategories"
+            [label]="categories[1].name"
+            name="group"
+            [value]="categories[1].name" />
+          <p-checkbox
+            [(ngModel)]="selectedCategories"
+            [label]="categories[2].name"
+            name="group"
+            [value]="categories[2].name" />
+          <p-checkbox
+            [(ngModel)]="selectedCategories"
+            [label]="categories[3].name"
+            name="group"
+            [value]="categories[3].name" />
+
+        </div>
+      <p-divider  />
+
+      <div class="flex justify-center w-full gap-2 mt-6">
+
+        <p-button [style]="{width:'400px',height:'40px'}" label="Register System Administrator" severity="primary" (onClick)="submit()" />
+      </div>
+    </p-dialog>
+
+    <!-- table -->
+    <div class="flex flex-col items-center justify-center  mb-6">
+
+      <app-admin-user-table></app-admin-user-table>
+
+    </div>
+
+
+  </div> <p-toast key="toast1" />
+</div>

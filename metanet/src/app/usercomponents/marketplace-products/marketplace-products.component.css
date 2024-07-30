@@ -1,0 +1,46 @@
+.filter-bar {
+  background-color: #2d2d2d;
+  color: #ffffff;
+}
+
+.filter-group .filter-item {
+  margin-right: 1rem;
+}
+
+.filter-item label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.filter-item select,
+.filter-item input[type="range"] {
+  background-color: #444;
+  border: none;
+  color: #fff;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.sort-group {
+  display: flex;
+  align-items: center;
+}
+
+.sort-group label {
+  margin-right: 0.5rem;
+}
+
+.sort-group select {
+  background-color: #444;
+  border: none;
+  color: #fff;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.search{
+  padding-left: 1.5rem;
+}
+
+
+
