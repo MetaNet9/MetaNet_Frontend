@@ -20,6 +20,7 @@ import {AdminSysAdminComponent} from "./admincomponents/admin-sys-admin/admin-sy
 import {AdminModelsComponent} from "./admincomponents/admin-models/admin-models.component";
 import { SettingsComponent } from './usercomponents/settings/settings.component';
 import { MarketplaceProductsComponent } from './usercomponents/marketplace-products/marketplace-products.component';
+import { UploadFormComponent } from './usercomponents/upload-form/upload-form.component';
 
 
 
@@ -39,7 +40,7 @@ export const routes: Routes = [
   { path: 'userprofile', component: UserProfileComponent },
   { path: 'usertransactions', component: UserTransactionsComponent },
   { path : 'settings', component: SettingsComponent},
-
+  { path: 'upload-form', component: UploadFormComponent},
 
 
   // admin routes
