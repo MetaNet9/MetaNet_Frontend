@@ -34,9 +34,9 @@
 
           <div>
             Sort By
-            <p-button icon="pi pi-star"></p-button>
-            <p-button icon="pi pi-eye"></p-button>
-            <p-button icon="pi pi-clock"></p-button>
+            <p-button icon="pi pi-star" [text]="true"></p-button>
+            <p-button icon="pi pi-eye" [text]="true"></p-button>
+            <p-button icon="pi pi-clock" [text]="true"></p-button>
           </div>
         </div>
 
@@ -86,9 +86,9 @@
 
           <div>
             Sort By
-            <p-button icon="pi pi-star" />
-            <p-button icon="pi pi-eye" />
-            <p-button icon="pi pi-clock" />
+            <p-button icon="pi pi-star" [text]="true"/>
+            <p-button icon="pi pi-eye" [text]="true"/>
+            <p-button icon="pi pi-clock" [text]="true"/>
           </div>
         </div>
 
@@ -100,7 +100,7 @@
                 <img src="{{collection.image}}" alt="background"
                   class="absolute inset-0 w-full h-full object-cover opacity-30">
                 <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
-                  <p-button icon="pi {{collection.icon}}" />
+                  <i class="pi {{collection.icon}}" style="font-size: 1.5rem"></i>
                   <h1 class="text-2xl font-bold">{{collection.name}}</h1>
                   <p class="mt-2 text-sm">{{collection.modelcount}} models</p>
                 </div>
@@ -110,8 +110,8 @@
         </div>
 
         <div class="card flex justify-center">
-          <p-paginator (onPageChange)="onCollectionPageChange($event)" [first]="collectionFirst" [rows]="collectionRow" [totalRecords]="totalCollectionRecords"
-            [rowsPerPageOptions]="[5,10,15]"></p-paginator>
+          <p-paginator (onPageChange)="onCollectionPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="totalCollectionRecords"
+            [rowsPerPageOptions]="[10,20,30]"></p-paginator>
         </div>
 
       </p-tabPanel>
@@ -128,9 +128,9 @@
 
           <div>
             Sort By
-            <p-button icon="pi pi-star" />
-            <p-button icon="pi pi-eye" />
-            <p-button icon="pi pi-clock" />
+            <p-button icon="pi pi-star" [text]="true" />
+            <p-button icon="pi pi-eye" [text]="true"/>
+            <p-button icon="pi pi-clock" [text]="true" />
           </div>
         </div>
 

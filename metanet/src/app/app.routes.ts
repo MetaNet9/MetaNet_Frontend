@@ -20,7 +20,11 @@ import {AdminSysAdminComponent} from "./admincomponents/admin-sys-admin/admin-sy
 import {AdminModelsComponent} from "./admincomponents/admin-models/admin-models.component";
 import { SettingsComponent } from './usercomponents/settings/settings.component';
 import { MarketplaceProductsComponent } from './usercomponents/marketplace-products/marketplace-products.component';
+
+import { MarketplaceCategoriesComponent } from './usercomponents/marketplace-categories/marketplace-categories.component';
+
 import { UploadFormComponent } from './usercomponents/upload-form/upload-form.component';
+
 
 
 
@@ -33,6 +37,7 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'registrationsuccess', component: RegistrationsuccessComponent},
   { path: 'ordersuccessful', component: OrdersuccessfulComponent},
+  { path: 'marketplace-categories', component: MarketplaceCategoriesComponent},
   { path: 'marketplace-products', component: MarketplaceProductsComponent},
   { path: 'marketplace-checkout', component: MarketplaceCheckoutComponent},
   { path: 'marketplace-shoppingcart', component: MarketplaceShoppingcartComponent},
@@ -47,9 +52,10 @@ export const routes: Routes = [
   { path: 'admindashboard', component: AdminDashboardComponent},
   { path: 'admintransactions', component: AdminTransactionsComponent},
   { path: 'adminrevenue', component: AdminRevenueComponent},
-  {path: 'adminpayouts', component: AdminPayoutsComponent},
-  {path: 'adminsystem_admin', component: AdminSysAdminComponent},
-  {path: 'adminmodel', component: AdminModelsComponent}
+  { path: 'adminpayouts', component: AdminPayoutsComponent},
+  { path: 'adminsystem_admin', component: AdminSysAdminComponent},
+  { path: 'adminmodel', component: AdminModelsComponent},
+
 
 
 
