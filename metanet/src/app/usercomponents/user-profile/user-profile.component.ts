@@ -7,6 +7,14 @@ import { UserProfileHeaderComponent } from "../user-profile-header/user-profile-
 import { PaginatorModule } from 'primeng/paginator';
 import { CommonModule } from '@angular/common';
 
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HttpEventType } from '@angular/common/http';
+import { DialogModule } from 'primeng/dialog';
+import { MessageService } from 'primeng/api';
+import { FileUploadModule, FileUploadEvent } from 'primeng/fileupload';
+import { ToastModule } from 'primeng/toast';
+
+
 
 
 interface ModelPageEvent {
@@ -46,12 +54,24 @@ interface Collection{
     ButtonModule,
     UserProfileHeaderComponent,
     PaginatorModule,
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule,
+    DialogModule,
+    FileUploadModule,
+    ToastModule,
+    HttpClientModule
+
   ],
   templateUrl: './user-profile.component.html',
-  styleUrl: './user-profile.component.css'
+  styleUrl: './user-profile.component.css',
+  providers: [MessageService]
 })
 export class UserProfileComponent {
+
+  visibleUpload: boolean = false;
+
+  uploadedFiles: any[] = [];
+
 
   first: number = 0;
   rows: number = 4;
@@ -82,6 +102,10 @@ export class UserProfileComponent {
   paginatedCollections: Collection[] = [];
   totalCollectionRecords: number = this.collections.length;
 
+
+  constructor(private messageService: MessageService) {}
+
+
   ngOnInit() {
     this.updatePaginatedModels();
     this.updatePaginatedCollections();
@@ -108,4 +132,23 @@ export class UserProfileComponent {
   updatePaginatedCollections() {
     this.paginatedCollections = this.collections.slice(this.collectionFirst, this.collectionFirst + this.collectionRow);
   }
+
+
+
+
+
+
+
+  showUpload() {
+    this.visibleUpload = true;
+  }
+
+  onUpload(event:FileUploadEvent) {
+    for(let file of event.files) {
+        this.uploadedFiles.push(file);
+    }
+
+    this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
+  }
+
 }
