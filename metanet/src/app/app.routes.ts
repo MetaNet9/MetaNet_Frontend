@@ -26,6 +26,9 @@ import {SysSysAdminComponent} from "./sysAdminComponents/sys-sys-admin/sys-sys-a
 import {SysCreatorComponent} from "./sysAdminComponents/sys-creator/sys-creator.component";
 import {SysUsersComponent} from "./sysAdminComponents/sys-users/sys-users.component";
 import {SysModaratorComponent} from "./sysAdminComponents/sys-modarator/sys-modarator.component";
+import {ModDashboardComponent} from "./ModaratorComponents/mod-dashboard/mod-dashboard.component";
+import {ModUsersComponent} from "./ModaratorComponents/mod-users/mod-users.component";
+import {ModCreatorsComponent} from "./ModaratorComponents/mod-creators/mod-creators.component";
 
 
 
@@ -65,6 +68,11 @@ export const routes: Routes = [
   {path: 'sysadmin_users', component: SysUsersComponent},
   {path: 'sysadmin_modarator', component: SysModaratorComponent},
 
+  //moderator routes
+
+  {path: 'mod_dashboard', component: ModDashboardComponent},
+  {path: 'mod_users', component: ModUsersComponent},
+  {path: 'mod_creator', component: ModCreatorsComponent},
 
 
 ];
