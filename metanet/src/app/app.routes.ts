@@ -10,13 +10,12 @@ import { OrdersuccessfulComponent } from './usercomponents/ordersuccessful/order
 import { MarketplaceCheckoutComponent } from './usercomponents/marketplace-checkout/marketplace-checkout.component';
 import { AdminTransactionsComponent } from './admincomponents/admin-transactions/admin-transactions.component';
 import { AdminRevenueComponent } from './admincomponents/admin-revenue/admin-revenue.component';
-
 import { MarketplaceShoppingcartComponent } from './usercomponents/marketplace-shoppingcart/marketplace-shoppingcart.component';
 import { MarketplaceProductDescriptionComponent } from './usercomponents/marketplace-product-description/marketplace-product-description.component';
-
 import { UserProfileComponent } from './usercomponents/user-profile/user-profile.component';
 import { UserTransactionsComponent } from './usercomponents/user-transactions/user-transactions.component';
 import { SettingsComponent } from './usercomponents/settings/settings.component';
+import { MarketplaceProductsComponent } from './usercomponents/marketplace-products/marketplace-products.component';
 
 
 export const routes: Routes = [
@@ -28,6 +27,7 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'registrationsuccess', component: RegistrationsuccessComponent},
   { path: 'ordersuccessful', component: OrdersuccessfulComponent},
+  { path: 'marketplace-products', component: MarketplaceProductsComponent},
   { path: 'marketplace-checkout', component: MarketplaceCheckoutComponent},
   { path: 'marketplace-shoppingcart', component: MarketplaceShoppingcartComponent},
   { path: 'marketplace-product-description', component: MarketplaceProductDescriptionComponent},

@@ -3,6 +3,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { DialogModule } from 'primeng/dialog';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { first } from 'rxjs';
 
 
 
@@ -24,6 +25,8 @@ export class LandingnavbarComponent implements OnInit {
   title = 'metanet';
 
   loginForm!: FormGroup;
+  registerForm!: FormGroup;
+
 
 
 
@@ -74,11 +77,13 @@ export class LandingnavbarComponent implements OnInit {
     }
 
 
-    this.createForm();
+    this.createLoginForm();
+    this.createRegisterForm();
 
   }
 
-  private createForm() {
+  // login form
+  private createLoginForm() {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required , Validators.email]),
       password: new FormControl('', Validators.required)
@@ -87,9 +92,34 @@ export class LandingnavbarComponent implements OnInit {
 
   public login(){
     const isFormValid = this.loginForm.valid;
-    debugger;
+    // debugger;
     console.log(this.loginForm.value);
   }
+
+
+  // register form
+  private createRegisterForm() {
+    this.registerForm = new FormGroup({
+      firstName: new FormControl('', Validators.required),
+      lastName: new FormControl('', Validators.required),
+      userName: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required , Validators.email]),
+      password: new FormControl('', Validators.required),
+      confirmPassword: new FormControl('', Validators.required)
+    });
+  }
+
+  public register(){
+    const isFormValid = this.registerForm.valid;
+    // debugger;
+    console.log(this.registerForm.value);
+  }
+
+
+
+
+
+
 
 
 
