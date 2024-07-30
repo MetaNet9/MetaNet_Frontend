@@ -1,0 +1,152 @@
+<!-- nav bar -->
+<app-user-navbar></app-user-navbar>
+
+<!-- main -->
+<div class="bg-background pb-6 mt-16">
+
+
+    <div class="flex justify-center">
+        <div class="w-2/3">
+          <div class="w-full mx-auto p-4">
+            <div class="max-w-4xl mx-auto p-4 rounded border border-pink1 focus:border-pink1">
+              <form class=" p-6">
+                <h2 class="text-2xl text-center text-darkgray mb-4"> Model Information </h2>
+                
+                <div class="mb-4">
+                  <label class="block text-metawhite mb-2">Title</label>
+                  <input class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-darkgray"
+                    type="text" />
+                </div>
+
+                <div class="mb-4">
+                  <label class="block text-metawhite mb-2">Description</label>
+                  <input class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-darkgray"
+                    type="textarea"  />
+                </div>
+
+                <div class="mb-4">
+                  <label class="block text-metawhite mb-2" >Catergories</label>
+                  <input class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-darkgray"
+                    type="text"  />
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-metawhite mb-2" >Tags</label>
+                    <input class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-darkgray"
+                      type="text"  />
+                  </div>
+
+
+                  <div class="mb-4">
+                    <label class="block text-metawhite mb-2" >Downloads</label>
+                    <p-selectButton class="bg-lightpink"
+                    [options]="options" 
+                    [(ngModel)]="value" 
+                    [multiple]="true" 
+                    optionLabel="name" 
+                    optionValue="value" />
+                  </div>
+
+                  <h2 class="text-2xl text-start text-pink3 mb-4"> Advanced Information </h2>
+
+                  <div class="mb-4">
+                    <label class="block text-metawhite mb-2" >Geometry</label>
+                    <input class="w-1/3 mr-10 bg-purple1 rounded border border-pink1 focus:border-pink1 text-darkgray"
+                      type="text"  />
+                      <input class="w-1/3 p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-darkgray"
+                      type="text"  />
+                  </div>
+
+                  <div class="mb-4">
+                    <label class="block text-metawhite mb-2" >3D Formats</label>
+                    <input class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-darkgray"
+                      type="text"  />
+                  </div>
+
+                  <div class="mb-4">
+                    <label class="block text-metawhite mb-2" >License</label>
+                    <input class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-darkgray"
+                      type="text"  />
+                  </div>
+
+                  <div class="mb-4">
+                    <label class="block text-metawhite mb-2" >Vertices</label>
+                    <input class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-darkgray"
+                      type="text"  />
+                  </div>
+
+                  <div class="mb-4">
+                    <label class="block text-metawhite mb-2" >Textures</label>
+                    <input class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-darkgray"
+                      type="text"  />
+                  </div>
+
+                  <div class="mb-4">
+                    <label class="block text-metawhite mb-2" >UV Layers</label>
+                    <input class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-darkgray"
+                      type="text"  />
+                  </div>
+
+                  <div class="mb-4">
+                    <label class="block text-metawhite mb-2" >Materials</label>
+                    <input class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-darkgray"
+                      type="text"  />
+                  </div>
+
+                  <div class="mb-4">
+                    <label class="block text-metawhite mb-2" >Scale Transformation</label>
+                    <input class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-darkgray"
+                      type="text"  />
+                  </div>
+
+                  <div class="mb-4">
+                    <label class="block text-metawhite mb-2">
+                        <input type="checkbox" class="form-checkbox text-primary dark:text-primary"  />
+                        <span class="ml-2">PBR</span>
+                      </label>
+                      <label class="block text-metawhite mb-2">
+                        <input type="checkbox" class="form-checkbox text-primary dark:text-primary" />
+                        <span class="ml-2">Vertex Colors</span>
+                      </label>
+                      <label class="block text-metawhite mb-2">
+                        <input type="checkbox" class="form-checkbox text-primary dark:text-primary" />
+                        <span class="ml-2">Animations</span>
+                      </label>
+                      <label class="block text-metawhite mb-2">
+                        <input type="checkbox" class="form-checkbox text-primary dark:text-primary" />
+                        <span class="ml-2">Rigged Geometry</span>
+                      </label>
+                      <label class="block text-metawhite mb-2">
+                        <input type="checkbox" class="form-checkbox text-primary dark:text-primary" />
+                        <span class="ml-2">Marph Geometry</span>
+                      </label>
+                  </div>
+                
+  
+
+                <div class="flex justify-center h-8">
+                  <button
+                    class="bg-pink3 hover:bg-darkpurple text-metawhite w-1/3 h-8 text-lg mr-10 mt-4 rounded-lg font-bold py-2 px-10">
+                    Send to Moderator
+                  </button>
+                  <button
+                    class="bg-pink3 hover:bg-darkpurple text-metawhite w-1/3 h-8 text-lg mt-4 rounded-lg font-bold py-2 px-10">
+                    Save and Proceed
+                  </button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+  <!-- details panel -->
+ 
+
+
+</div>
+<!-- footer -->
+<app-footer></app-footer>

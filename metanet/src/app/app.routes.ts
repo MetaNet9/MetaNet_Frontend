@@ -16,6 +16,7 @@ import { UserProfileComponent } from './usercomponents/user-profile/user-profile
 import { UserTransactionsComponent } from './usercomponents/user-transactions/user-transactions.component';
 import { SettingsComponent } from './usercomponents/settings/settings.component';
 import { MarketplaceProductsComponent } from './usercomponents/marketplace-products/marketplace-products.component';
+import { UploadFormComponent } from './usercomponents/upload-form/upload-form.component';
 
 
 export const routes: Routes = [
@@ -34,7 +35,7 @@ export const routes: Routes = [
   { path: 'userprofile', component: UserProfileComponent },
   { path: 'usertransactions', component: UserTransactionsComponent },
   { path : 'settings', component: SettingsComponent},
-
+  { path: 'upload-form', component: UploadFormComponent},
 
 
   // admin routes
