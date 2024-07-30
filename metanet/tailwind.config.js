@@ -18,13 +18,20 @@ module.exports = {
       purple2: '#3C0D3B',
       purple3: '#9755B2',
       purple4: '#6a097d',
+      pink0:'#ff92c6',
       pink1:'#EC4899',
+      pinkopacity:'rgba(236,72,153,0.46)',
       pink2:'#9D174D',
       pink3:'#BF0B83',
       metawhite: '#FFFFFF',
       metablack: '#000000',
       lightgray: '#D3d3D3',
       darkgray: '#888888',
+
+      green500: '#0F9D58',
+      red500: '#DB4437',
+
+
       red: '#FF0000',
     },
     extend: {

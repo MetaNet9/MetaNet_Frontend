@@ -14,8 +14,13 @@ import { MarketplaceShoppingcartComponent } from './usercomponents/marketplace-s
 import { MarketplaceProductDescriptionComponent } from './usercomponents/marketplace-product-description/marketplace-product-description.component';
 import { UserProfileComponent } from './usercomponents/user-profile/user-profile.component';
 import { UserTransactionsComponent } from './usercomponents/user-transactions/user-transactions.component';
+
+import {AdminPayoutsComponent} from "./admincomponents/admin-payouts/admin-payouts.component";
+import {AdminSysAdminComponent} from "./admincomponents/admin-sys-admin/admin-sys-admin.component";
+import {AdminModelsComponent} from "./admincomponents/admin-models/admin-models.component";
 import { SettingsComponent } from './usercomponents/settings/settings.component';
 import { MarketplaceProductsComponent } from './usercomponents/marketplace-products/marketplace-products.component';
+
 
 
 export const routes: Routes = [
@@ -38,9 +43,12 @@ export const routes: Routes = [
 
 
   // admin routes
-  { path: 'adminDashboard', component: AdminDashboardComponent},
+  { path: 'admindashboard', component: AdminDashboardComponent},
   { path: 'admintransactions', component: AdminTransactionsComponent},
-  { path: 'adminrevenue', component: AdminRevenueComponent}
+  { path: 'adminrevenue', component: AdminRevenueComponent},
+  {path: 'adminpayouts', component: AdminPayoutsComponent},
+  {path: 'adminsystem_admin', component: AdminSysAdminComponent},
+  {path: 'adminmodel', component: AdminModelsComponent}
 
 
 
