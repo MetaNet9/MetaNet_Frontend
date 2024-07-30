@@ -164,7 +164,14 @@
 
       </p-tabPanel>
       <p-tabPanel header="Uploads">
+        <div class="flex justify-end mb-3 h-8">
+          <button (click)="showUpload()" class="bg-darkpink text-metawhite rounded-lg px-4 py-2 flex items-center w-1/5 justify-center hover:bg-pink1">
+            <i class="pi pi-upload"></i>
+            <span class="ml-2">Upload Model</span>
+          </button>
+        </div>
         <div class="flex justify-between mb-6 text-metawhite">
+
           <div>
             <span class="text-metawhite">Status</span>
             <select class="bg-purple1 ml-6 border-background rounded ">
@@ -174,16 +181,38 @@
             </select>
           </div>
 
-          <div>
+          <div class="">
             Sort By
-            <p-button icon="pi pi-star" />
-            <p-button icon="pi pi-eye" />
-            <p-button icon="pi pi-clock" />
+            <p-button icon="pi pi-star" [text]="true" />
+            <p-button icon="pi pi-eye " [text]="true"/>
+            <p-button icon="pi pi-clock "[text]="true" />
           </div>
         </div>
       </p-tabPanel>
     </p-tabView>
   </div>
+
+  <div class="flex justify-center">
+    <p-toast />
+    <p-dialog header="" [(visible)]="visibleUpload" [modal]="true" [draggable]="false"
+      [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [resizable]="false" styleClass="custom-dialog">
+
+      <div class="bg-purple1  rounded-lg shadow-lg w-full max-w-4xl max-h-full overflow-x-scroll no-scrollbar">
+
+         <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" (onUpload)="onUpload($event)"
+          [multiple]="true" accept="image/*" maxFileSize="1000000">
+          <ng-template pTemplate="content">
+            <ul *ngIf="uploadedFiles.length">
+              <li *ngFor="let file of uploadedFiles">
+                {{ file.name }} - {{ file.size }} bytes
+              </li>
+            </ul>
+          </ng-template>
+        </p-fileUpload>
+      </div>
+    </p-dialog>
+  </div>
+
 
 
 </div>
