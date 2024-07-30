@@ -1,0 +1,50 @@
+<div>
+  <app-moderator-sidebar ></app-moderator-sidebar>
+
+  <div class="p-6 bg-lightpink/5 ml-80 ">
+    <!-- top bar -->
+    <app-adminnavbar [bcitems]="[{label:'Dashboard'}]"></app-adminnavbar>
+
+    <!-- greeting -->
+    <div class="flex items-center mb-6">
+      <img src="assets/images/avata.jpg" alt="User profile picture" class="w-12 h-12 rounded-full mr-4" />
+      <h1 class="text-2xl font-bold text-purple4">Welcome Josephin</h1>
+    </div>
+
+    <!-- admin cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3F gap-4 mb-6">
+      <div
+        class="card bg-metawhite p-4 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite justify-center items-center ">
+        <h2 class="text-lg font-semibold text-metablack">Models to Review</h2>
+        <p class="text-xl lg:text-3xl font-bold text-purple1">48</p>
+      </div><div
+      class="card bg-metawhite p-4 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite justify-center items-center ">
+      <h2 class="text-lg font-semibold text-metablack">Total Reviews</h2>
+      <p class="text-xl lg:text-3xl font-bold text-purple1">82</p>
+      <p class="text-xs text-pink1">+12% ↑</p>
+    </div><div
+      class="card bg-metawhite p-4 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite justify-center items-center ">
+      <h2 class="text-lg font-semibold text-metablack">Removed Models</h2>
+      <p class="text-xl lg:text-3xl font-bold text-purple1">3</p>
+      <p class="text-xs text-pink1">+12% ↑</p>
+    </div>
+
+    </div>
+
+
+
+    <!-- charts -->
+    <div class=" grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+      <!-- weekly revenue bar chart -->
+      <div class="col-span-2  bg-metawhite p-4 rounded-lg shadow-md">
+        <h2 class="text-lg font-semibold text-metablack">Contribution Table</h2>
+        <app-weekly-revenue-chart></app-weekly-revenue-chart>
+      </div>
+
+      <div class="col-span-2 md:col-span-1 bg-metawhite p-4 rounded-lg shadow-md">
+        <h2 class="text-lg font-semibold text-metablack">Review Ratio</h2>
+        <app-sales-by-category-pie-chart></app-sales-by-category-pie-chart>
+      </div>
+    </div>
+  </div>
+</div>

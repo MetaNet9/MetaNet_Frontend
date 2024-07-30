@@ -20,6 +20,15 @@ import {AdminSysAdminComponent} from "./admincomponents/admin-sys-admin/admin-sy
 import {AdminModelsComponent} from "./admincomponents/admin-models/admin-models.component";
 import { SettingsComponent } from './usercomponents/settings/settings.component';
 import { MarketplaceProductsComponent } from './usercomponents/marketplace-products/marketplace-products.component';
+import {SysDashboardComponent} from "./sysAdminComponents/sys-dashboard/sys-dashboard.component";
+import {SysModelsComponent} from "./sysAdminComponents/sys-models/sys-models.component";
+import {SysSysAdminComponent} from "./sysAdminComponents/sys-sys-admin/sys-sys-admin.component";
+import {SysCreatorComponent} from "./sysAdminComponents/sys-creator/sys-creator.component";
+import {SysUsersComponent} from "./sysAdminComponents/sys-users/sys-users.component";
+import {SysModaratorComponent} from "./sysAdminComponents/sys-modarator/sys-modarator.component";
+import {ModDashboardComponent} from "./ModaratorComponents/mod-dashboard/mod-dashboard.component";
+import {ModUsersComponent} from "./ModaratorComponents/mod-users/mod-users.component";
+import {ModCreatorsComponent} from "./ModaratorComponents/mod-creators/mod-creators.component";
 
 import { MarketplaceCategoriesComponent } from './usercomponents/marketplace-categories/marketplace-categories.component';
 
@@ -52,12 +61,23 @@ export const routes: Routes = [
   { path: 'admindashboard', component: AdminDashboardComponent},
   { path: 'admintransactions', component: AdminTransactionsComponent},
   { path: 'adminrevenue', component: AdminRevenueComponent},
-  { path: 'adminpayouts', component: AdminPayoutsComponent},
-  { path: 'adminsystem_admin', component: AdminSysAdminComponent},
-  { path: 'adminmodel', component: AdminModelsComponent},
+  {path: 'adminpayouts', component: AdminPayoutsComponent},
+  {path: 'adminsystem_admin', component: AdminSysAdminComponent},
+  {path: 'adminmodel', component: AdminModelsComponent},
 
+  //sys-admin routes
+  {path: 'sysadmin_dashboard', component: SysDashboardComponent},
+  {path: 'sysadmin_modals', component: SysModelsComponent},
+  {path: 'sysadmin_system_admin', component: SysSysAdminComponent},
+  {path: 'sysadmin_creator', component: SysCreatorComponent},
+  {path: 'sysadmin_users', component: SysUsersComponent},
+  {path: 'sysadmin_modarator', component: SysModaratorComponent},
 
+  //moderator routes
 
+  {path: 'mod_dashboard', component: ModDashboardComponent},
+  {path: 'mod_users', component: ModUsersComponent},
+  {path: 'mod_creator', component: ModCreatorsComponent},
 
 
 ];
