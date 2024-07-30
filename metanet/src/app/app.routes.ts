@@ -30,6 +30,11 @@ import {ModDashboardComponent} from "./ModaratorComponents/mod-dashboard/mod-das
 import {ModUsersComponent} from "./ModaratorComponents/mod-users/mod-users.component";
 import {ModCreatorsComponent} from "./ModaratorComponents/mod-creators/mod-creators.component";
 
+import { MarketplaceCategoriesComponent } from './usercomponents/marketplace-categories/marketplace-categories.component';
+
+import { UploadFormComponent } from './usercomponents/upload-form/upload-form.component';
+
+
 
 
 export const routes: Routes = [
@@ -41,6 +46,7 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'registrationsuccess', component: RegistrationsuccessComponent},
   { path: 'ordersuccessful', component: OrdersuccessfulComponent},
+  { path: 'marketplace-categories', component: MarketplaceCategoriesComponent},
   { path: 'marketplace-products', component: MarketplaceProductsComponent},
   { path: 'marketplace-checkout', component: MarketplaceCheckoutComponent},
   { path: 'marketplace-shoppingcart', component: MarketplaceShoppingcartComponent},
@@ -48,7 +54,7 @@ export const routes: Routes = [
   { path: 'userprofile', component: UserProfileComponent },
   { path: 'usertransactions', component: UserTransactionsComponent },
   { path : 'settings', component: SettingsComponent},
-
+  { path: 'upload-form', component: UploadFormComponent},
 
 
   // admin routes
@@ -58,7 +64,6 @@ export const routes: Routes = [
   {path: 'adminpayouts', component: AdminPayoutsComponent},
   {path: 'adminsystem_admin', component: AdminSysAdminComponent},
   {path: 'adminmodel', component: AdminModelsComponent},
-
 
   //sys-admin routes
   {path: 'sysadmin_dashboard', component: SysDashboardComponent},

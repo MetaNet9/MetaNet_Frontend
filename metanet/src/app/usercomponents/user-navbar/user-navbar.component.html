@@ -6,7 +6,7 @@
   </div>
 
   <div class="flex items-center space-x-4">
-    <button class=" flex items-center text-metawhite">
+    <button routerLink="/marketplace-shoppingcart" class=" flex items-center text-metawhite">
       <i class="pi pi-shopping-cart text-2xl" pBadge value="5"></i>
     </button>
 
@@ -34,7 +34,7 @@
       </p-menu>
 
       <p-button (onClick)="menu.toggle($event)">
-        <img class="w-10 h-10 rounded-full" src="assets/images/avata.jpg" alt="User profile picture" />
+        <img class="w-10 h-10" src="assets/images/avata.jpg" alt="User profile picture" />
       </p-button>
     </div>
     <div class="lg:hidden">
@@ -46,10 +46,8 @@
 
   <ul
     class="hidden absolute top-1/2 left-1/4 transform -translate-y-1/2 -translate-x-1/2  lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-16">
-    <li><a routerLink="#" class="text-sm text-metawhite hover:text-lightpink">Marketplace</a></li>
-    <li><a routerLink="#" class="text-sm text-metawhite hover:text-lightpink">Explore</a></li>
-    <li><a routerLink="#" class="text-sm text-metawhite hover:text-lightpink">By 3D Models</a></li>
-    <li><a routerLink="#" class="text-sm text-metawhite hover:text-lightpink">For Business</a></li>
+    <li><a routerLink="/marketplace-products" class="text-sm text-metawhite hover:text-lightpink">Marketplace</a></li>
+    <li><a routerLink="/marketplace-categories" class="text-sm text-metawhite hover:text-lightpink">Explore</a></li>
   </ul>
 </nav>
 
@@ -71,10 +69,8 @@
     </div>
     <div class="flex justify-center items-center text-center">
       <ul>
-        <li class="mb-1"><a routerLink="#" class="block p-4 text-sm font-semibold text-metawhite  hover:text-lightpink rounded">Marketplace</a></li>
-        <li class="mb-1"><a routerLink="#" class="block p-4 text-sm font-semibold text-metawhite  hover:text-lightpink rounded">Explore</a></li>
-        <li class="mb-1"><a routerLink="#" class="block p-4 text-sm font-semibold text-metawhite  hover:text-lightpink rounded">Buy 3D Models</a></li>
-        <li class="mb-1"><a routerLink="#" class="block p-4 text-sm font-semibold text-metawhite  hover:text-lightpink rounded">For Business</a></li>
+        <li class="mb-1"><a routerLink="/marketplace-products" class="block p-4 text-sm font-semibold text-metawhite  hover:text-lightpink rounded">Marketplace</a></li>
+        <li class="mb-1"><a routerLink="/marketplace-categories" class="block p-4 text-sm font-semibold text-metawhite  hover:text-lightpink rounded">Explore</a></li>
       </ul>
     </div>
 
