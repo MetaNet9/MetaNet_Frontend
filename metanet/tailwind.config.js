@@ -27,9 +27,12 @@ module.exports = {
       metablack: '#000000',
       lightgray: '#D3d3D3',
       darkgray: '#888888',
+
       green500: '#0F9D58',
       red500: '#DB4437',
 
+
+      red: '#FF0000',
     },
     extend: {
       backgroundImage: {

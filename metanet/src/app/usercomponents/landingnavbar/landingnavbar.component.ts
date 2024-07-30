@@ -1,17 +1,34 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule, RouterOutlet } from '@angular/router';
-import { LoginComponent } from '../login/login.component';
 import { DialogModule } from 'primeng/dialog';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { first } from 'rxjs';
+
+
+
 @Component({
   selector: 'app-landingnavbar',
   standalone: true,
-  imports: [RouterOutlet,RouterModule,DialogModule],
+  imports: [
+    RouterOutlet,
+    RouterModule,
+    DialogModule,
+    ReactiveFormsModule,
+    FormsModule,
+    CommonModule
+  ],
   templateUrl: './landingnavbar.component.html',
   styleUrl: './landingnavbar.component.css'
 })
 export class LandingnavbarComponent implements OnInit {
   title = 'metanet';
+
+  loginForm!: FormGroup;
+  registerForm!: FormGroup;
+
+
+
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
@@ -58,7 +75,52 @@ export class LandingnavbarComponent implements OnInit {
         }
       });
     }
+
+
+    this.createLoginForm();
+    this.createRegisterForm();
+
   }
+
+  // login form
+  private createLoginForm() {
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [Validators.required , Validators.email]),
+      password: new FormControl('', Validators.required)
+    });
+  }
+
+  public login(){
+    const isFormValid = this.loginForm.valid;
+    // debugger;
+    console.log(this.loginForm.value);
+  }
+
+
+  // register form
+  private createRegisterForm() {
+    this.registerForm = new FormGroup({
+      firstName: new FormControl('', Validators.required),
+      lastName: new FormControl('', Validators.required),
+      userName: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required , Validators.email]),
+      password: new FormControl('', Validators.required),
+      confirmPassword: new FormControl('', Validators.required)
+    });
+  }
+
+  public register(){
+    const isFormValid = this.registerForm.valid;
+    // debugger;
+    console.log(this.registerForm.value);
+  }
+
+
+
+
+
+
+
 
 
   // login dialog

@@ -40,9 +40,9 @@ export class AdminDashboardComponent implements OnInit {
   ngOnInit() {
     if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       const documentStyle = getComputedStyle(document.documentElement);
-      const textColor = documentStyle.getPropertyValue('--text-color');
-      const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
-      const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
+      // const textColor = documentStyle.getPropertyValue('--text-color');
+      // const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
+      // const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
 
       this.totalmodeldata = {
         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
