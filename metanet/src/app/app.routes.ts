@@ -18,8 +18,8 @@ import { UserTransactionsComponent } from './usercomponents/user-transactions/us
 import {AdminPayoutsComponent} from "./admincomponents/admin-payouts/admin-payouts.component";
 import {AdminSysAdminComponent} from "./admincomponents/admin-sys-admin/admin-sys-admin.component";
 import {AdminModelsComponent} from "./admincomponents/admin-models/admin-models.component";
-import { SettingsComponent } from './usercomponents/settings/settings.component';
-import { MarketplaceProductsComponent } from './usercomponents/marketplace-products/marketplace-products.component';
+import {SettingsComponent } from './usercomponents/settings/settings.component';
+import {MarketplaceProductsComponent } from './usercomponents/marketplace-products/marketplace-products.component';
 import {SysDashboardComponent} from "./sysAdminComponents/sys-dashboard/sys-dashboard.component";
 import {SysModelsComponent} from "./sysAdminComponents/sys-models/sys-models.component";
 import {SysSysAdminComponent} from "./sysAdminComponents/sys-sys-admin/sys-sys-admin.component";
