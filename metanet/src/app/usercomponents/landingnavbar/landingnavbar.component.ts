@@ -16,7 +16,8 @@ import { first } from 'rxjs';
     DialogModule,
     ReactiveFormsModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+
   ],
   templateUrl: './landingnavbar.component.html',
   styleUrl: './landingnavbar.component.css'

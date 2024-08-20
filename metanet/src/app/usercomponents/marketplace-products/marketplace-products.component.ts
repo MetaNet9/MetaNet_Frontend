@@ -4,6 +4,7 @@ import { FooterComponent } from '../footer/footer.component';
 import { PaginatorModule } from 'primeng/paginator';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 interface ModelPageEvent {
   first?: number;
@@ -35,7 +36,8 @@ interface Model {
     FooterComponent,
     PaginatorModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    RouterModule,
   ],
   templateUrl: './marketplace-products.component.html',
   styleUrl: './marketplace-products.component.css',
