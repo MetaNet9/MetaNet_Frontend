@@ -112,7 +112,7 @@
               </div>
             </div>
             <div class="flex items-center font-light justify-between mb-6">
-              <a href="#" class="text-sm text-pink-500 hover:underline">Forgot Password?</a>
+              <a (click)="showForgotPassword()" class="text-sm text-pink-500 hover:underline">Forgot Password?</a>
               <label class="inline-flex items-center">
                 <input type="checkbox" class="form-checkbox text-metawhite" />
                 <span class="ml-2 text-sm">Remember Me</span>
@@ -135,7 +135,7 @@
             </a>
           </div>
           <div class="mt-6 text-center">
-            <span class="text-sm">New to MetaNet? <a (click)="openRegister()" class="text-darkpink hover:underline">Create Your Account</a></span>
+            <span class="text-sm">New to MetaNet? <a (click)="showRegister()" class="text-darkpink hover:underline">Create Your Account</a></span>
           </div>
         </div>
       </div>
@@ -256,7 +256,54 @@
 </p-dialog>
 </div>
 
+<!-- Forgot Password Popup -->
+<div class="flex justify-center">
+  <p-dialog
+    header=""
+    [(visible)]="visibleForgotPassword"
+    [modal]="true"
+    [draggable]="false"
+    [resizable]="false"
+    styleClass="custom-dialog"
+  >
+    <div class="flex flex-col w-full bg-bgpurple text-metawhite shadow-lg rounded-lg overflow-hidden max-w-screen-sm">
+      <div class="p-8">
+        <div class="flex flex-col items-center">
+          <h2 class="text-2xl font-bold mb-6 text-center">Forgot Password</h2>
+          <!-- forgot password form -->
+          <form class="w-full" [formGroup]="forgotPasswordForm" (ngSubmit)="resetPassword()">
+            <div class="mb-4">
+              <input
+                type="email"
+                id="forgotEmail"
+                formControlName="email"
+                placeholder="Enter your email"
+                class="p-3 w-full h-10 bg-purple1 border border-lightpink rounded-lg text-metawhite placeholder-lightpink focus:outline-none focus:ring-1 focus:ring-darkpink"
+              />
+              <div *ngIf="forgotPasswordForm.controls['email'].invalid && forgotPasswordForm.controls['email'].touched || forgotPasswordForm.controls['email'].dirty" class="error-msg">
+                <div *ngIf="forgotPasswordForm.controls['email'].errors?.['email']" class="text-red-500 text-sm pt-1">Invalid email.</div>
+                <div *ngIf="forgotPasswordForm.controls['email'].errors?.['required']" class="text-red-500 text-sm pt-1">Email is required.</div>
+              </div>
+            </div>
+            <button
+              type="submit"
+              [disabled]="forgotPasswordForm.invalid"
+              class="w-full h-10 bg-darkpurple hover:bg-lightpurple text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
+            >
+              Reset Password
+            </button>
+          </form>
 
+          <div class="mt-6 text-center">
+            <span class="text-sm">Remembered your password? 
+              <a (click)="openLogin()" class="text-darkpink hover:underline">Login</a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </p-dialog>
+</div>
 
 
 
