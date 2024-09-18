@@ -33,6 +33,7 @@ import {ModCreatorsComponent} from "./ModaratorComponents/mod-creators/mod-creat
 import { MarketplaceCategoriesComponent } from './usercomponents/marketplace-categories/marketplace-categories.component';
 
 import { UploadFormComponent } from './usercomponents/upload-form/upload-form.component';
+import { ForgotPasswordComponent } from './usercomponents/forgot-password/forgot-password.component';
 
 
 
@@ -55,6 +56,7 @@ export const routes: Routes = [
   { path: 'usertransactions', component: UserTransactionsComponent },
   { path : 'settings', component: SettingsComponent},
   { path: 'upload-form', component: UploadFormComponent},
+  { path: 'forgot-password', component: ForgotPasswordComponent},
 
 
   // admin routes

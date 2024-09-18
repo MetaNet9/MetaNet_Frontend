@@ -3,9 +3,6 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { DialogModule } from 'primeng/dialog';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { first } from 'rxjs';
-
-
 
 @Component({
   selector: 'app-landingnavbar',
@@ -17,19 +14,20 @@ import { first } from 'rxjs';
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
-
   ],
   templateUrl: './landingnavbar.component.html',
-  styleUrl: './landingnavbar.component.css'
+  styleUrl: './landingnavbar.component.css',
 })
 export class LandingnavbarComponent implements OnInit {
   title = 'metanet';
 
   loginForm!: FormGroup;
   registerForm!: FormGroup;
+  forgotPasswordForm!: FormGroup;
 
-
-
+  visibleLogin: boolean = false;
+  visibleRegister: boolean = false;
+  visibleForgotPassword: boolean = false;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
@@ -77,26 +75,23 @@ export class LandingnavbarComponent implements OnInit {
       });
     }
 
-
     this.createLoginForm();
     this.createRegisterForm();
-
+    this.createForgotPasswordForm();
   }
 
   // login form
   private createLoginForm() {
     this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required , Validators.email]),
-      password: new FormControl('', Validators.required)
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', Validators.required),
     });
   }
 
-  public login(){
+  public login() {
     const isFormValid = this.loginForm.valid;
-    // debugger;
     console.log(this.loginForm.value);
   }
-
 
   // register form
   private createRegisterForm() {
@@ -104,50 +99,63 @@ export class LandingnavbarComponent implements OnInit {
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
       userName: new FormControl('', Validators.required),
-      email: new FormControl('', [Validators.required , Validators.email]),
+      email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required),
-      confirmPassword: new FormControl('', Validators.required)
+      confirmPassword: new FormControl('', Validators.required),
     });
   }
 
-  public register(){
+  public register() {
     const isFormValid = this.registerForm.valid;
-    // debugger;
     console.log(this.registerForm.value);
   }
 
+  // forgot password form
+  private createForgotPasswordForm() {
+    this.forgotPasswordForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+    });
+  }
 
+  public resetPassword() {
+    const isFormValid = this.forgotPasswordForm.valid;
+    if (isFormValid) {
+      const email = this.forgotPasswordForm.get('email')?.value;
+      console.log('Password reset link sent to:', email);
+    }
+  }
 
-
-
-
-
-
-
-  // login dialog
-  visibleLogin: boolean = false;
+  // show login dialog
   showLogin() {
-      this.visibleLogin = true;
-  }
-
-
-  // register dialog
-  visibleRegister: boolean = false;
-
-  showRegister() {
-      this.visibleRegister = true;
-  }
-
-
-  // close login dialog and open register dialog
-  openRegister(){
-    this.visibleRegister = true;
-    this.visibleLogin = false;
-  }
-
-  // close register dialog and open login dialog
-  openLogin(){
     this.visibleLogin = true;
     this.visibleRegister = false;
+    this.visibleForgotPassword = false;
+  }
+
+  // show register dialog
+  showRegister() {
+    this.visibleRegister = true;
+    this.visibleLogin = false;
+    this.visibleForgotPassword = false;
+  }
+
+  // show forgot password dialog
+  showForgotPassword() {
+    this.visibleForgotPassword = true;
+    this.visibleLogin = false;
+    this.visibleRegister = false;
+  }
+
+  // close register and open login dialog
+  openLogin() {
+    this.visibleLogin = true;
+    this.visibleRegister = false;
+    this.visibleForgotPassword = false;
+  }
+
+  // close login and open forgot password dialog
+  openForgotPassword() {
+    this.visibleForgotPassword = true;
+    this.visibleLogin = false;
   }
 }
