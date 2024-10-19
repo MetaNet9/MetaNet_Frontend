@@ -169,7 +169,7 @@
           <h2 class="text-metawhite text-xl font-semibold">Register with Us</h2>
         </div>
       </div>
-      <form class="space-y-4 mx-6 text-sm" [formGroup]="registerForm" (ngSubmit)="register()">
+      <form class="space-y-4 mx-6 text-sm" [formGroup]="registerForm" (ngSubmit)="showRegister()">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-1 md:gap-4">
           <div>
             <label for="firstName" class="block text-metawhite mb-1">First Name</label>
@@ -255,7 +255,6 @@
     </div>
 </p-dialog>
 </div>
-
 <!-- Forgot Password Popup -->
 <div class="flex justify-center">
   <p-dialog
@@ -266,10 +265,10 @@
     [resizable]="false"
     styleClass="custom-dialog"
   >
-    <div class="flex flex-col w-full bg-bgpurple text-metawhite shadow-lg rounded-lg overflow-hidden max-w-screen-sm">
+    <div class="flex flex-col max-w-lg w-full bg-bgpurple text-metawhite shadow-lg rounded-lg overflow-hidden">
       <div class="p-8">
         <div class="flex flex-col items-center">
-          <h2 class="text-2xl font-bold mb-6 text-center">Forgot Password</h2>
+          <h2 class="text-2xl font-bold mb-6">Forgot Password</h2>
           <!-- forgot password form -->
           <form class="w-full" [formGroup]="forgotPasswordForm" (ngSubmit)="resetPassword()">
             <div class="mb-4">
@@ -278,26 +277,24 @@
                 id="forgotEmail"
                 formControlName="email"
                 placeholder="Enter your email"
-                class="p-3 w-full h-10 bg-purple1 border border-lightpink rounded-lg text-metawhite placeholder-lightpink focus:outline-none focus:ring-1 focus:ring-darkpink"
+                class="p-3 w-full h-10 bg-purple1 border border-lightpink rounded-lg text-metawhite placeholder-lightpink focus:outline-none focus:ring-1 focus:ring-darkpink inputbar"
               />
               <div *ngIf="forgotPasswordForm.controls['email'].invalid && forgotPasswordForm.controls['email'].touched || forgotPasswordForm.controls['email'].dirty" class="error-msg">
-                <div *ngIf="forgotPasswordForm.controls['email'].errors?.['email']" class="text-red-500 text-sm pt-1">Invalid email.</div>
-                <div *ngIf="forgotPasswordForm.controls['email'].errors?.['required']" class="text-red-500 text-sm pt-1">Email is required.</div>
+                <div *ngIf="forgotPasswordForm.controls['email'].errors?.['email']" class="text-red text-sm pt-1">Invalid email.</div>
+                <div *ngIf="forgotPasswordForm.controls['email'].errors?.['required']" class="text-red text-sm pt-1">Email is required.</div>
               </div>
             </div>
             <button
               type="submit"
               [disabled]="forgotPasswordForm.invalid"
-              class="w-full h-10 bg-darkpurple hover:bg-lightpurple text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
+              class="w-full h-10 bg-darkpurple hover:bg-lightpurple text-white font-bold py-2 p-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
             >
               Reset Password
             </button>
           </form>
 
           <div class="mt-6 text-center">
-            <span class="text-sm">Remembered your password? 
-              <a (click)="openLogin()" class="text-darkpink hover:underline">Login</a>
-            </span>
+            <span class="text-sm">Remembered your password? <a (click)="openLogin()" class="text-darkpink hover:underline">Login</a></span>
           </div>
         </div>
       </div>
@@ -305,12 +302,28 @@
   </p-dialog>
 </div>
 
-
-
-
-
-
-
-
-
-
+<!-- Password Reset Popup -->
+<p-dialog
+  header=""
+  [(visible)]="visibleResetPassword"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+  styleClass="custom-dialog"
+>
+  <div class="flex flex-col max-w-lg w-full bg-bgpurple text-metawhite shadow-lg rounded-lg overflow-hidden">
+    <div class="p-8">
+      <div class="flex flex-col items-center">
+        <h2 class="text-2xl font-bold mb-6">Password Reset</h2>
+        <p class="text-center">Instructions to reset your password have been sent to (email). Please check your inbox (and spam folder).</p>
+        <button
+          type="button"
+          class="w-full h-10 bbg-darkpurple hover:bg-lightpurple text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 mt-6"
+          (click)="hideResetPassword()"
+        >
+          Continue
+        </button>
+      </div>
+    </div>
+  </div>
+</p-dialog>
