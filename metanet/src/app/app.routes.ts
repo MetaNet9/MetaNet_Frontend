@@ -38,6 +38,7 @@ import { ForgotPasswordComponent } from './usercomponents/forgot-password/forgot
 
 
 
+
 export const routes: Routes = [
   { path: '', component: HomepageComponent},
   { path: 'home', component: HomepageComponent},
@@ -57,6 +58,7 @@ export const routes: Routes = [
   { path : 'settings', component: SettingsComponent},
   { path: 'upload-form', component: UploadFormComponent},
   { path: 'forgot-password', component: ForgotPasswordComponent},
+  
 
 
   // admin routes
