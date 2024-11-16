@@ -11,7 +11,14 @@
             <div class="max-w-4xl mx-auto p-4 rounded border border-pink1 focus:border-pink1">
               <form class=" p-6">
                 <h2 class="text-2xl text-center text-darkgray mb-4"> Model Information </h2>
-                
+
+                <div class="mb-4">
+                  <label class="block text-metawhite mb-2">Model</label>
+                  <input class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-darkgray"
+                    type="file" />
+
+                </div>
+
                 <div class="mb-4">
                   <label class="block text-metawhite mb-2">Title</label>
                   <input class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-darkgray"
@@ -26,8 +33,17 @@
 
                 <div class="mb-4">
                   <label class="block text-metawhite mb-2" >Catergories</label>
-                  <input class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-darkgray"
-                    type="text"  />
+                  <select class="w-full p-2 bg-purple1 rounded border border-pink1 focus:border-pink1 text-darkgray">
+                    <option value="1">Architectureal</option>
+                    <option value="2">Character</option>
+                    <option value="3">Vehicles</option>
+                    <option value="4">Furniture</option>
+                    <option value="5">Nature</option>
+                    <option value="6">Environment</option>
+                    <option value="7">Props</option>
+                    <option value="8">Weapons</option>
+                    <option value="9">Animals</option>
+                  </select>
                 </div>
 
                 <div class="mb-4">
@@ -40,10 +56,10 @@
                   <div class="mb-4">
                     <label class="block text-metawhite mb-2" >Downloads</label>
                     <p-selectButton class="bg-lightpink"
-                    [options]="options" 
-                    [(ngModel)]="value" 
-                    [multiple]="true" 
-                    optionLabel="name" 
+                    [options]="options"
+                    [(ngModel)]="value"
+                    [multiple]="true"
+                    optionLabel="name"
                     optionValue="value" />
                   </div>
 
@@ -121,8 +137,8 @@
                         <span class="ml-2">Marph Geometry</span>
                       </label>
                   </div>
-                
-  
+
+
 
                 <div class="flex justify-center h-8">
                   <button
@@ -144,7 +160,7 @@
 
 
   <!-- details panel -->
- 
+
 
 
 </div>
