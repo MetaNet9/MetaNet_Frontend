@@ -17,6 +17,7 @@ import { ButtonModule } from 'primeng/button';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { RatingModule } from 'primeng/rating';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-marketplace-product-description',
@@ -39,6 +40,7 @@ import { RatingModule } from 'primeng/rating';
     ReactiveFormsModule,
     FloatLabelModule,
     InputTextareaModule,
+    RouterModule,
   ],
   templateUrl: './marketplace-product-description.component.html',
   styleUrl: './marketplace-product-description.component.css',

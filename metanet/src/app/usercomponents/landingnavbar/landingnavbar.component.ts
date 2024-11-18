@@ -3,8 +3,11 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { DialogModule } from 'primeng/dialog';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { first } from 'rxjs';
-
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import {AngularToastifyModule, ToastService} from "angular-toastify";
+import { Router } from '@angular/router';
+import {CheckboxModule} from "primeng/checkbox";
 
 
 @Component({
@@ -16,137 +19,263 @@ import { first } from 'rxjs';
     DialogModule,
     ReactiveFormsModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    AngularToastifyModule,
+    CheckboxModule,
   ],
+  providers: [ToastService],
   templateUrl: './landingnavbar.component.html',
-  styleUrl: './landingnavbar.component.css'
+  styleUrls: ['./landingnavbar.component.css'], // Update: Corrected property name to 'styleUrls'
+})
+@Injectable({
+  providedIn: 'root',
 })
 export class LandingnavbarComponent implements OnInit {
+
   title = 'metanet';
 
   loginForm!: FormGroup;
   registerForm!: FormGroup;
+  forgotPasswordForm!: FormGroup;
+  resetPasswordForm!: FormGroup;  // Added reset password form
 
+  visibleLogin: boolean = false;
+  visibleRegister: boolean = false;
+  visibleForgotPassword: boolean = false;
+  visibleResetPassword: boolean = false;  // Controls the visibility of Reset Password dialog
 
-
-
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private http: HttpClient,private _toastService: ToastService,private router: Router) {}
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
-      // Client-side code
-      document.addEventListener('DOMContentLoaded', () => {
-        // open
-        const burger: NodeListOf<HTMLElement> = document.querySelectorAll('.navbar-burger');
-        const menu: NodeListOf<HTMLElement> = document.querySelectorAll('.navbar-menu');
-
-        if (burger.length && menu.length) {
-          for (let i = 0; i < burger.length; i++) {
-            burger[i].addEventListener('click', () => {
-              for (let j = 0; j < menu.length; j++) {
-                menu[j].classList.toggle('hidden');
-              }
-            });
-          }
-        }
-
-        // close
-        const close: NodeListOf<HTMLElement> = document.querySelectorAll('.navbar-close');
-        const backdrop: NodeListOf<HTMLElement> = document.querySelectorAll('.navbar-backdrop');
-
-        if (close.length) {
-          for (let i = 0; i < close.length; i++) {
-            close[i].addEventListener('click', () => {
-              for (let j = 0; j < menu.length; j++) {
-                menu[j].classList.toggle('hidden');
-              }
-            });
-          }
-        }
-
-        if (backdrop.length) {
-          for (let i = 0; i < backdrop.length; i++) {
-            backdrop[i].addEventListener('click', () => {
-              for (let j = 0; j < menu.length; j++) {
-                menu[j].classList.toggle('hidden');
-              }
-            });
-          }
-        }
-      });
+      // Client-side code for burger menu
+      this.initMenuToggle();
     }
-
 
     this.createLoginForm();
     this.createRegisterForm();
-
+    this.createForgotPasswordForm();
+    this.createResetPasswordForm();
   }
 
-  // login form
-  private createLoginForm() {
-    this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required , Validators.email]),
-      password: new FormControl('', Validators.required)
+  // Initialize menu toggle functionality
+  private initMenuToggle() {
+    document.addEventListener('DOMContentLoaded', () => {
+      // open
+      const burger: NodeListOf<HTMLElement> = document.querySelectorAll('.navbar-burger');
+      const menu: NodeListOf<HTMLElement> = document.querySelectorAll('.navbar-menu');
+
+      if (burger.length && menu.length) {
+        for (let i = 0; i < burger.length; i++) {
+          burger[i].addEventListener('click', () => {
+            for (let j = 0; j < menu.length; j++) {
+              menu[j].classList.toggle('hidden');
+            }
+          });
+        }
+      }
+
+      // close
+      const close: NodeListOf<HTMLElement> = document.querySelectorAll('.navbar-close');
+      const backdrop: NodeListOf<HTMLElement> = document.querySelectorAll('.navbar-backdrop');
+
+      if (close.length) {
+        for (let i = 0; i < close.length; i++) {
+          close[i].addEventListener('click', () => {
+            for (let j = 0; j < menu.length; j++) {
+              menu[j].classList.toggle('hidden');
+            }
+          });
+        }
+      }
+
+      if (backdrop.length) {
+        for (let i = 0; i < backdrop.length; i++) {
+          backdrop[i].addEventListener('click', () => {
+            for (let j = 0; j < menu.length; j++) {
+              menu[j].classList.toggle('hidden');
+            }
+          });
+        }
+      }
     });
   }
 
-  public login(){
-    const isFormValid = this.loginForm.valid;
-    // debugger;
-    console.log(this.loginForm.value);
+  // Login form
+  private createLoginForm() {
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', Validators.required),
+    });
   }
 
 
-  // register form
+  public login() {
+    if (this.loginForm.valid) {
+      const loginData = this.loginForm.value;
+
+      // Make HTTP POST request to login endpoint
+      this.http.post<LoginResponse>('http://localhost:3000/auth/login', loginData, { withCredentials: true })
+        .subscribe({
+          next: (response) => {
+            let role = response['details']?.['roles']?.pop();
+            if (role === 'user') {
+              this.router.navigate(['/marketplace-products']);
+            }
+            console.log('Login successful!', role);
+            this.visibleLogin = false;  // Close login dialog on success
+          },
+          error: (error) => {
+            console.error('Login failed:', error);
+          }
+        });
+    } else {
+      console.log('Invalid form data');
+    }
+  }
+
+  // Register form
   private createRegisterForm() {
     this.registerForm = new FormGroup({
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
       userName: new FormControl('', Validators.required),
-      email: new FormControl('', [Validators.required , Validators.email]),
+      email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required),
-      confirmPassword: new FormControl('', Validators.required)
+      confirmPassword: new FormControl('', Validators.required),
+      roles: new FormControl(['user']),
     });
   }
 
-  public register(){
+  public register() {
     const isFormValid = this.registerForm.valid;
-    // debugger;
+    if (!isFormValid) {
+     console.log('Invalid form data');
+      this._toastService.error('Invalid form data');
+      return
+    }
+    if (!this.checkagree) {
+      this._toastService.error('Please agree to the terms and conditions');
+      return;
+    }
+    if (this.registerForm.get('password')?.value!==this.registerForm.get('confirmPassword')?.value)    {
+      this._toastService.error('Passwords do not match');
+      return;
+    }
+    const loginData = this.registerForm.value;
+    this.http.post<LoginResponse>('http://localhost:3000/auth/register', loginData, { withCredentials: true })
+      .subscribe({
+        next: (response) => {
+
+          console.log('Login successful!', response);
+          if (response.success) {
+            this.visibleRegister = false;
+            this.router.navigate(['/marketplace-products']);// Close login dialog on success
+          }
+        },
+        error: (error) => {
+          console.error('Login failed:', error);
+        }
+      });
     console.log(this.registerForm.value);
   }
 
+  // Forgot password form
+  private createForgotPasswordForm() {
+    this.forgotPasswordForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+    });
+  }
 
+  // Reset password form
+  private createResetPasswordForm() {
+    this.resetPasswordForm = new FormGroup({
+      password: new FormControl('', Validators.required),
+      confirmPassword: new FormControl('', Validators.required),
+    });
+  }
 
+  public resetPassword() {
+    const isFormValid = this.forgotPasswordForm.valid;
+    if (isFormValid) {
+      const email = this.forgotPasswordForm.get('email')?.value;
+      console.log('Password reset link sent to:', email);
 
+      // Show Reset Password popup after email is validated
+      this.showResetPassword();
+    }
+  }
 
+  public confirmResetPassword() {
+    const isFormValid = this.resetPasswordForm.valid;
+    if (isFormValid) {
+      const password = this.resetPasswordForm.get('password')?.value;
+      const confirmPassword = this.resetPasswordForm.get('confirmPassword')?.value;
 
+      if (password === confirmPassword) {
+        console.log('Password has been successfully reset!');
+        this.visibleResetPassword = false;  // Close reset password dialog
+      } else {
+        console.log('Passwords do not match.');
+      }
+    }
+  }
 
-
-
-  // login dialog
-  visibleLogin: boolean = false;
+  // Show login dialog
   showLogin() {
-      this.visibleLogin = true;
-  }
-
-
-  // register dialog
-  visibleRegister: boolean = false;
-
-  showRegister() {
-      this.visibleRegister = true;
-  }
-
-
-  // close login dialog and open register dialog
-  openRegister(){
-    this.visibleRegister = true;
-    this.visibleLogin = false;
-  }
-
-  // close register dialog and open login dialog
-  openLogin(){
     this.visibleLogin = true;
     this.visibleRegister = false;
+    this.visibleForgotPassword = false;
+    this.visibleResetPassword = false;
+  }
+
+  // Show register dialog
+  showRegister() {
+    this.visibleRegister = true;
+    this.visibleLogin = false;
+    this.visibleForgotPassword = false;
+    this.visibleResetPassword = false;
+  }
+
+  // Show forgot password dialog
+  showForgotPassword() {
+    this.visibleForgotPassword = true;
+    this.visibleLogin = false;
+    this.visibleRegister = false;
+    this.visibleResetPassword = false;
+  }
+
+  // Show reset password dialog
+  showResetPassword() {
+    this.visibleForgotPassword = false;
+    this.visibleResetPassword = true;
+  }
+
+  // Close reset password dialog
+  hideResetPassword() {
+    this.visibleResetPassword = false;
+  }
+
+  // Close register and open login dialog
+  openLogin() {
+    this.visibleLogin = true;
+    this.visibleRegister = false;
+    this.visibleForgotPassword = false;
+    this.visibleResetPassword = false;
+  }
+
+  // Close login and open forgot password dialog
+  checkagree: boolean = false;
+  openForgotPassword() {
+    this.visibleForgotPassword = true;
+    this.visibleLogin = false;
+    this.visibleRegister = false;
+    this.visibleResetPassword = false;
+  }
+}
+interface LoginResponse {
+  success: boolean;
+  details: {
+    roles: string[];
   }
 }

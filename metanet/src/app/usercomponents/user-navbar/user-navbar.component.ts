@@ -90,7 +90,7 @@ export class UserNavbarComponent implements OnInit {
             label: 'Settings',
             icon: 'pi pi-cog',
             command: () => {
-              this.router.navigate(['/usersettings']);
+              this.router.navigate(['/settings']);
             },
           },
           {

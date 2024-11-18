@@ -11,6 +11,7 @@
       </svg>
     </button>
   </div>
+
   <ul class="hidden absolute top-1/2 left-1/4 transform -translate-y-1/2 -translate-x-1/2  lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-16">
     <li><a routerLink="/home"  class="text-sm text-metawhite hover:text-lightpink" >Home</a></li>
     <!-- <li class="text-metawhite">
@@ -112,7 +113,7 @@
               </div>
             </div>
             <div class="flex items-center font-light justify-between mb-6">
-              <a href="#" class="text-sm text-pink-500 hover:underline">Forgot Password?</a>
+              <a (click)="showForgotPassword()" class="text-sm text-pink-500 hover:underline">Forgot Password?</a>
               <label class="inline-flex items-center">
                 <input type="checkbox" class="form-checkbox text-metawhite" />
                 <span class="ml-2 text-sm">Remember Me</span>
@@ -135,7 +136,7 @@
             </a>
           </div>
           <div class="mt-6 text-center">
-            <span class="text-sm">New to MetaNet? <a (click)="openRegister()" class="text-darkpink hover:underline">Create Your Account</a></span>
+            <span class="text-sm">New to MetaNet? <a (click)="showRegister()" class="text-darkpink hover:underline">Create Your Account</a></span>
           </div>
         </div>
       </div>
@@ -169,8 +170,14 @@
           <h2 class="text-metawhite text-xl font-semibold">Register with Us</h2>
         </div>
       </div>
+      <lib-toastify-toast-container
+        [hideProgressBar]="true "
+      [newestOnTop]="true"
+      [pauseOnHover]="true"
+      ></lib-toastify-toast-container>
       <form class="space-y-4 mx-6 text-sm" [formGroup]="registerForm" (ngSubmit)="register()">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-1 md:gap-4">
+
           <div>
             <label for="firstName" class="block text-metawhite mb-1">First Name</label>
             <input type="text" placeholder="" id="firstName" formControlName="firstName" class=" p-3 w-full h-8 md:h-10   bg-purple1 border border-lightpink rounded-lg text-metawhite placeholder-lightpink focus:outline-none focus:ring-1 focus:ring-darkpink inputbar"/>
@@ -217,7 +224,10 @@
         </div>
         <div class="space-y-2 text-xs">
           <div class="flex items-center">
-            <input type="checkbox" class="mr-2" />
+            <p-checkbox
+              [(ngModel)]="checkagree"
+              [binary]="true"
+              inputId="binary" />
             <label class=" text-metawhite">I agree to the Terms of Use and Privacy Policy</label>
           </div>
           <div class="flex items-center">
@@ -226,7 +236,7 @@
           </div>
         </div>
         <div class="flex items-center">
-          <button type="submit" [disabled]="registerForm.invalid" class="w-1/2 h-10 mx-auto bg-darkpurple text-metawhite py-2 rounded-lg hover:bg-primary/80">Create Account</button>
+          <button type="submit"  class="w-1/2 h-10 mx-auto bg-darkpurple text-metawhite py-2 rounded-lg hover:bg-primary/80">Create Account</button>
         </div>
       </form>
       <div class="flex text-metawhite items-center text-xs my-4">
@@ -255,15 +265,75 @@
     </div>
 </p-dialog>
 </div>
+<!-- Forgot Password Popup -->
+<div class="flex justify-center">
+  <p-dialog
+    header=""
+    [(visible)]="visibleForgotPassword"
+    [modal]="true"
+    [draggable]="false"
+    [resizable]="false"
+    styleClass="custom-dialog"
+  >
+    <div class="flex flex-col max-w-lg w-full bg-bgpurple text-metawhite shadow-lg rounded-lg overflow-hidden">
+      <div class="p-8">
+        <div class="flex flex-col items-center">
+          <h2 class="text-2xl font-bold mb-6">Forgot Password</h2>
+          <!-- forgot password form -->
+          <form class="w-full" [formGroup]="forgotPasswordForm" (ngSubmit)="resetPassword()">
+            <div class="mb-4">
+              <input
+                type="email"
+                id="forgotEmail"
+                formControlName="email"
+                placeholder="Enter your email"
+                class="p-3 w-full h-10 bg-purple1 border border-lightpink rounded-lg text-metawhite placeholder-lightpink focus:outline-none focus:ring-1 focus:ring-darkpink inputbar"
+              />
+              <div *ngIf="forgotPasswordForm.controls['email'].invalid && forgotPasswordForm.controls['email'].touched || forgotPasswordForm.controls['email'].dirty" class="error-msg">
+                <div *ngIf="forgotPasswordForm.controls['email'].errors?.['email']" class="text-red text-sm pt-1">Invalid email.</div>
+                <div *ngIf="forgotPasswordForm.controls['email'].errors?.['required']" class="text-red text-sm pt-1">Email is required.</div>
+              </div>
+            </div>
+            <button
+              type="submit"
+              [disabled]="forgotPasswordForm.invalid"
+              class="w-full h-10 bg-darkpurple hover:bg-lightpurple text-white font-bold py-2 p-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
+            >
+              Reset Password
+            </button>
+          </form>
 
+          <div class="mt-6 text-center">
+            <span class="text-sm">Remembered your password? <a (click)="openLogin()" class="text-darkpink hover:underline">Login</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </p-dialog>
+</div>
 
-
-
-
-
-
-
-
-
-
-
+<!-- Password Reset Popup -->
+<p-dialog
+  header=""
+  [(visible)]="visibleResetPassword"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+  styleClass="custom-dialog"
+>
+  <div class="flex flex-col max-w-lg w-full bg-bgpurple text-metawhite shadow-lg rounded-lg overflow-hidden">
+    <div class="p-8">
+      <div class="flex flex-col items-center">
+        <h2 class="text-2xl font-bold mb-6">Password Reset</h2>
+        <p class="text-center">Instructions to reset your password have been sent to (email). Please check your inbox (and spam folder).</p>
+        <button
+          type="button"
+          class="w-full h-10 bbg-darkpurple hover:bg-lightpurple text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 mt-6"
+          (click)="hideResetPassword()"
+        >
+          Continue
+        </button>
+      </div>
+    </div>
+  </div>
+</p-dialog>
