@@ -34,6 +34,7 @@ import { MarketplaceCategoriesComponent } from './usercomponents/marketplace-cat
 
 import { UploadFormComponent } from './usercomponents/upload-form/upload-form.component';
 import { ForgotPasswordComponent } from './usercomponents/forgot-password/forgot-password.component';
+import { NewPasswordComponent } from './usercomponents/new-password/new-password.component';
 
 
 
@@ -58,6 +59,7 @@ export const routes: Routes = [
   { path : 'settings', component: SettingsComponent},
   { path: 'upload-form', component: UploadFormComponent},
   { path: 'forgot-password', component: ForgotPasswordComponent},
+  { path: 'new-password', component: NewPasswordComponent },
   
 
 
