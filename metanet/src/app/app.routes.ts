@@ -41,6 +41,7 @@ import { NewPasswordComponent } from './usercomponents/new-password/new-password
 
 
 export const routes: Routes = [
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '', component: HomepageComponent},
   { path: 'home', component: HomepageComponent},
   { path: 'aboutus', component: AboutusComponent},
