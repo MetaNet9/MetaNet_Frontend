@@ -37,7 +37,7 @@ import { ForgotPasswordComponent } from './usercomponents/forgot-password/forgot
 import { NewPasswordComponent } from './usercomponents/new-password/new-password.component';
 import { BecomeCreatorComponent } from './usercomponents/become-creator/become-creator.component';
 import { UploadSuccessComponent } from './usercomponents/upload-success/upload-success.component';
-
+import { SendToModeratorComponent } from './usercomponents/send-to-moderator/send-to-moderator.component';
 
 
 
@@ -65,6 +65,7 @@ export const routes: Routes = [
   { path: 'new-password', component: NewPasswordComponent },
   { path: 'become-creator', component: BecomeCreatorComponent},
   { path: 'upload-success', component: UploadSuccessComponent },
+  { path: 'send-to-moderator', component: SendToModeratorComponent },
   
 
 
