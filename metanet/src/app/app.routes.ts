@@ -67,7 +67,7 @@ export const routes: Routes = [
   { path: 'become-creator', component: BecomeCreatorComponent },
   { path: 'upload-success', component: UploadSuccessComponent },
   { path: 'send-to-moderator', component: SendToModeratorComponent },
-  { path: 'sent-to-moderator', component: SentToModeratorComponent },
+  // { path: 'sent-to-moderator', component: SentToModeratorComponent },
 
 
 
