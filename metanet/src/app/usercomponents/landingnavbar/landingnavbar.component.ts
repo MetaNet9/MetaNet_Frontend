@@ -124,6 +124,7 @@ export class LandingnavbarComponent implements OnInit {
             }
             console.log('Login successful!', role);
             this.visibleLogin = false;  // Close login dialog on success
+            this.router.navigate(['/marketplace-products']);
           },
           error: (error) => {
             console.error('Login failed:', error);
@@ -167,7 +168,7 @@ export class LandingnavbarComponent implements OnInit {
       .subscribe({
         next: (response) => {
 
-          console.log('Login successful!', response);
+          console.log('Register successful!', response);
           if (response.success) {
             this.visibleRegister = false;
             this.router.navigate(['/marketplace-products']);// Close login dialog on success
