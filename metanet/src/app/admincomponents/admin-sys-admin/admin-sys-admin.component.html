@@ -19,19 +19,19 @@
       <div
         class="card bg-metawhite p-4 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite flex flex-col  justify-center items-center ">
         <h2 class="text-lg font-semibold text-metablack">Total System Admins</h2>
-        <p class="text-xl lg:text-3xl font-bold text-purple1">86</p>
+        <p class="text-xl lg:text-3xl font-bold text-purple1">{{data.total2}}</p>
       </div>
 
       <div
         class="card bg-metawhite p-4 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite flex flex-col justify-center items-center ">
         <h2 class="text-lg font-semibold text-metablack">Active System Admins</h2>
-        <p class="text-xl lg:text-3xl font-bold text-purple1">10</p>
+        <p class="text-xl lg:text-3xl font-bold text-purple1">{{data.activeUsers}}</p>
       </div>
 
       <div
         class="card bg-metawhite p-4 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite flex flex-col  justify-center items-center ">
-        <h2 class="text-lg font-semibold text-metablack">Deleted System Admins</h2>
-        <p class="text-xl lg:text-3xl font-bold text-purple1">3</p>
+        <h2 class="text-lg font-semibold text-metablack">Deactivated System Admins</h2>
+        <p class="text-xl lg:text-3xl font-bold text-purple1">{{data.deactivatedUsers}}</p>
       </div>
     </div>
 
@@ -41,74 +41,92 @@
     </div>
     <p-dialog header="Register System Administrator" [modal]="true" [(visible)]="visible" [style]="{ width: '40rem' }">
       <p class="p-text-secondary block mb-6 pl-4 text-purple4">System Administrator Information</p>
-      <div class="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-7 mb-3 px-8 ">
-        <p-floatLabel >
-          <input id="fname" type="text" pInputText [(ngModel)]="formdata.firstname" />
-          <label for="fname">First Name</label>
-        </p-floatLabel>
-        <p-floatLabel>
-          <input id="lname" type="text" pInputText [(ngModel)]="formdata.lastname" />
-          <label for="lname">Last Name</label>
-        </p-floatLabel>
-
-        <p-floatLabel>
-          <input id="username" type="text" pInputText [(ngModel)]="formdata.username" />
-          <label for="username">Username</label>
-        </p-floatLabel>
-        <p-floatLabel>
-          <input id="email" type="text" pInputText [(ngModel)]="formdata.email" />
-          <label for="email">Email</label>
-        </p-floatLabel>
-        <p-floatLabel>
-          <p-password id ="pass" [(ngModel)]="formdata.password" [toggleMask]="true" />
-          <label for="pass">Password</label>
-        </p-floatLabel>
-        <p-floatLabel>
-          <input id="contactno" type="text" pInputText [(ngModel)]="formdata.contactno" />
-          <label for="contactno">Contact Number</label>
-        </p-floatLabel>
-      </div>
-
-      <p-divider  />
-
-      <p class="p-text-secondary block mb-6 pl-4 text-purple4">Permissions</p>
-        <div class="flex flex-column justify-between px-8 mb-5">
-
-          <p-checkbox
-            [(ngModel)]="selectedCategories"
-            [label]="categories[0].name"
-
-            name="group"
-            [value]="categories[0].name" />
-          <p-checkbox
-            [(ngModel)]="selectedCategories"
-            [label]="categories[1].name"
-            name="group"
-            [value]="categories[1].name" />
-          <p-checkbox
-            [(ngModel)]="selectedCategories"
-            [label]="categories[2].name"
-            name="group"
-            [value]="categories[2].name" />
-          <p-checkbox
-            [(ngModel)]="selectedCategories"
-            [label]="categories[3].name"
-            name="group"
-            [value]="categories[3].name" />
-
+      <form [formGroup]="adminForm" class="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-7 mb-3 px-8">
+        <!-- First Name -->
+        <div class="field-wrapper">
+          <p-floatLabel>
+            <input id="fname" type="text" pInputText formControlName="firstName" />
+            <label for="fname">First Name</label>
+          </p-floatLabel>
+          <div *ngIf="adminForm.get('firstName')?.invalid && adminForm.get('firstName')?.touched" class="text-pink2 text-xs">
+            First Name is required (min 2 characters).
+          </div>
         </div>
-      <p-divider  />
+
+        <!-- Last Name -->
+        <div class="field-wrapper">
+          <p-floatLabel>
+            <input id="lname" type="text" pInputText formControlName="lastName" />
+            <label for="lname">Last Name</label>
+          </p-floatLabel>
+          <div *ngIf="adminForm.get('lastName')?.invalid && adminForm.get('lastName')?.touched" class="text-pink2 text-xs">
+            Last Name is required (min 2 characters).
+          </div>
+        </div>
+
+        <!-- Username -->
+        <div class="field-wrapper">
+          <p-floatLabel>
+            <input id="username" type="text" pInputText formControlName="userName" />
+            <label for="username">Username</label>
+          </p-floatLabel>
+          <div *ngIf="adminForm.get('userName')?.invalid && adminForm.get('userName')?.touched" class="text-pink2 text-xs">
+            Username is required (min 4 characters).
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="field-wrapper">
+          <p-floatLabel>
+            <input id="email" type="email" pInputText formControlName="email" />
+            <label for="email">Email</label>
+          </p-floatLabel>
+          <div *ngIf="adminForm.get('email')?.invalid && adminForm.get('email')?.touched" class="text-pink2 text-xs">
+            A valid email is required.
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div class="field-wrapper">
+          <p-floatLabel>
+            <p-password id="pass" formControlName="password" [toggleMask]="true"></p-password>
+            <label for="pass">Password</label>
+          </p-floatLabel>
+          <div *ngIf="adminForm.get('password')?.invalid && adminForm.get('password')?.touched" class="text-pink2 text-xs">
+            Password must be at least 6 characters.
+          </div>
+        </div>
+
+        <!-- Contact Number -->
+        <div class="field-wrapper">
+          <p-floatLabel>
+            <input id="contactno" type="text" pInputText formControlName="contactNo" />
+            <label for="contactno">Contact Number</label>
+          </p-floatLabel>
+          <div *ngIf="adminForm.get('contactNo')?.invalid && adminForm.get('contactNo')?.touched" class="text-pink2 text-xs">
+            Contact number is required and must be numeric.
+          </div>
+        </div>
+      </form>
+
+      <p-divider></p-divider>
 
       <div class="flex justify-center w-full gap-2 mt-6">
-
-        <p-button [style]="{width:'400px',height:'40px'}" label="Register System Administrator" severity="primary" (onClick)="submit()" />
+        <p-button
+          [style]="{ width: '400px', height: '40px' }"
+          label="Register System Administrator"
+          severity="primary"
+          (onClick)="submit()"
+        ></p-button>
       </div>
     </p-dialog>
+
+
 
     <!-- table -->
     <div class="flex flex-col items-center justify-center  mb-6">
 
-      <app-admin-user-table></app-admin-user-table>
+      <app-admin-user-table (callParent)="getUsers()"  [customers]="data.users"></app-admin-user-table>
 
     </div>
 
