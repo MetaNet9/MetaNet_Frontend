@@ -231,7 +231,7 @@
               inputId="binary" />
             <label class=" text-metawhite">I agree to the Terms of Use and Privacy Policy</label>
           </div>
-          
+
         </div>
         <div class="flex items-center">
           <button type="submit"  class="w-1/2 h-10 mx-auto bg-darkpurple text-metawhite py-2 rounded-lg hover:bg-primary/80">Create Account</button>
@@ -274,12 +274,12 @@
     [resizable]="false"
     styleClass="custom-dialog"
   >
-    <div class="flex flex-col max-w-lg w-full bg-bgpurple text-metawhite shadow-lg rounded-lg overflow-hidden">
+    <div class="flex flex-col w-96  bg-bgpurple text-metawhite shadow-lg rounded-lg overflow-hidden">
       <div class="p-8">
         <div class="flex flex-col items-center">
           <h2 class="text-2xl font-bold mb-6">Forgot Password</h2>
           <!-- forgot - password - form -->
-          <form class="w-full" [formGroup]="forgotPasswordForm" (ngSubmit)="resetPassword()">
+          <form class="w-full" [formGroup]="forgotPasswordForm" (ngSubmit)="forgotPassword(forgotPasswordForm.value)">
             <div class="mb-4">
               <input
                 type="email"

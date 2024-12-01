@@ -8,6 +8,7 @@ import { Injectable } from '@angular/core';
 import {AngularToastifyModule, ToastService} from "angular-toastify";
 import { Router } from '@angular/router';
 import {CheckboxModule} from "primeng/checkbox";
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -33,6 +34,8 @@ import {CheckboxModule} from "primeng/checkbox";
 export class LandingnavbarComponent implements OnInit {
 
   title = 'metanet';
+
+  private baseUrl = 'http://localhost:3000/auth';
 
   loginForm!: FormGroup;
   registerForm!: FormGroup;
@@ -190,6 +193,23 @@ export class LandingnavbarComponent implements OnInit {
     });
   }
 
+  public forgotPassword(email: string) {
+    if (this.forgotPasswordForm.valid) {
+      const email = this.forgotPasswordForm.get('email')?.value;
+      this.sendResetPasswordEmail(email).subscribe({
+        next: (response) => {
+          console.log(response);
+          this.showResetPassword();
+        },
+        error: (error) => console.error(error),
+      });
+    }
+  }
+
+  sendResetPasswordEmail(email: string): Observable<any> {
+    return this.http.post(`${this.baseUrl}/forgot-password`, { email });
+  }
+
   // Reset password form
   private createResetPasswordForm() {
     this.resetPasswordForm = new FormGroup({
@@ -251,7 +271,7 @@ export class LandingnavbarComponent implements OnInit {
   // Show reset password dialog
   showResetPassword() {
     this.visibleForgotPassword = false;
-    this.visibleResetPassword = true;
+    // this.visibleResetPassword = true;
   }
 
   // Close reset password dialog
