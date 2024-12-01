@@ -15,19 +15,19 @@
     <p class="text-pink1 text-xl  mb-4">Users</p>
     <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-6">
 
-      <app-admin-card-with-chart title="Total Users" value="5680" precentage="+42%" [totalmodeldata]="totalmodeldata" [options]="options" [isChartHidden]=false arrow="pi pi-arrow-up" color="pink1"  ></app-admin-card-with-chart>
-      <app-admin-card-with-chart title="Moderators" value="10" precentage="+10%" [isChartHidden]=true arrow="pi pi-arrow-up" color="pink1"  ></app-admin-card-with-chart>
-      <app-admin-card-with-chart title="Creators" value="540" precentage="+11%" [isChartHidden]=true arrow="pi pi-arrow-up" color="pink1"  ></app-admin-card-with-chart>
-      <app-admin-card-with-chart title="Users" value="5130" precentage="+17%" [isChartHidden]=true arrow="pi pi-arrow-up" color="pink1"  ></app-admin-card-with-chart>
+      <app-admin-card-with-chart title="Total Users" value="{{statistics.totalUsers}}" precentage="{{statistics.improvement?.users}}" [isChartHidden]=true arrow="pi pi-arrow-up" color="pink1"></app-admin-card-with-chart>
+      <app-admin-card-with-chart title="Creators" value="{{statistics.sellersCount}}" precentage="{{statistics.improvement?.sellers}}" [isChartHidden]=true arrow="pi pi-arrow-up" color="pink1"></app-admin-card-with-chart>
+      <app-admin-card-with-chart title="Users" value="{{statistics.totalBuyers}}" precentage="{{statistics.improvement?.buyers}}" [isChartHidden]=true arrow="pi pi-arrow-up" color="pink1"></app-admin-card-with-chart>
+      <app-admin-card-with-chart title="Moderators" value="{{statistics.moderatorsCount}}"  [isChartHidden]=true color="pink1"  ></app-admin-card-with-chart>
 
     </div>
     <p class="text-pink1 text-xl  mb-4">Models</p>
     <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-6">
 
-      <app-admin-card-with-chart title="Total Models" value="2630" precentage="35%" [totalmodeldata]="totalUsers" [options]="options" [isChartHidden]=false arrow="pi pi-arrow-down" color="pink1"  ></app-admin-card-with-chart>
-      <app-admin-card-with-chart title="New Models" value="2155" precentage="+12%" [isChartHidden]=true arrow="pi pi-arrow-up" color="pink1"  ></app-admin-card-with-chart>
-      <app-admin-card-with-chart title="Pending Models" value="45" precentage="+14%" [isChartHidden]=true arrow="pi pi-arrow-up" color="pink1"  ></app-admin-card-with-chart>
-      <app-admin-card-with-chart title="Total Categories" value="75" precentage="+32%" [isChartHidden]=true arrow="pi pi-arrow-up" color="pink1"  ></app-admin-card-with-chart>
+      <app-admin-card-with-chart title="Total Models" value="{{statistics.totalModels}}" precentage="{{statistics.improvement?.models}}" [isChartHidden]=true arrow="pi pi-arrow-up" color="pink1"></app-admin-card-with-chart>
+      <app-admin-card-with-chart title="New Models" value="{{statistics.newModelsLastWeek}}" precentage="{{statistics.improvement?.models}}" [isChartHidden]=true arrow="pi pi-arrow-up" color="pink1"></app-admin-card-with-chart>
+      <app-admin-card-with-chart title="Pending Models" value="{{statistics.pendingRequests}}" precentage="{{statistics.improvement?.pendingRequests}}" [isChartHidden]=true arrow="pi pi-arrow-up" color="pink1"  ></app-admin-card-with-chart>
+      <app-admin-card-with-chart title="Total Categories" value="{{statistics.totalCategories}}"  [isChartHidden]=true  color="pink1"  ></app-admin-card-with-chart>
 
     </div>
 
@@ -52,9 +52,21 @@
         <app-weekly-revenue-chart></app-weekly-revenue-chart>
       </div>
 
-      <div class="col-span-2 md:col-span-1 bg-metawhite p-4 rounded-lg shadow-md">
-        <h2 class="text-lg font-semibold text-metablack">Top Models</h2>
-        <app-sales-by-category-pie-chart></app-sales-by-category-pie-chart>
+      <div class="col-span-2 md:col-span-1 bg-metawhite p-4 rounded-lg shadow-md flex flex-col justify-between">
+        <h2 class="text-lg font-semibold text-metablack ">Top Model of the Week</h2>
+        <div  class="w-full h-80 mx-auto rounded-lg shadow-lg overflow-hidden hover:scale-105 transition-transform mb-3">
+          <div class="relative">
+            <img src="{{statistics.mostPopularModel?.image1Url}}" alt="{{statistics.mostPopularModel?.title}}" class="w-full h-60 object-cover" />
+
+          </div>
+          <div class="px-4 py-2 bg-purple2 flex justify-between items-end h-20">
+            <div>
+              <h2 class="text-lg font-semibold text-metawhite">{{statistics.mostPopularModel?.title}}</h2>
+              <p class="text-lg font-bold text-lightgray">LKR.{{statistics.mostPopularModel?.price}}</p>
+            </div>
+
+          </div>
+        </div>
       </div>
     </div>
   </div>

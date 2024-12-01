@@ -11,6 +11,10 @@ import {TopModelsTableComponent} from "../../commonComponents/top-models-table/t
 import {WeeklyRevenueChartComponent} from "../../commonComponents/weekly-revenue-chart/weekly-revenue-chart.component";
 import {SysadminSidebarComponent} from "../../commonComponents/sysadmin-sidebar/sysadmin-sidebar.component";
 import {DividerModule} from "primeng/divider";
+import {Statistics} from "../../domain/models";
+import {BASE_url} from "../../app.config";
+import {HttpClient} from "@angular/common/http";
+import {NgForOf} from "@angular/common";
 
 @Component({
   selector: 'app-sys-dashboard',
@@ -23,7 +27,8 @@ import {DividerModule} from "primeng/divider";
     TopModelsTableComponent,
     WeeklyRevenueChartComponent,
     SysadminSidebarComponent,
-    DividerModule
+    DividerModule,
+    NgForOf
   ],
   templateUrl: './sys-dashboard.component.html',
   styleUrl: './sys-dashboard.component.css'
@@ -34,11 +39,16 @@ export class SysDashboardComponent implements OnInit{
   totalRevenue: any;
   monthlyRevenue: any;
   options: any;
-
-
+  statistics!:Statistics;
+  constructor(private http: HttpClient) {
+  }
 
 
   ngOnInit() {
+    this.statisticsGet()
+
+  }
+  setCards(){
     if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       const documentStyle = getComputedStyle(document.documentElement);
       // const textColor = documentStyle.getPropertyValue('--text-color');
@@ -185,5 +195,22 @@ export class SysDashboardComponent implements OnInit{
         animation
       };
     }
+  }
+  private statisticsGet(){
+    this.http.get<Statistics>(BASE_url+"/statistics", { withCredentials: true })
+      .subscribe({
+        next: (response) => {
+          this.statistics = response;
+
+          console.log(this.statistics)
+
+
+          console.log(this.statistics.lastMonthRevenue.at(0)?.totalRevenue)
+
+        },
+        error: (error:{error?:{massage?:string}}) => {
+          console.error('There was an error!', error.error?.massage);
+        }
+      });
   }
 }
