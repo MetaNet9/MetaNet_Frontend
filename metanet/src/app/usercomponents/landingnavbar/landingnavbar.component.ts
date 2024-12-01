@@ -122,6 +122,19 @@ export class LandingnavbarComponent implements OnInit {
             if (role === 'user') {
               this.router.navigate(['/marketplace-products']);
             }
+            if (role === 'seller') {
+              this.router.navigate(['/upload-form']);
+            }
+            if (role === 'admin') {
+              this.router.navigate(['/admindashboard']);
+            }
+            if (role === 'sysadmin') {
+              this.router.navigate(['/sysadmin_dashboard']);
+            }
+            if (role === 'moderator') {
+              this.router.navigate(['/mod_dashboard']);
+            }
+
             console.log('Login successful!', role);
             this.visibleLogin = false;  // Close login dialog on success
           },
