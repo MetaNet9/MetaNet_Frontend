@@ -29,7 +29,7 @@
     [rowsPerPageOptions]="[10, 25, 50]"
     [loading]="loading"
     [paginator]="true"
-    [globalFilterFields]="['id','user.name','email','contact', 'status']"
+    [globalFilterFields]="['id','name','email','contact', 'status']"
     [tableStyle]="{ 'min-width': '1100px' }"
   >
 
@@ -40,7 +40,7 @@
         <th>
           <p-columnFilter
             type="text"
-            field="user.name"
+            field="name"
             placeholder="Search by name"
             ariaLabel="Filter Name" />
         </th>
@@ -84,8 +84,8 @@
       <tr class="custom-header-row">
 
 
-        <th class="bg-lightpurple/15" pSortableColumn="user.name" style="width:25%">
-          Name <p-sortIcon field="user.name" /></th>
+        <th class="bg-lightpurple/15" pSortableColumn="name" style="width:25%">
+          Name <p-sortIcon field="name" /></th>
 
         <th class="bg-lightpurple/15" pSortableColumn="email" style="width:25%">
           Email <p-sortIcon field="email" />
