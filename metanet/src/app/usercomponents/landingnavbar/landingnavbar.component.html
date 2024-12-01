@@ -95,6 +95,11 @@
     <div class="flex flex-col md:flex-row max-w-4xl w-full bg-bgpurple text-metawhite shadow-lg rounded-lg overflow-hidden">
       <div class="w-full md:w-1/2 bg-gradient-to-b from-black to-zinc-900 p-8">
         <div class="flex flex-col items-center">
+          <lib-toastify-toast-container
+            [hideProgressBar]="true "
+            [newestOnTop]="true"
+            [pauseOnHover]="true"
+          ></lib-toastify-toast-container>
           <img src="./assets/images/logo1.png" alt="MetaNet Logo" class="mb-6 w-20" />
           <h2 class="text-3xl font-bold mb-6">LOGIN</h2>
           <!-- login form -->

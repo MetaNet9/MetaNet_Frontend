@@ -125,8 +125,13 @@ export class LandingnavbarComponent implements OnInit {
             console.log('Login successful!', role);
             this.visibleLogin = false;  // Close login dialog on success
           },
-          error: (error) => {
+          error: (error:{error?:{message?:string}}) => {
+            console.log(error.error?.message)
             console.error('Login failed:', error);
+            if (error.error?.message) {
+              this._toastService.error(error.error.message);
+            }
+
           }
         });
     } else {
@@ -148,6 +153,7 @@ export class LandingnavbarComponent implements OnInit {
   }
 
   public register() {
+    console.log(this.checkagree)
     const isFormValid = this.registerForm.valid;
     if (!isFormValid) {
      console.log('Invalid form data');
@@ -170,10 +176,11 @@ export class LandingnavbarComponent implements OnInit {
           console.log('Login successful!', response);
           if (response.success) {
             this.visibleRegister = false;
-            this.router.navigate(['/marketplace-products']);// Close login dialog on success
+            this.router.navigate(['/registrationsuccess']);// Close login dialog on success
           }
         },
-        error: (error) => {
+        error: (error:{error?:{massage?:string}}) => {
+          console.log(error.error)
           console.error('Login failed:', error);
         }
       });
@@ -265,7 +272,7 @@ export class LandingnavbarComponent implements OnInit {
   }
 
   // Close login and open forgot password dialog
-  checkagree: boolean = false;
+  checkagree: boolean = true;
   openForgotPassword() {
     this.visibleForgotPassword = true;
     this.visibleLogin = false;
