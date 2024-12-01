@@ -27,9 +27,9 @@
     </ng-template>
     <ng-template pTemplate="body" let-product>
       <tr>
-        <td>{{product.name}}</td>
-        <td><img [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product.image" [alt]="product.name" width="100" class="shadow-4" /></td>
-        <td>{{product.category}}</td>
+        <td>{{product.title}}</td>
+        <td><img [src]="product.image" [alt]="product.title" width="100" class="shadow-4" /></td>
+        <td>{{product.format}}</td>
         <td>{{product.price | currency:'USD'}}</td>
         <td><p-rating [(ngModel)]="product.reviews" [readonly]="true" [cancel]="false" /></td>
        </tr>

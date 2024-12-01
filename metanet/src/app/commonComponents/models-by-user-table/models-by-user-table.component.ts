@@ -7,6 +7,8 @@ import {CurrencyPipe} from "@angular/common";
 import {RatingModule} from "primeng/rating";
 import {FormsModule} from "@angular/forms";
 import {DialogModule} from "primeng/dialog";
+import {HttpClient} from "@angular/common/http";
+import * as http from "http";
 
 @Component({
   selector: 'app-models-by-user-table',
@@ -29,6 +31,9 @@ export class ModelsByUserTableComponent implements OnInit{
   selectedProduct: any;
   vix: any;
 
+  constructor(private http: HttpClient) {
+
+  }
   ngOnInit(): void {
     this.models = [
       {
@@ -272,6 +277,18 @@ export class ModelsByUserTableComponent implements OnInit{
         "reviews": 3
       }
     ]
+
+    // this.http.get<model2[]>("/vebxrmodel/findWithFilters",{withCredentials:true}).subscribe(
+    //   {
+    //     next:(res)=>{
+    //       this.models=res;
+    //     },
+    //     error:(e)=>{
+    //         e.status
+    //     },
+    //
+    //   }
+    // )
 
   }
   calculateCustomerTotal(name: string) {

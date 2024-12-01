@@ -1,9 +1,31 @@
 <div class="card  ">
+
+
+  <p-dialog header="Confirm to {{selectedModel?.status=='active'?'Deactivate':'Activate'}}" [modal]="true" [(visible)]="visible" [style]="{ width: '20rem' }">
+    <span class="p-text-secondary block mb-5">Check bellow information and confirm.</span>
+    <div class="flex-col px-10">
+      <p>Name : {{selectedModel?.name}}</p>
+      <p>Email : {{selectedModel?.email}}</p>
+      <p>Contact : {{selectedModel?.contact}}</p>
+    </div>
+    <div class="flex flex-row w-full pt-5 justify-around items-center">
+        <button (click)="cancel()"  class="w-28 bg-lightpink text-metawhite rounded-md py-5 hover:bg-lightpurple">Cancel</button>
+        <button (click)="act_or_deact()"  class="w-28 bg-purple4 text-metawhite rounded-md py-[10px] hover:bg-purple2">{{selectedModel?.status=='active'?'Deactivate':'Activate'}}</button>
+    </div>
+
+  </p-dialog>
+
+
+
+
+
+
   <p-table
     #dt2
     [value]="customers"
-    dataKey="id"
+    selectionMode="single"
     [rows]="10"
+    (onRowSelect)="onRowSelect($event)"
     [rowsPerPageOptions]="[10, 25, 50]"
     [loading]="loading"
     [paginator]="true"
@@ -14,9 +36,7 @@
     <ng-template pTemplate="header">
 
       <tr >
-        <th>
 
-        </th>
         <th>
           <p-columnFilter
             type="text"
@@ -62,8 +82,7 @@
 
 
       <tr class="custom-header-row">
-        <th class="bg-lightpurple/15" pSortableColumn="id" style="width:15%">
-          Admin ID <p-sortIcon field="id" /></th>
+
 
         <th class="bg-lightpurple/15" pSortableColumn="user.name" style="width:25%">
           Name <p-sortIcon field="user.name" /></th>
@@ -85,18 +104,16 @@
 
 
     <ng-template pTemplate="body" let-customer>
-      <tr>
-        <td>
-          {{ customer.id}}
-        </td>
+      <tr [pSelectableRow]="customer">
+
         <td  class="flex flex-row gap-2">
           <img
-            [alt]="customer.user.name"
-            src="{{ customer.user.image }}"
+            [alt]="customer.name"
+            src="https://i.ibb.co/d2g8hF7/istockphoto-1223671392-612x612.jpg"
             width="32"
             style="vertical-align: middle" />
           <span class="ml-1 vertical-align-middle">
-            {{ customer.user.name }}
+            {{ customer.name }}
           </span>
         </td>
         <td  >
@@ -113,10 +130,6 @@
         </td>
       </tr>
     </ng-template>
-    <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="5">No customers found.</td>
-      </tr>
-    </ng-template>
+
   </p-table>
 </div>
