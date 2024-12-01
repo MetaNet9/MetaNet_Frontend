@@ -14,14 +14,15 @@
   <!-- admin-cards -->
   <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3F gap-4 mb-6">
 
-    <app-admin-card-with-chart title="Total Models" value="2500" precentage="+12%" [totalmodeldata]="totalmodeldata" [options]="options" [isChartHidden]=false arrow="pi pi-arrow-up" color="pink1"  ></app-admin-card-with-chart>
-    <app-admin-card-with-chart title="New Models" value="25" precentage="+12%" [isChartHidden]=true arrow="pi pi-arrow-up" color="pink1"  ></app-admin-card-with-chart>
 
+    <app-admin-card-with-chart title="Total Models" value="{{statistics.totalModels}}" precentage="{{statistics.improvement?.models}}" [isChartHidden]=true arrow="pi pi-arrow-up" color="pink1"  ></app-admin-card-with-chart>
+<app-admin-card-with-chart title="New Models" value="{{statistics.newModelsLastWeek}}" precentage="{{statistics.improvement?.models}}" [isChartHidden]=true arrow="pi pi-arrow-up" color="pink1"  ></app-admin-card-with-chart>
 
-    <app-admin-card-with-chart title="Total Users" value="5680" precentage="-35%" [totalmodeldata]="totalUsers" [options]="options" [isChartHidden]=false arrow="pi pi-arrow-down" color="pink1"  ></app-admin-card-with-chart>
-    <app-admin-card-with-chart title="Total Revenue" value="$56,800" precentage="-10%" [totalmodeldata]="totalRevenue" [options]="options" [isChartHidden]=false arrow="pi pi-arrow-down" color="red500"  ></app-admin-card-with-chart>
-    <app-admin-card-with-chart title="Monthly Revenue" value="$780" precentage="+12%" [totalmodeldata]="monthlyRevenue" [options]="options" [isChartHidden]=false arrow="pi pi-arrow-up" color="pink1"  ></app-admin-card-with-chart>
-    <app-admin-card-with-chart title="Active Users" value="85" precentage="+12%" [isChartHidden]=true arrow="pi pi-arrow-up" color="pink1"  ></app-admin-card-with-chart>
+    <app-admin-card-with-chart title="Total Users" value="{{statistics.totalUsers}}" precentage="{{statistics.improvement?.users}}" [isChartHidden]=true arrow="pi pi-arrow-up" color="pink1"  ></app-admin-card-with-chart>
+    <app-admin-card-with-chart title="New Users" value="{{statistics.newUsersLastWeek}}" precentage="{{statistics.improvement?.users}}" [isChartHidden]=true arrow="pi pi-arrow-up" color="pink1"  ></app-admin-card-with-chart>
+
+    <app-admin-card-with-chart title="Total Revenue" value="{{statistics.totalRevenue}}" precentage="{{statistics.improvement?.revenue}}" [totalmodeldata]="totalRevenue" [options]="options" [isChartHidden]=false arrow="pi pi-arrow-up" color="pink1"  ></app-admin-card-with-chart>
+    <app-admin-card-with-chart title="Last Month Revenue" value="{{this.statistics.lastMonthRevenue.at(0)?.totalRevenue}}" precentage="+82%" [totalmodeldata]="monthlyRevenue" [options]="options" [isChartHidden]=false arrow="pi pi-arrow-up" color="pink1"  ></app-admin-card-with-chart>
 
   </div>
 
@@ -37,17 +38,14 @@
 
 
   <!-- charts -->
-  <div class=" grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+  <div class=" ">
     <!-- weekly revenue bar chart -->
     <div class="col-span-2  bg-metawhite p-4 rounded-lg shadow-md">
       <h2 class="text-lg font-semibold text-metablack">Revenue Overview</h2>
-      <app-weekly-revenue-chart></app-weekly-revenue-chart>
+      <app-weekly-revenue-chart ></app-weekly-revenue-chart>
     </div>
 
-    <div class="col-span-2 md:col-span-1 bg-metawhite p-4 rounded-lg shadow-md">
-      <h2 class="text-lg font-semibold text-metablack">Top Models</h2>
-      <app-sales-by-category-pie-chart></app-sales-by-category-pie-chart>
-    </div>
+
   </div>
 </div>
 </div>

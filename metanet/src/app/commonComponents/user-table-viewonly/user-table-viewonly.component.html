@@ -1,16 +1,15 @@
 <div class="card  ">
 
 
-  <p-dialog header="Confirm to {{selectedModel?.status=='active'?'Deactivate':'Activate'}}" [modal]="true" [(visible)]="visible" [style]="{ width: '20rem' }">
-    <span class="p-text-secondary block mb-5">Check bellow information and confirm.</span>
-    <div class="flex-col px-10">
+  <p-dialog header="UserDetails" [modal]="true" [(visible)]="visible" [style]="{ width: '20rem'}">
+
+    <div class="flex-col px-5">
       <p>Name : {{selectedModel?.name}}</p>
       <p>Email : {{selectedModel?.email}}</p>
       <p>Contact : {{selectedModel?.contact}}</p>
     </div>
     <div class="flex flex-row w-full pt-5 justify-around items-center">
-        <button (click)="cancel()"  class="w-28 bg-lightpink text-metawhite rounded-md py-5 hover:bg-lightpurple">Cancel</button>
-        <button (click)="act_or_deact()"  class="w-28 bg-purple4 text-metawhite rounded-md py-[10px] hover:bg-purple2">{{selectedModel?.status=='active'?'Deactivate':'Activate'}}</button>
+      <button (click)="cancel()"  class="w-28 bg-lightpink text-metawhite rounded-md py-5 hover:bg-lightpurple">Close</button>
     </div>
 
   </p-dialog>

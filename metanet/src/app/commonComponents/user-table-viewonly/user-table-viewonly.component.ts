@@ -1,12 +1,10 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {CurrencyPipe, NgClass} from "@angular/common";
+
 import {DropdownModule} from "primeng/dropdown";
 import {PrimeTemplate} from "primeng/api";
 import {Table, TableModule} from "primeng/table";
 import {TagModule} from "primeng/tag";
 import {AdvanceUser, error} from "../../domain/models";
-import {IconFieldModule} from "primeng/iconfield";
-import {MultiSelectModule} from "primeng/multiselect";
 import {FormsModule} from "@angular/forms";
 import {InputTextModule} from "primeng/inputtext";
 import {InputIconModule} from "primeng/inputicon";
@@ -17,29 +15,23 @@ import {HttpClient} from "@angular/common/http";
 import {ToastService} from "angular-toastify";
 
 @Component({
-  selector: 'app-admin-user-table',
+  selector: 'app-user-table-viewonly',
   standalone: true,
   imports: [
-    TableModule,
-    IconFieldModule,
-    MultiSelectModule,
-    FormsModule,
-    DropdownModule,
-    TagModule,
-    NgClass,
-    InputTextModule,
-    InputIconModule,
-    CurrencyPipe,
     DialogModule,
-    Button
+    DropdownModule,
+    PrimeTemplate,
+    TableModule,
+    TagModule,
+    FormsModule
   ],
-  templateUrl: './admin-user-table.component.html',
-  styleUrl: './admin-user-table.component.css'
+  templateUrl: './user-table-viewonly.component.html',
+  styleUrl: './user-table-viewonly.component.css'
 })
-export class AdminUserTableComponent implements OnInit{
+export class UserTableViewonlyComponent implements OnInit{
   @Input()
   customers!: AdvanceUser[]
-  @Output() callParent = new EventEmitter<any>();
+
 
   statuses!: any[];
   selectedStatus!: any[];
@@ -261,9 +253,8 @@ export class AdminUserTableComponent implements OnInit{
 
 
     this.statuses = [
-      { label: 'Inactive', value: 'Inactive' },
-      { label: 'Active', value: 'Active' },
-      { label: 'Deleted', value: 'Deleted' },
+      { label: 'active', value: 'active' },
+      { label: 'inactive', value: 'inactive' },
     ];
   }
 
@@ -298,46 +289,8 @@ export class AdminUserTableComponent implements OnInit{
     this.visible = false;
   }
 
-  act_or_deact() {
-    if (this.selectedModel) {
-      if (this.selectedModel.status === 'active') {
-          console.log('deactivate');
-        this.http.patch(BASE_url+'/auth/deactivate-user/'+this.selectedModel.id,{},{withCredentials:true}).subscribe({
-          next: (data: any) => {
-            this.callParent.emit();
-            this._toastService.success('User deactivated successfully');
-            this.visible = false;
-          },
-          error: (error: { error:error }) => {
-            if (error.error.statusCode == 401) {
-              this._toastService.error('You are not authorized to view this page');
-              console.log(error);
-            }
-            // console.log(error);
-          }
 
-        });
 
-      } else {
-        console.log('activate');
-        this.http.patch(BASE_url+'/auth/activate-user/'+this.selectedModel.id,{},{withCredentials:true}).subscribe({
-          next: (data: any) => {
-            this.callParent.emit();
-            this.visible = false;
-            this._toastService.success('User activated successfully');
-          },
-          error: (error: { error:error }) => {
-            if (error.error.statusCode == 401) {
-              this._toastService.error(error.error.message||"E");
-              console.log(error);
-            }
-            // console.log(error);
-          }
-
-        });
-      }
-    }
-  }
 
 
 }

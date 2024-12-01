@@ -122,18 +122,33 @@ export class LandingnavbarComponent implements OnInit {
             if (role === 'user') {
               this.router.navigate(['/marketplace-products']);
             }
+            if (role === 'seller') {
+              this.router.navigate(['/upload-form']);
+            }
+            if (role === 'admin') {
+              this.router.navigate(['/admindashboard']);
+            }
+            if (role === 'sysadmin') {
+              this.router.navigate(['/sysadmin_dashboard']);
+            }
+            if (role === 'moderator') {
+              this.router.navigate(['/mod_dashboard']);
+            }
+
             console.log('Login successful!', role);
             this.visibleLogin = false;  // Close login dialog on success
-            this.router.navigate(['/marketplace-products']);
           },
-          error: (error) => {
+          error: (error:{error?:{message?:string}}) => {
+            console.log(error.error?.message)
             console.error('Login failed:', error);
-            this._toastService.error('Login failed: Invalid credentials');
+            if (error.error?.message) {
+              this._toastService.error(error.error.message);
+            }
+
           }
         });
     } else {
       console.log('Invalid form data');
-
     }
   }
 
@@ -151,6 +166,7 @@ export class LandingnavbarComponent implements OnInit {
   }
 
   public register() {
+    console.log(this.checkagree)
     const isFormValid = this.registerForm.valid;
     if (!isFormValid) {
      console.log('Invalid form data');
@@ -170,14 +186,15 @@ export class LandingnavbarComponent implements OnInit {
       .subscribe({
         next: (response) => {
 
-          console.log('Register successful!', response);
+          console.log('Login successful!', response);
           if (response.success) {
             this.visibleRegister = false;
-            this.router.navigate(['/marketplace-products']);// Close login dialog on success
+            this.router.navigate(['/registrationsuccess']);// Close login dialog on success
           }
         },
-        error: (error) => {
-          console.error('Register failed:', error);
+        error: (error:{error?:{massage?:string}}) => {
+          console.log(error.error)
+          console.error('Login failed:', error);
         }
       });
     console.log(this.registerForm.value);
@@ -268,7 +285,7 @@ export class LandingnavbarComponent implements OnInit {
   }
 
   // Close login and open forgot password dialog
-  checkagree: boolean = false;
+  checkagree: boolean = true;
   openForgotPassword() {
     this.visibleForgotPassword = true;
     this.visibleLogin = false;

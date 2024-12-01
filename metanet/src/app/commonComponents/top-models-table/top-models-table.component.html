@@ -19,7 +19,7 @@
 <!--        <th>Price</th>-->
 <!--        <th>Reviews</th>-->
         <th class= "bg-lightpurple/15" style="width:20%">Model </th>
-        <th class= "bg-lightpurple/15" pSortableColumn="category" style="width:20%">Category <p-sortIcon field="category" /></th>
+        <th class= "bg-lightpurple/15" pSortableColumn="category" style="width:20%">Format<p-sortIcon field="category" /></th>
         <th class= "bg-lightpurple/15" pSortableColumn="price" style="width:20%">Price <p-sortIcon field="price" /></th>
         <th class= "bg-lightpurple/15" pSortableColumn="reviews" style="width:20%">Reviews <p-sortIcon field="reviews" /></th>
 
@@ -27,11 +27,11 @@
     </ng-template>
     <ng-template pTemplate="body" let-product>
       <tr>
-        <td>{{product.name}}</td>
-        <td><img [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product.image" [alt]="product.name" width="100" class="shadow-4" /></td>
-        <td>{{product.category}}</td>
+        <td>{{product.title}}</td>
+        <td><img [src]="product.image1Url" [alt]="product.title" width="100" class="shadow-4" /></td>
+        <td>{{product.format}}</td>
         <td>{{product.price | currency:'USD'}}</td>
-        <td><p-rating [(ngModel)]="product.reviews" [readonly]="true" [cancel]="false" /></td>
+        <td><p-rating [(ngModel)]="product.review" [readonly]="true" [cancel]="false" /></td>
        </tr>
     </ng-template>
 
