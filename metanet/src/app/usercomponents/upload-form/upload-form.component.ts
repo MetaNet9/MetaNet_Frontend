@@ -8,11 +8,12 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
+import { ThreeDViewerComponent } from 'src/app/three-dviewer/three-dviewer.component';
 
 @Component({
   selector: 'app-upload-form',
   standalone: true,
-  imports: [UserNavbarComponent, FooterComponent, SelectButtonModule, CommonModule, FormsModule],
+  imports: [UserNavbarComponent, FooterComponent, SelectButtonModule, CommonModule, FormsModule, ThreeDViewerComponent],
   templateUrl: './upload-form.component.html',
   styleUrls: ['./upload-form.component.css']
 })
@@ -35,10 +36,11 @@ export class UploadFormComponent implements AfterViewInit {
   modelParameters: any = null;
   loadingParameters = false;
   isModelUploaded = false;
+  modelId = '';
   private readonly modelUploadUrl = 'http://localhost:3000/upload/model';
   private readonly imageUploadUrl = 'http://localhost:3000/upload/image';
   private readonly submitUrl = 'http://localhost:3000/vebxrmodel/';
-  private readonly moderatorRequestUrl = 'http://localhost:3000/request-moderator';
+  private readonly moderatorRequestUrl = 'http://localhost:3000/review-requests';
 
   @ViewChild('modelPreviewCanvas', { static: false }) modelPreviewCanvas!: ElementRef<HTMLCanvasElement>;
 
@@ -49,89 +51,16 @@ export class UploadFormComponent implements AfterViewInit {
   private model: THREE.Object3D | null = null;
   isValidModel: boolean | null = null;
 
+  // dynamicModelUrl: string = 'http://localhost:3000/uploads/herbie_the_love_bug_2024-12-01T05-13-26-023Z.glb';
+  dynamicModelUrl: string = '';
+
   constructor() {}
 
   ngAfterViewInit() {
-    if (this.modelPreviewCanvas) {
-      this.initThreeJS();
-    }
+    
   }
 
-  private initThreeJS(): void {
-    if (!this.modelPreviewCanvas?.nativeElement) return;
-
-    this.scene = new THREE.Scene();
-    this.camera = new THREE.PerspectiveCamera(75, this.modelPreviewCanvas.nativeElement.clientWidth / 400, 0.1, 1000);
-    this.renderer = new THREE.WebGLRenderer({ canvas: this.modelPreviewCanvas.nativeElement });
-    this.renderer.setSize(this.modelPreviewCanvas.nativeElement.clientWidth, 400);
-    this.camera.position.z = 5;
-
-    const light = new THREE.AmbientLight(0xffffff);
-    this.scene.add(light);
-
-    this.controls = new OrbitControls(this.camera, this.renderer.domElement);
-    this.controls.enableRotate = true;
-    this.controls.enableZoom = true;
-
-    const animate = () => {
-      requestAnimationFrame(animate);
-      if (this.controls) this.controls.update();
-      this.renderer?.render(this.scene!, this.camera!);
-    };
-    animate();
-  }
-
-  private loadModel(file: File): void {
-    const fileExtension = file.name.split('.').pop()?.toLowerCase();
-    if (!fileExtension) return;
-
-    const reader = new FileReader();
-
-    reader.onload = (event: any) => {
-      const result = event.target.result;
-      let loader: any;
-
-      if (fileExtension === 'glb' || fileExtension === 'gltf') {
-        loader = new GLTFLoader();
-        loader.parse(result, '', (gltf: any) => {
-          this.clearScene();
-          this.model = gltf.scene;
-          if (this.model) {
-            if (this.model) {
-              if (this.model) {
-                this.scene?.add(this.model);
-              }
-            }
-          }
-          this.isModelUploaded = true;
-        });
-      } else if (fileExtension === 'obj') {
-        loader = new OBJLoader();
-        const obj = loader.parse(result);
-        this.clearScene();
-        this.model = obj;
-        if (this.model) {
-          if (this.model) {
-            if (this.model) {
-              this.scene?.add(this.model);
-            }
-          }
-        }
-        this.isModelUploaded = true;
-      } else {
-        alert('Unsupported file format');
-      }
-    };
-
-    if (fileExtension === 'obj') reader.readAsText(file);
-    else reader.readAsArrayBuffer(file);
-  }
-
-  private clearScene(): void {
-    while (this.scene?.children.length) {
-      this.scene?.remove(this.scene.children[0]);
-    }
-  }
+  
 
   onFileSelect(event: any, type: string): void {
     const files = event.target.files;
@@ -140,7 +69,7 @@ export class UploadFormComponent implements AfterViewInit {
       if (files && files[0]) {
         this.formData.modelFile = files[0];
         this.isModelUploaded = false;
-        this.loadModel(files[0]);
+        // this.loadModel(files[0]);
       }
     } else if (type === 'images') {
       if (files.length > 0) {
@@ -176,6 +105,9 @@ export class UploadFormComponent implements AfterViewInit {
   
       // Update the validity status based on the response
       this.isValidModel = result.savedModel.valid;
+      this.modelId = result.savedModel.id;
+      this.dynamicModelUrl = result.fileAccessUrl;
+      this.isModelUploaded = true;
   
       return result.fileAccessUrl;
     } catch (error) {
@@ -189,43 +121,131 @@ export class UploadFormComponent implements AfterViewInit {
   
   // Function to request moderator review
   async requestModeratorReview(): Promise<void> {
-    try {
-      const response = await fetch(this.moderatorRequestUrl, {
-        method: 'POST',
-        credentials: 'include',
-        body: JSON.stringify({
-          modelId: this.formData.modelFile?.id // Replace with actual model identifier
-        }),
-        headers: { 'Content-Type': 'application/json' }
-      });
-  
-      if (!response.ok) {
-        throw new Error('Failed to request moderator review');
-      }
-  
-      alert('Request sent to moderator successfully!');
-    } catch (error) {
-      console.error('Error requesting moderator review:', error);
-      alert('Failed to request moderator review. Please try again.');
-    }
-  }
 
-  async onSubmit(event: Event): Promise<void> {
-    event.preventDefault();
-    const modelUrl = await this.uploadModel();
+    const modelUrl = this.dynamicModelUrl;
 
     if (!modelUrl) {
       alert('Model upload failed.');
       return;
     }
 
-    const formData = { ...this.formData, modelFile: modelUrl };
+    if (this.formData.images.length !== 3) {
+      alert('Please upload at least 3 images.');
+      return;
+    }
+
+    //upload the images iteratively
+    for (let i = 0; i < this.formData.images.length; i++) {
+      this.formData.images[i] = await this.uploadImage(this.formData.images[i]);
+    }
+
+    //make a array for formdata.tags
+    let tagsArray = this.formData.tags.split(',');
+    this.formData.tags = tagsArray;
+
+    //make category as a number
+    this.formData.category = Number(this.formData.category);
+
+    //get the extention from the modelUrl. split by . and get the last element
+    let extention = modelUrl.split('.').pop();
+
+    const formData = { 
+      ...this.formData, 
+      modelUrl: modelUrl,
+      image1Url: this.formData.images[0],
+      image2Url: this.formData.images[1],
+      image3Url: this.formData.images[2],
+      modelId: this.modelId,
+      format: extention
+    };
+
+    try {
+      const response = await fetch(this.moderatorRequestUrl, {
+        method: 'POST',
+        body: JSON.stringify(formData),
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include'
+      });
+
+      if (!response.ok) throw new Error('Failed to submit the form');
+
+      alert('Review Request Created successfully!');
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Failed to submit the form.');
+    }
+  }
+
+  async uploadImage(image: File): Promise<string> {
+    const formData = new FormData();
+    formData.append('file', image);
+
+    try {
+      const response = await fetch(this.imageUploadUrl, {
+        method: 'POST',
+        body: formData,
+        credentials: 'include'
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to upload the image file');
+      }
+
+      const result = await response.json();
+      return result.fileAccessUrl;
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      alert('Failed to upload the image. Please try again.');
+      return '';
+    }
+  }
+
+  async onSubmit(event: Event): Promise<void> {
+    event.preventDefault();
+
+    const modelUrl = this.dynamicModelUrl;
+
+    if (!modelUrl) {
+      alert('Model upload failed.');
+      return;
+    }
+
+    if (this.formData.images.length !== 3) {
+      alert('Please upload at least 3 images.');
+      return;
+    }
+
+    //upload the images iteratively
+    for (let i = 0; i < this.formData.images.length; i++) {
+      this.formData.images[i] = await this.uploadImage(this.formData.images[i]);
+    }
+
+    //make a array for formdata.tags
+    let tagsArray = this.formData.tags.split(',');
+    this.formData.tags = tagsArray;
+
+    //make category as a number
+    this.formData.category = Number(this.formData.category);
+
+    //get the extention from the modelUrl. split by . and get the last element
+    let extention = modelUrl.split('.').pop();
+
+    const formData = { 
+      ...this.formData, 
+      modelUrl: modelUrl,
+      image1Url: this.formData.images[0],
+      image2Url: this.formData.images[1],
+      image3Url: this.formData.images[2],
+      modelId: this.modelId,
+      format: extention
+    };
 
     try {
       const response = await fetch(this.submitUrl, {
         method: 'POST',
         body: JSON.stringify(formData),
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include'
       });
 
       if (!response.ok) throw new Error('Failed to submit the form');

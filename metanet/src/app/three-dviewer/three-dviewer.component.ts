@@ -6,13 +6,16 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { isPlatformBrowser } from '@angular/common';
 
 @Component({
+  standalone: true,
   selector: 'app-three-d-viewer',
   templateUrl: './three-dviewer.component.html',
   styleUrls: ['./three-dviewer.component.css']
 })
 export class ThreeDViewerComponent implements OnInit, AfterViewInit {
   // @Input() modelUrl: string = 'http://localhost:3000/uploads/model_2024-12-01T02-29-15-383Z.obj';
-  @Input() modelUrl: string = 'http://localhost:3000/uploads/herbie_the_love_bug_2024-12-01T05-13-26-023Z.glb';
+  // @Input() modelUrl: string = 'http://localhost:3000/uploads/herbie_the_love_bug_2024-12-01T05-13-26-023Z.glb';
+  @Input() modelUrl: string = '';
+  
 
   constructor(
     private elRef: ElementRef,
@@ -32,11 +35,12 @@ export class ThreeDViewerComponent implements OnInit, AfterViewInit {
     
     // Scene
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xf0f0f0); // Light gray background
+    // scene.background = new THREE.Color(0xf0f0f0); // Light gray background
+    scene.background = new THREE.Color(0x18141a); // Light gray background
 
     // Camera
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 100;
+    // camera.position.z = 100;
 
     // Renderer
     const renderer = new THREE.WebGLRenderer();
@@ -90,7 +94,7 @@ export class ThreeDViewerComponent implements OnInit, AfterViewInit {
           const maxSize = Math.max(size.z, size.y, size.x)
 
           // Set camera position based on the size of the model
-          camera.position.z = maxSize * 0.75;
+          camera.position.z = maxSize * 0;
           camera.position.y = size.y; 
           camera.position.x = size.x; 
 
