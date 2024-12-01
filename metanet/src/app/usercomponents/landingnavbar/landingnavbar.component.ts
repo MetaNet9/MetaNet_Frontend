@@ -128,10 +128,12 @@ export class LandingnavbarComponent implements OnInit {
           },
           error: (error) => {
             console.error('Login failed:', error);
+            this._toastService.error('Login failed: Invalid credentials');
           }
         });
     } else {
       console.log('Invalid form data');
+
     }
   }
 
@@ -175,7 +177,7 @@ export class LandingnavbarComponent implements OnInit {
           }
         },
         error: (error) => {
-          console.error('Login failed:', error);
+          console.error('Register failed:', error);
         }
       });
     console.log(this.registerForm.value);
