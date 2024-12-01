@@ -14,21 +14,67 @@ export interface customer {
   status?: string;
 }
 
-export interface Admindetails {
+
+export interface RevenueStats{
+  totalRevenue?: number;
+  totalSales?: number;
+  mostSellingCategory?: string;
+  totalRefunds?: number;
+  averageRevenue?: number;
+  monthlyRevenueGrowth?: number;
+}
+
+export interface AdvanceUser {
   id?: number;
-  user?: User;
+  name?: string;
   email?: string;
   contact?: string;
   status?: string;
 }
+export interface UserList {
+  users: AdvanceUser[];
+  total2?: number;
+  activeUsers?: number;
+  deactivatedUsers?: number;
+}
+
+
 export interface model {
   id?: number;
-  name?: string;
+  title?: string;
   image?: string;
-  category?: string;
+  format?: string;
   price?: number;
   reviews?: number;
 }
+
+
+
+export interface modelResponse {
+  data: model[];
+}
+
+interface revenue {categoryName:string, totalRevenue:string}
+export interface Statistics {
+  totalModels?: number;
+  totalUsers?: number;
+  totalRevenue?: string;
+  totalPurchases?: number;
+  totalLikes?: string;
+  totalDownloads?: string;
+  mostPopularModel?: model;
+  lastMonthRevenue: revenue[];
+  lastWeekRevenue?: any[];
+  newModelsLastWeek?: number;
+  newUsersLastWeek?: number;
+  improvement?: {
+    models: number,
+    users: number,
+    revenue: number
+  }
+
+}
+
 export interface model2 {
   id?: number;
   user?: User;
@@ -39,4 +85,8 @@ export interface model2 {
   reviews?: number;
 }
 
+export interface error {
+  message?: string;
+  statusCode?: number;
+}
 
