@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {model, modelResponse, Statistics} from "../../domain/models";
+import {model, modelAdvanced, modelResponse, Statistics} from "../../domain/models";
 import {Table, TableModule} from "primeng/table";
 import {PrimeTemplate} from "primeng/api";
 import {Button} from "primeng/button";
@@ -31,7 +31,7 @@ import dataset = _default.modes.dataset;
   styleUrls: ['./top-models-table.component.css'],
 })
 export class TopModelsTableComponent implements OnInit {
-  models!: model[];
+  models!: modelAdvanced[];
 
 
     constructor(private http: HttpClient) { }
