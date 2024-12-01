@@ -37,7 +37,7 @@
   <button (click)="showRegister()"  class="hidden lg:inline-block h-8 w-32  bg-lightpurple hover:bg-darkpurple text-sm text-metawhite font-bold rounded-xl transition duration-200">Sign up</button>
 </nav>
 
-<!-- mobile view -->
+<!-- mobile - view -->
 <div id="navbar-menu" class="navbar-menu relative z-50 hidden">
   <div class="navbar-backdrop fixed inset-0 bg-metablack opacity-25"></div>
   <nav class="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-background border-r overflow-y-auto">
@@ -102,7 +102,7 @@
           ></lib-toastify-toast-container>
           <img src="./assets/images/logo1.png" alt="MetaNet Logo" class="mb-6 w-20" />
           <h2 class="text-3xl font-bold mb-6">LOGIN</h2>
-          <!-- login form -->
+          <!-- login - form -->
           <form class="w-full" [formGroup]="loginForm" (ngSubmit)="login()" >
             <div class="mb-4">
               <input type="email" id="email" formControlName="email" placeholder="Email" class=" p-3 w-full h-10   bg-purple1 border border-lightpink rounded-lg text-metawhite placeholder-lightpink focus:outline-none focus:ring-1 focus:ring-darkpink inputbar" />
@@ -157,7 +157,7 @@
 
 
 
-<!-- Register Popup -->
+<!-- Register - Popup -->
 <div class="flex justify-center">
   <p-dialog
     header=""
@@ -231,19 +231,18 @@
           <div class="flex items-center">
             <p-checkbox
               [(ngModel)]="checkagree"
+              [ngModelOptions]="{ standalone: true }"
               [binary]="true"
               inputId="binary" />
             <label class=" text-metawhite">I agree to the Terms of Use and Privacy Policy</label>
           </div>
-          <div class="flex items-center">
-            <input type="checkbox" class="mr-2" />
-            <label class=" text-metawhite">I want to receive tips, news, and community content in the newsletter (2x/month).</label>
-          </div>
+          
         </div>
         <div class="flex items-center">
           <button type="submit"  class="w-1/2 h-10 mx-auto bg-darkpurple text-metawhite py-2 rounded-lg hover:bg-primary/80">Create Account</button>
         </div>
       </form>
+
       <div class="flex text-metawhite items-center text-xs my-4">
         <hr class="flex-grow border-muted mx-2" />Or
         <span class="mx-2 text-darkpink text-sm">Sign Up</span>with
@@ -270,7 +269,7 @@
     </div>
 </p-dialog>
 </div>
-<!-- Forgot Password Popup -->
+<!-- Forgot - Password - Popup -->
 <div class="flex justify-center">
   <p-dialog
     header=""
@@ -284,7 +283,7 @@
       <div class="p-8">
         <div class="flex flex-col items-center">
           <h2 class="text-2xl font-bold mb-6">Forgot Password</h2>
-          <!-- forgot password form -->
+          <!-- forgot - password - form -->
           <form class="w-full" [formGroup]="forgotPasswordForm" (ngSubmit)="resetPassword()">
             <div class="mb-4">
               <input
@@ -317,7 +316,7 @@
   </p-dialog>
 </div>
 
-<!-- Password Reset Popup -->
+<!-- Password - Reset - Popup -->
 <p-dialog
   header=""
   [(visible)]="visibleResetPassword"
