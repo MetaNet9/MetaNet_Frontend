@@ -1,25 +1,263 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { UserNavbarComponent } from "../user-navbar/user-navbar.component";
 import { FooterComponent } from "../footer/footer.component";
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
+import { ThreeDViewerComponent } from 'src/app/three-dviewer/three-dviewer.component';
 
 @Component({
   selector: 'app-upload-form',
   standalone: true,
-  imports: [UserNavbarComponent, FooterComponent,SelectButtonModule,CommonModule,FormsModule],
+  imports: [UserNavbarComponent, FooterComponent, SelectButtonModule, CommonModule, FormsModule, ThreeDViewerComponent],
   templateUrl: './upload-form.component.html',
-  styleUrl: './upload-form.component.css'
+  styleUrls: ['./upload-form.component.css']
 })
-export class UploadFormComponent {
-  value!: number;
+export class UploadFormComponent implements AfterViewInit {
+  Object = Object;
+  formData: any = {
+    title: '',
+    description: '',
+    category: '',
+    tags: '',
+    downloadType: 'Free',
+    license: '',
+    format: '',
+    price: 0,
+    images: [],
+    modelFile: null,
+  };
 
-  options: any[] = [
-      { name: 'No', value: 1 },
-      { name: 'Free', value: 2 },
-      { name: 'Paid', value: 3 }
-  ];
+  modelPreviewUrl: string | null = null;
+  modelParameters: any = null;
+  loadingParameters = false;
+  isModelUploaded = false;
+  modelId = '';
+  private readonly modelUploadUrl = 'http://localhost:3000/upload/model';
+  private readonly imageUploadUrl = 'http://localhost:3000/upload/image';
+  private readonly submitUrl = 'http://localhost:3000/vebxrmodel/';
+  private readonly moderatorRequestUrl = 'http://localhost:3000/review-requests';
+
+  @ViewChild('modelPreviewCanvas', { static: false }) modelPreviewCanvas!: ElementRef<HTMLCanvasElement>;
+
+  private scene: THREE.Scene | null = null;
+  private camera: THREE.PerspectiveCamera | null = null;
+  private renderer: THREE.WebGLRenderer | null = null;
+  private controls: OrbitControls | null = null;
+  private model: THREE.Object3D | null = null;
+  isValidModel: boolean | null = null;
+
+  // dynamicModelUrl: string = 'http://localhost:3000/uploads/herbie_the_love_bug_2024-12-01T05-13-26-023Z.glb';
+  dynamicModelUrl: string = '';
+
+  constructor() {}
+
+  ngAfterViewInit() {
+    
+  }
+
+  
+
+  onFileSelect(event: any, type: string): void {
+    const files = event.target.files;
+
+    if (type === 'model') {
+      if (files && files[0]) {
+        this.formData.modelFile = files[0];
+        this.isModelUploaded = false;
+        // this.loadModel(files[0]);
+      }
+    } else if (type === 'images') {
+      if (files.length > 0) {
+        this.formData.images = Array.from(files).slice(0, 3);
+      }
+    }
+  }
+
+  async uploadModel(): Promise<string> {
+    if (!this.formData.modelFile) {
+      alert('Please select a model to upload!');
+      return '';
+    }
+  
+    const formData = new FormData();
+    formData.append('file', this.formData.modelFile);
+  
+    try {
+      this.loadingParameters = true;
+  
+      const response = await fetch(this.modelUploadUrl, {
+        method: 'POST',
+        body: formData,
+        credentials: 'include'
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to upload the model file');
+      }
+  
+      const result = await response.json();
+      this.modelParameters = result.savedModel.parameters;
+  
+      // Update the validity status based on the response
+      this.isValidModel = result.savedModel.valid;
+      this.modelId = result.savedModel.id;
+      this.dynamicModelUrl = result.fileAccessUrl;
+      this.isModelUploaded = true;
+  
+      return result.fileAccessUrl;
+    } catch (error) {
+      console.error('Error uploading model:', error);
+      alert('Failed to upload the model. Please try again.');
+      return '';
+    } finally {
+      this.loadingParameters = false;
+    }
+  }
+  
+  // Function to request moderator review
+  async requestModeratorReview(): Promise<void> {
+
+    const modelUrl = this.dynamicModelUrl;
+
+    if (!modelUrl) {
+      alert('Model upload failed.');
+      return;
+    }
+
+    if (this.formData.images.length !== 3) {
+      alert('Please upload at least 3 images.');
+      return;
+    }
+
+    //upload the images iteratively
+    for (let i = 0; i < this.formData.images.length; i++) {
+      this.formData.images[i] = await this.uploadImage(this.formData.images[i]);
+    }
+
+    //make a array for formdata.tags
+    let tagsArray = this.formData.tags.split(',');
+    this.formData.tags = tagsArray;
+
+    //make category as a number
+    this.formData.category = Number(this.formData.category);
+
+    //get the extention from the modelUrl. split by . and get the last element
+    let extention = modelUrl.split('.').pop();
+
+    const formData = { 
+      ...this.formData, 
+      modelUrl: modelUrl,
+      image1Url: this.formData.images[0],
+      image2Url: this.formData.images[1],
+      image3Url: this.formData.images[2],
+      modelId: this.modelId,
+      format: extention
+    };
+
+    try {
+      const response = await fetch(this.moderatorRequestUrl, {
+        method: 'POST',
+        body: JSON.stringify(formData),
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include'
+      });
+
+      if (!response.ok) throw new Error('Failed to submit the form');
+
+      alert('Review Request Created successfully!');
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Failed to submit the form.');
+    }
+  }
+
+  async uploadImage(image: File): Promise<string> {
+    const formData = new FormData();
+    formData.append('file', image);
+
+    try {
+      const response = await fetch(this.imageUploadUrl, {
+        method: 'POST',
+        body: formData,
+        credentials: 'include'
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to upload the image file');
+      }
+
+      const result = await response.json();
+      return result.fileAccessUrl;
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      alert('Failed to upload the image. Please try again.');
+      return '';
+    }
+  }
+
+  async onSubmit(event: Event): Promise<void> {
+    event.preventDefault();
+
+    const modelUrl = this.dynamicModelUrl;
+
+    if (!modelUrl) {
+      alert('Model upload failed.');
+      return;
+    }
+
+    if (this.formData.images.length !== 3) {
+      alert('Please upload at least 3 images.');
+      return;
+    }
+
+    //upload the images iteratively
+    for (let i = 0; i < this.formData.images.length; i++) {
+      this.formData.images[i] = await this.uploadImage(this.formData.images[i]);
+    }
+
+    //make a array for formdata.tags
+    let tagsArray = this.formData.tags.split(',');
+    this.formData.tags = tagsArray;
+
+    //make category as a number
+    this.formData.category = Number(this.formData.category);
+
+    //get the extention from the modelUrl. split by . and get the last element
+    let extention = modelUrl.split('.').pop();
+
+    const formData = { 
+      ...this.formData, 
+      modelUrl: modelUrl,
+      image1Url: this.formData.images[0],
+      image2Url: this.formData.images[1],
+      image3Url: this.formData.images[2],
+      modelId: this.modelId,
+      format: extention
+    };
+
+    try {
+      const response = await fetch(this.submitUrl, {
+        method: 'POST',
+        body: JSON.stringify(formData),
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include'
+      });
+
+      if (!response.ok) throw new Error('Failed to submit the form');
+
+      alert('Model uploaded successfully!');
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Failed to submit the form.');
+    }
+  }
+
+  isArray(value: any): boolean {
+    return Array.isArray(value);
+  }
 }
-

@@ -38,6 +38,7 @@ import { NewPasswordComponent } from './usercomponents/new-password/new-password
 import { BecomeCreatorComponent } from './usercomponents/become-creator/become-creator.component';
 import { UploadSuccessComponent } from './usercomponents/upload-success/upload-success.component';
 import { SendToModeratorComponent } from './usercomponents/send-to-moderator/send-to-moderator.component';
+import { ThreeDViewerComponent } from './three-dviewer/three-dviewer.component';
 
 
 
@@ -92,6 +93,7 @@ export const routes: Routes = [
   { path: 'mod_dashboard', component: ModDashboardComponent },
   { path: 'mod_users', component: ModUsersComponent },
   { path: 'mod_creator', component: ModCreatorsComponent },
+  { path: 'threedviewver', component: ThreeDViewerComponent}
 
 
 ];
