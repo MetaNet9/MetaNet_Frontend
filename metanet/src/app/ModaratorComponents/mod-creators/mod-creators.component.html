@@ -15,17 +15,17 @@
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 mb-6">
       <div class="card bg-metawhite p-4 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite flex flex-col justify-center items-center">
         <h2 class="text-lg font-semibold text-metablack">Total Creators</h2>
-        <p class="text-xl lg:text-3xl font-bold text-purple1">86</p>
+        <p class="text-xl lg:text-3xl font-bold text-purple1">{{response.total2}}</p>
       </div>
 
       <div class="card bg-metawhite p-4 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite flex flex-col justify-center items-center">
         <h2 class="text-lg font-semibold text-metablack">Active Creators</h2>
-        <p class="text-xl lg:text-3xl font-bold text-purple1">10</p>
+        <p class="text-xl lg:text-3xl font-bold text-purple1">{{response.activeUsers}}</p>
       </div>
 
       <div class="card bg-metawhite p-4 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite flex flex-col justify-center items-center">
-        <h2 class="text-lg font-semibold text-metablack">Deleted Creators</h2>
-        <p class="text-xl lg:text-3xl font-bold text-purple1">3</p>
+        <h2 class="text-lg font-semibold text-metablack">Deactivated Creators</h2>
+        <p class="text-xl lg:text-3xl font-bold text-purple1">{{response.deactivatedUsers}}</p>
       </div>
     </div>
 
@@ -36,7 +36,7 @@
 
     <!-- table -->
     <div class="flex flex-col items-center justify-center mb-6">
-      <app-admin-user-table></app-admin-user-table>
+      <app-admin-user-table [customers]="response.users"></app-admin-user-table>
     </div>
   </div>
 </div>
