@@ -179,4 +179,8 @@
   padding-left: 3px !important;
   border: 1px solid #6E0E96 !important;
 }
+.text-area{
+  height: 70px !important;
+  padding: 10px !important;
+}
 
