@@ -45,7 +45,17 @@ export class SettingsComponent {
     currentPassword: new FormControl(''),
     newPassword: new FormControl(''),
     confirmPassword: new FormControl(''),
-    apiToken: new FormControl(''),
+    
     
   })
+
+  resetPassword() {
+    const payload = {
+      token: 'your-reset-token', // Replace with actual logic to get the token
+      newPassword: this.changePassword.value.newPassword
+    };
+    console.log('Payload:', payload);
+    // Add logic to send the payload to the POST endpoint
+  }
+
 }

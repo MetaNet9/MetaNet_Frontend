@@ -21,6 +21,8 @@ import {AdminSysAdminComponent} from "./admincomponents/admin-sys-admin/admin-sy
 import { SettingsComponent } from './usercomponents/settings/settings.component';
 import { MarketplaceProductsComponent } from './usercomponents/marketplace-products/marketplace-products.component';
 import { ModeratorDashboardComponent } from './moderatorcomponents/moderator-dashboard/moderator-dashboard.component';
+import { ModeratorChangepasswordComponent } from './moderatorcomponents/moderator-changepassword/moderator-changepassword.component';
+import { ModeratorPayoutsComponent } from './moderatorcomponents/moderator-payouts/moderator-payouts.component';
 
 
 
@@ -53,6 +55,9 @@ export const routes: Routes = [
   // {path: 'adminmodel', component: AdminModelsComponent}
 
   {path: 'moderatordashboard', component: ModeratorDashboardComponent},
+  {path: 'moderatorchangepassword', component: ModeratorChangepasswordComponent},
+  {path: 'moderatorpayouts', component: ModeratorPayoutsComponent},
+
 
 
 
