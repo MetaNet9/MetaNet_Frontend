@@ -37,13 +37,15 @@
     <div class=" grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
       <!-- weekly-revenue-bar-chart -->
       <div class="col-span-2  bg-metawhite p-4 rounded-lg shadow-md">
-        <h2 class="text-lg font-semibold text-metablack">Contribution Table</h2>
-        <app-weekly-revenue-chart></app-weekly-revenue-chart>
+        <h2 class="text-lg font-semibold text-metablack">Recent Actions</h2>
+
+
+
       </div>
 
       <div class="col-span-2 md:col-span-1 bg-metawhite p-4 rounded-lg shadow-md">
         <h2 class="text-lg font-semibold text-metablack">Review Ratio</h2>
-        <app-sales-by-category-pie-chart></app-sales-by-category-pie-chart>
+        <app-contributions-moderator-pie-chart [dataset]="sampleContributions"></app-contributions-moderator-pie-chart>
       </div>
     </div>
   </div>
