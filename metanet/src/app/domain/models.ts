@@ -143,4 +143,20 @@ export interface error {
   message?: string;
   statusCode?: number;
 }
+export interface moderatorContributions{
+  user: string;
+  contributions: number;
+}
 
+export interface actions{
+  model: modelAdvanced;
+  action: string;
+}
+
+export interface ModeratorStats{
+  modelstoReview: number;
+  modelsReviewed: number;
+  modelsReview: number;
+  recentActions: actions[];
+  modelContributions: moderatorContributions[];
+}

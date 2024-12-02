@@ -39,6 +39,8 @@ import { BecomeCreatorComponent } from './usercomponents/become-creator/become-c
 import { UploadSuccessComponent } from './usercomponents/upload-success/upload-success.component';
 import { SendToModeratorComponent } from './usercomponents/send-to-moderator/send-to-moderator.component';
 import { ThreeDViewerComponent } from './three-dviewer/three-dviewer.component';
+import {ModManualVerifyComponent} from "./ModaratorComponents/mod-manual-verify/mod-manual-verify.component";
+import {RequestListComponent} from "./ModaratorComponents/request-list/request-list.component";
 
 
 
@@ -89,7 +91,8 @@ export const routes: Routes = [
   { path: 'sysadmin_modarator', component: SysModaratorComponent },
 
   //moderator routes
-
+  {path: 'mod_manual_request', component: RequestListComponent},
+  {path: 'mod_manual_verify', component: ModManualVerifyComponent},
   { path: 'mod_dashboard', component: ModDashboardComponent },
   { path: 'mod_users', component: ModUsersComponent },
   { path: 'mod_creator', component: ModCreatorsComponent },
