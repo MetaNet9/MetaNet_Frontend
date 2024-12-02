@@ -1,0 +1,84 @@
+
+  <app-moderator-sidebar></app-moderator-sidebar>
+  <div class="p-6 bg-lightpink/5 lg:ml-80 min-h-[100vh]">
+    <!-- topbar -->
+    <app-adminnavbar [bcitems]="[{label:'Review'}]"></app-adminnavbar>
+
+    <div class="flex items-center mb-6">
+      <h1 class="text-2xl font-bold text-primary">Request</h1>
+    </div>
+
+    <div *ngFor="let model of models" class="model-container">
+      <div class="container mx-auto p-6">
+        <!-- Top View -->
+        <div *ngFor="let model of models" class="bg-metawhite shadow-md rounded-lg p-6 mb-8">
+          <h1 class="text-3xl font-bold text-gray-800 mb-4">Model Title: {{ model.title }}</h1>
+          <app-three-d-viewer  [width]="800" [height]="400" [color_bg]="color_bg" [modelUrl]="model.modelUrl"></app-three-d-viewer>
+
+          <div class="text-gray-700">
+            <p class="mb-2"><strong>Description:</strong> {{ model.description }}</p>
+            <p class="mb-2"><strong>Download Type:</strong> {{ model.downloadType }}</p>
+            <p class="mb-2"><strong>Format:</strong> {{ model.format }}</p>
+            <p class="mb-2"><strong>Created At:</strong> {{ model.createdAt | date: 'medium' }}</p>
+          </div>
+        </div>
+
+        <!-- Two Columns Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Left Column: Parameters -->
+          <div class="bg-metawhite rounded-lg shadow-md p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Model Parameters</h2>
+            <div *ngIf="model.model?.parameters">
+              <div *ngFor="let key of objectKeys(model.model.parameters)" class="mb-2">
+                <strong>{{ key }}:</strong>
+                <!-- Handle Arrays -->
+                <ng-container *ngIf="isArray(model.model.parameters[key]); else singleValue">
+            <span *ngFor="let item of model.model.parameters[key]; let i = index">
+              <ng-container *ngIf="isBoolean(item); else showText">
+                <span *ngIf="item" class="text-green-500 font-semibold">✅</span>
+                <span *ngIf="!item" class="text-red-500 font-semibold">❌</span>
+              </ng-container>
+              <ng-template #showText>{{ item }}</ng-template>
+              <span *ngIf="i < model.model.parameters[key].length - 1">, </span>
+            </span>
+                </ng-container>
+                <!-- Handle Single Value -->
+                <ng-template #singleValue>
+                  <ng-container *ngIf="isBoolean(model.model.parameters[key]); else showSingleText">
+                    <span *ngIf="model.model.parameters[key]" class="text-green-500 font-semibold">✅</span>
+                    <span *ngIf="!model.model.parameters[key]" class="text-red-500 font-semibold">❌</span>
+                  </ng-container>
+                  <ng-template #showSingleText>{{ model.model.parameters[key] }}</ng-template>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: User Details -->
+          <div class="flex h-full w-full flex-col justify-between">
+            <div class="bg-metawhite rounded-lg shadow-md p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Model Owner</h2>
+            <div>
+              <img
+                [src]="model.modelOwner?.profilePicture"
+                alt="{{ model.modelOwner?.displayName }} profile picture"
+                class="w-24 h-24 rounded-full shadow-md mb-4"
+              />
+              <p class="mb-2"><strong>Name:</strong> {{ model.modelOwner?.displayName }}</p>
+              <p class="mb-2"><strong>Biography:</strong> {{ model.modelOwner?.biography }}</p>
+
+              <p class="mb-2"><strong>Contact:</strong> {{ model.modelOwner?.contactNumber }}</p>
+            </div>
+          </div>
+            <div  class="bg-metawhite rounded-lg shadow-md p-6 flex w-full h-fit justify-center gap-10 flex-row" >
+            <button class="bg-purple4 text-metawhite rounded-md hover:bg-purple2" >Accept</button>
+              <button class="bg-pink2 text-metawhite rounded-md hover:bg-pink3" >Reject</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
