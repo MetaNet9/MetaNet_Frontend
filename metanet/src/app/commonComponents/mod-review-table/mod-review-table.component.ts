@@ -289,339 +289,339 @@ export class ModReviewTableComponent implements OnInit {
     //   }
     // ];
 
-    this.models = [
-      {
-        "id": 22,
-        "reviewNotes": null,
-        "resolved": false,
-        "title": "Sample Review Request",
-        "description": "Detailed description",
-        "modelUrl": "http://example.com/model",
-        "image1Url": "http://example.com/image1.jpg",
-        "image2Url": "http://example.com/image2.jpg",
-        "image3Url": "http://example.com/image3.jpg",
-        "tags": [
-          "tag1",
-          "tag2"
-        ],
-        "downloadType": "Free",
-        "license": "GPL",
-        "format": "OBJ",
-        "price": 0,
-        "rejected": false,
-        "createdAt": "2024-12-01T18:28:31.055Z",
-        "model": {
-          "id": 19,
-          "fileName": "model_2024-11-30T09-29-27-925Z.obj",
-          "parameters": {
-            "Valid": false,
-            "Volume": [
-              120.07894778520348,
-              true
-            ],
-            "Centroid": [
-              -0.00008117813792472932,
-              10.572018672501972,
-              -0.3266893091936809
-            ],
-            "Face Count": [
-              48918,
-              false
-            ],
-            "Surface Area": [
-              267.17847867213436,
-              true
-            ],
-            "Vertex Count": [
-              24461,
-              true
-            ],
-            "File Size (MB)": [
-              2.4621667861938477,
-              true
-            ],
-            "Watertight Status": true,
-            "Bounding Box Dimensions": [
-              11.685,
-              20.7407,
-              3.7701000000000002
-            ]
-          },
-          "valid": false
-        },
-        "modelOwner": {
-          "id": 1,
-          "displayName": "Jonx",
-          "biography": "Experienced software developer.",
-          "profilePicture": "https://example.com/profile.jpg",
-          "personalWebsite": "https://johndoe.com",
-          "twitterUsername": "johndoe",
-          "facebookUsername": "johndoe",
-          "linkedInUsername": "johndoe",
-          "skills": [
-            "JavaScript",
-            "TypeScript",
-            "Node.js"
-          ],
-          "contactNumber": "+1234567890",
-          "createdAt": "2024-11-27T16:47:21.617Z",
-          "updatedAt": "2024-11-27T16:47:21.617Z",
-          "bankName": "Bank ABC",
-          "accountNumber": "123456789",
-          "branch": "Downtown",
-          "accountName": "John Doe",
-          "accountBalance": 0
-        }
-      },
-      {
-        "id": 23,
-        "reviewNotes": null,
-        "resolved": false,
-        "title": "fsdfsfs",
-        "description": "efeefv",
-        "modelUrl": "http://localhost:3000/uploads/model_2024-12-01T02-29-15-383Z_2024-12-01T11-12-28-923Z.obj",
-        "image1Url": "http://localhost:3000/uploads/Become a Creator- Add Account Details_1112_2024-12-01T11-12-57-094Z.png",
-        "image2Url": "http://localhost:3000/uploads/Sineth_Dhananjaya_Image_907_2024-12-01T11-12-57-108Z.jpg",
-        "image3Url": "http://localhost:3000/uploads/IMG_0410_5865_2024-12-01T11-12-57-127Z.HEIC",
-        "tags": [
-          "errr",
-          "werew",
-          "efwefwf"
-        ],
-        "downloadType": "Paid",
-        "license": "creative common",
-        "format": "obj",
-        "price": 10,
-        "rejected": false,
-        "createdAt": "2024-12-01T18:44:27.904Z",
-        "model": {
-          "id": 34,
-          "fileName": "herbie_the_love_bug_2024-11-30T15-28-55-871Z.glb",
-          "parameters": {
-            "Valid": false,
-            "Face Count": [
-              34610,
-              false
-            ],
-            "Mesh Count": 28,
-            "Node Count": 1,
-            "Scene Count": 1,
-            "Vertex Count": [
-              30710,
-              false
-            ],
-            "File Size (MB)": [
-              3.880809783935547,
-              true
-            ]
-          },
-          "valid": false
-        },
-        "modelOwner": {
-          "id": 1,
-          "displayName": "Jonx",
-          "biography": "Experienced software developer.",
-          "profilePicture": "https://example.com/profile.jpg",
-          "personalWebsite": "https://johndoe.com",
-          "twitterUsername": "johndoe",
-          "facebookUsername": "johndoe",
-          "linkedInUsername": "johndoe",
-          "skills": [
-            "JavaScript",
-            "TypeScript",
-            "Node.js"
-          ],
-          "contactNumber": "+1234567890",
-          "createdAt": "2024-11-27T16:47:21.617Z",
-          "updatedAt": "2024-11-27T16:47:21.617Z",
-          "bankName": "Bank ABC",
-          "accountNumber": "123456789",
-          "branch": "Downtown",
-          "accountName": "John Doe",
-          "accountBalance": 0
-        }
-      },
-      {
-        "id": 17,
-        "reviewNotes": null,
-        "resolved": false,
-        "title": "fsdfsfs",
-        "description": "efeefv",
-        "modelUrl": "http://localhost:3000/uploads/model_2024-12-01T02-29-15-383Z_2024-12-01T11-12-28-923Z.obj",
-        "image1Url": "http://localhost:3000/uploads/Become a Creator- Add Account Details_1112_2024-12-01T11-12-57-094Z.png",
-        "image2Url": "http://localhost:3000/uploads/Sineth_Dhananjaya_Image_907_2024-12-01T11-12-57-108Z.jpg",
-        "image3Url": "http://localhost:3000/uploads/IMG_0410_5865_2024-12-01T11-12-57-127Z.HEIC",
-        "tags": [
-          "errr",
-          "werew",
-          "efwefwf"
-        ],
-        "downloadType": "Paid",
-        "license": "creative common",
-        "format": "obj",
-        "price": 10,
-        "rejected": false,
-        "createdAt": "2024-12-01T11:13:20.341Z",
-        "model": {
-          "id": 69,
-          "fileName": "model_2024-12-01T02-29-15-383Z_2024-12-01T11-12-28-923Z.obj",
-          "parameters": {
-            "Valid": [
-              "",
-              false
-            ],
-            "Volume": [
-              120.07894778520348,
-              true
-            ],
-            "Centroid": [
-              -0.00008117813792472932,
-              10.572018672501972,
-              -0.3266893091936809
-            ],
-            "Face Count": [
-              48918,
-              false
-            ],
-            "Surface Area": [
-              267.17847867213436,
-              true
-            ],
-            "Vertex Count": [
-              24461,
-              true
-            ],
-            "File Size (MB)": [
-              2.4621667861938477,
-              true
-            ],
-            "Watertight Status": [
-              "",
-              true
-            ],
-            "Bounding Box Dimensions": [
-              11.685,
-              20.7407,
-              3.7701000000000002
-            ]
-          },
-          "valid": false
-        },
-        "modelOwner": {
-          "id": 1,
-          "displayName": "Jonx",
-          "biography": "Experienced software developer.",
-          "profilePicture": "https://example.com/profile.jpg",
-          "personalWebsite": "https://johndoe.com",
-          "twitterUsername": "johndoe",
-          "facebookUsername": "johndoe",
-          "linkedInUsername": "johndoe",
-          "skills": [
-            "JavaScript",
-            "TypeScript",
-            "Node.js"
-          ],
-          "contactNumber": "+1234567890",
-          "createdAt": "2024-11-27T16:47:21.617Z",
-          "updatedAt": "2024-11-27T16:47:21.617Z",
-          "bankName": "Bank ABC",
-          "accountNumber": "123456789",
-          "branch": "Downtown",
-          "accountName": "John Doe",
-          "accountBalance": 0
-        }
-      },
-      {
-        "id": 18,
-        "reviewNotes": null,
-        "resolved": false,
-        "title": "fsdfsfs",
-        "description": "ggdgdf",
-        "modelUrl": "http://localhost:3000/uploads/model_2024-12-01T02-29-15-383Z_2024-12-01T11-27-25-845Z.obj",
-        "image1Url": "http://localhost:3000/uploads/Become a Creator- Add Account Details_3235_2024-12-01T11-27-57-950Z.png",
-        "image2Url": "http://localhost:3000/uploads/Sineth_Dhananjaya_Image_5674_2024-12-01T11-27-57-965Z.jpg",
-        "image3Url": "http://localhost:3000/uploads/IMG_0410_4503_2024-12-01T11-27-57-983Z.HEIC",
-        "tags": [
-          "errr",
-          "werew",
-          "efwefwf"
-        ],
-        "downloadType": "Free",
-        "license": "CC0",
-        "format": "obj",
-        "price": 0,
-        "rejected": false,
-        "createdAt": "2024-12-01T11:27:58.056Z",
-        "model": {
-          "id": 70,
-          "fileName": "model_2024-12-01T02-29-15-383Z_2024-12-01T11-27-25-845Z.obj",
-          "parameters": {
-            "Valid": [
-              "",
-              false
-            ],
-            "Volume": [
-              120.07894778520348,
-              true
-            ],
-            "Centroid": [
-              -0.00008117813792472932,
-              10.572018672501972,
-              -0.3266893091936809
-            ],
-            "Face Count": [
-              48918,
-              false
-            ],
-            "Surface Area": [
-              267.17847867213436,
-              true
-            ],
-            "Vertex Count": [
-              24461,
-              true
-            ],
-            "File Size (MB)": [
-              2.4621667861938477,
-              true
-            ],
-            "Watertight Status": [
-              "",
-              true
-            ],
-            "Bounding Box Dimensions": [
-              11.685,
-              20.7407,
-              3.7701000000000002
-            ]
-          },
-          "valid": false
-        },
-        "modelOwner": {
-          "id": 1,
-          "displayName": "Jonx",
-          "biography": "Experienced software developer.",
-          "profilePicture": "https://example.com/profile.jpg",
-          "personalWebsite": "https://johndoe.com",
-          "twitterUsername": "johndoe",
-          "facebookUsername": "johndoe",
-          "linkedInUsername": "johndoe",
-          "skills": [
-            "JavaScript",
-            "TypeScript",
-            "Node.js"
-          ],
-          "contactNumber": "+1234567890",
-          "createdAt": "2024-11-27T16:47:21.617Z",
-          "updatedAt": "2024-11-27T16:47:21.617Z",
-          "bankName": "Bank ABC",
-          "accountNumber": "123456789",
-          "branch": "Downtown",
-          "accountName": "John Doe",
-          "accountBalance": 0
-        }
-      }
-    ]
+    // this.models = [
+    //   {
+    //     "id": 22,
+    //     "reviewNotes": null,
+    //     "resolved": false,
+    //     "title": "Sample Review Request",
+    //     "description": "Detailed description",
+    //     "modelUrl": "http://example.com/model",
+    //     "image1Url": "http://example.com/image1.jpg",
+    //     "image2Url": "http://example.com/image2.jpg",
+    //     "image3Url": "http://example.com/image3.jpg",
+    //     "tags": [
+    //       "tag1",
+    //       "tag2"
+    //     ],
+    //     "downloadType": "Free",
+    //     "license": "GPL",
+    //     "format": "OBJ",
+    //     "price": 0,
+    //     "rejected": false,
+    //     "createdAt": "2024-12-01T18:28:31.055Z",
+    //     "model": {
+    //       "id": 19,
+    //       "fileName": "model_2024-11-30T09-29-27-925Z.obj",
+    //       "parameters": {
+    //         "Valid": false,
+    //         "Volume": [
+    //           120.07894778520348,
+    //           true
+    //         ],
+    //         "Centroid": [
+    //           -0.00008117813792472932,
+    //           10.572018672501972,
+    //           -0.3266893091936809
+    //         ],
+    //         "Face Count": [
+    //           48918,
+    //           false
+    //         ],
+    //         "Surface Area": [
+    //           267.17847867213436,
+    //           true
+    //         ],
+    //         "Vertex Count": [
+    //           24461,
+    //           true
+    //         ],
+    //         "File Size (MB)": [
+    //           2.4621667861938477,
+    //           true
+    //         ],
+    //         "Watertight Status": true,
+    //         "Bounding Box Dimensions": [
+    //           11.685,
+    //           20.7407,
+    //           3.7701000000000002
+    //         ]
+    //       },
+    //       "valid": false
+    //     },
+    //     "modelOwner": {
+    //       "id": 1,
+    //       "displayName": "Jonx",
+    //       "biography": "Experienced software developer.",
+    //       "profilePicture": "https://example.com/profile.jpg",
+    //       "personalWebsite": "https://johndoe.com",
+    //       "twitterUsername": "johndoe",
+    //       "facebookUsername": "johndoe",
+    //       "linkedInUsername": "johndoe",
+    //       "skills": [
+    //         "JavaScript",
+    //         "TypeScript",
+    //         "Node.js"
+    //       ],
+    //       "contactNumber": "+1234567890",
+    //       "createdAt": "2024-11-27T16:47:21.617Z",
+    //       "updatedAt": "2024-11-27T16:47:21.617Z",
+    //       "bankName": "Bank ABC",
+    //       "accountNumber": "123456789",
+    //       "branch": "Downtown",
+    //       "accountName": "John Doe",
+    //       "accountBalance": 0
+    //     }
+    //   },
+    //   {
+    //     "id": 23,
+    //     "reviewNotes": null,
+    //     "resolved": false,
+    //     "title": "fsdfsfs",
+    //     "description": "efeefv",
+    //     "modelUrl": "http://localhost:3000/uploads/model_2024-12-01T02-29-15-383Z_2024-12-01T11-12-28-923Z.obj",
+    //     "image1Url": "http://localhost:3000/uploads/Become a Creator- Add Account Details_1112_2024-12-01T11-12-57-094Z.png",
+    //     "image2Url": "http://localhost:3000/uploads/Sineth_Dhananjaya_Image_907_2024-12-01T11-12-57-108Z.jpg",
+    //     "image3Url": "http://localhost:3000/uploads/IMG_0410_5865_2024-12-01T11-12-57-127Z.HEIC",
+    //     "tags": [
+    //       "errr",
+    //       "werew",
+    //       "efwefwf"
+    //     ],
+    //     "downloadType": "Paid",
+    //     "license": "creative common",
+    //     "format": "obj",
+    //     "price": 10,
+    //     "rejected": false,
+    //     "createdAt": "2024-12-01T18:44:27.904Z",
+    //     "model": {
+    //       "id": 34,
+    //       "fileName": "herbie_the_love_bug_2024-11-30T15-28-55-871Z.glb",
+    //       "parameters": {
+    //         "Valid": false,
+    //         "Face Count": [
+    //           34610,
+    //           false
+    //         ],
+    //         "Mesh Count": 28,
+    //         "Node Count": 1,
+    //         "Scene Count": 1,
+    //         "Vertex Count": [
+    //           30710,
+    //           false
+    //         ],
+    //         "File Size (MB)": [
+    //           3.880809783935547,
+    //           true
+    //         ]
+    //       },
+    //       "valid": false
+    //     },
+    //     "modelOwner": {
+    //       "id": 1,
+    //       "displayName": "Jonx",
+    //       "biography": "Experienced software developer.",
+    //       "profilePicture": "https://example.com/profile.jpg",
+    //       "personalWebsite": "https://johndoe.com",
+    //       "twitterUsername": "johndoe",
+    //       "facebookUsername": "johndoe",
+    //       "linkedInUsername": "johndoe",
+    //       "skills": [
+    //         "JavaScript",
+    //         "TypeScript",
+    //         "Node.js"
+    //       ],
+    //       "contactNumber": "+1234567890",
+    //       "createdAt": "2024-11-27T16:47:21.617Z",
+    //       "updatedAt": "2024-11-27T16:47:21.617Z",
+    //       "bankName": "Bank ABC",
+    //       "accountNumber": "123456789",
+    //       "branch": "Downtown",
+    //       "accountName": "John Doe",
+    //       "accountBalance": 0
+    //     }
+    //   },
+    //   {
+    //     "id": 17,
+    //     "reviewNotes": null,
+    //     "resolved": false,
+    //     "title": "fsdfsfs",
+    //     "description": "efeefv",
+    //     "modelUrl": "http://localhost:3000/uploads/model_2024-12-01T02-29-15-383Z_2024-12-01T11-12-28-923Z.obj",
+    //     "image1Url": "http://localhost:3000/uploads/Become a Creator- Add Account Details_1112_2024-12-01T11-12-57-094Z.png",
+    //     "image2Url": "http://localhost:3000/uploads/Sineth_Dhananjaya_Image_907_2024-12-01T11-12-57-108Z.jpg",
+    //     "image3Url": "http://localhost:3000/uploads/IMG_0410_5865_2024-12-01T11-12-57-127Z.HEIC",
+    //     "tags": [
+    //       "errr",
+    //       "werew",
+    //       "efwefwf"
+    //     ],
+    //     "downloadType": "Paid",
+    //     "license": "creative common",
+    //     "format": "obj",
+    //     "price": 10,
+    //     "rejected": false,
+    //     "createdAt": "2024-12-01T11:13:20.341Z",
+    //     "model": {
+    //       "id": 69,
+    //       "fileName": "model_2024-12-01T02-29-15-383Z_2024-12-01T11-12-28-923Z.obj",
+    //       "parameters": {
+    //         "Valid": [
+    //           "",
+    //           false
+    //         ],
+    //         "Volume": [
+    //           120.07894778520348,
+    //           true
+    //         ],
+    //         "Centroid": [
+    //           -0.00008117813792472932,
+    //           10.572018672501972,
+    //           -0.3266893091936809
+    //         ],
+    //         "Face Count": [
+    //           48918,
+    //           false
+    //         ],
+    //         "Surface Area": [
+    //           267.17847867213436,
+    //           true
+    //         ],
+    //         "Vertex Count": [
+    //           24461,
+    //           true
+    //         ],
+    //         "File Size (MB)": [
+    //           2.4621667861938477,
+    //           true
+    //         ],
+    //         "Watertight Status": [
+    //           "",
+    //           true
+    //         ],
+    //         "Bounding Box Dimensions": [
+    //           11.685,
+    //           20.7407,
+    //           3.7701000000000002
+    //         ]
+    //       },
+    //       "valid": false
+    //     },
+    //     "modelOwner": {
+    //       "id": 1,
+    //       "displayName": "Jonx",
+    //       "biography": "Experienced software developer.",
+    //       "profilePicture": "https://example.com/profile.jpg",
+    //       "personalWebsite": "https://johndoe.com",
+    //       "twitterUsername": "johndoe",
+    //       "facebookUsername": "johndoe",
+    //       "linkedInUsername": "johndoe",
+    //       "skills": [
+    //         "JavaScript",
+    //         "TypeScript",
+    //         "Node.js"
+    //       ],
+    //       "contactNumber": "+1234567890",
+    //       "createdAt": "2024-11-27T16:47:21.617Z",
+    //       "updatedAt": "2024-11-27T16:47:21.617Z",
+    //       "bankName": "Bank ABC",
+    //       "accountNumber": "123456789",
+    //       "branch": "Downtown",
+    //       "accountName": "John Doe",
+    //       "accountBalance": 0
+    //     }
+    //   },
+    //   {
+    //     "id": 18,
+    //     "reviewNotes": null,
+    //     "resolved": false,
+    //     "title": "fsdfsfs",
+    //     "description": "ggdgdf",
+    //     "modelUrl": "http://localhost:3000/uploads/model_2024-12-01T02-29-15-383Z_2024-12-01T11-27-25-845Z.obj",
+    //     "image1Url": "http://localhost:3000/uploads/Become a Creator- Add Account Details_3235_2024-12-01T11-27-57-950Z.png",
+    //     "image2Url": "http://localhost:3000/uploads/Sineth_Dhananjaya_Image_5674_2024-12-01T11-27-57-965Z.jpg",
+    //     "image3Url": "http://localhost:3000/uploads/IMG_0410_4503_2024-12-01T11-27-57-983Z.HEIC",
+    //     "tags": [
+    //       "errr",
+    //       "werew",
+    //       "efwefwf"
+    //     ],
+    //     "downloadType": "Free",
+    //     "license": "CC0",
+    //     "format": "obj",
+    //     "price": 0,
+    //     "rejected": false,
+    //     "createdAt": "2024-12-01T11:27:58.056Z",
+    //     "model": {
+    //       "id": 70,
+    //       "fileName": "model_2024-12-01T02-29-15-383Z_2024-12-01T11-27-25-845Z.obj",
+    //       "parameters": {
+    //         "Valid": [
+    //           "",
+    //           false
+    //         ],
+    //         "Volume": [
+    //           120.07894778520348,
+    //           true
+    //         ],
+    //         "Centroid": [
+    //           -0.00008117813792472932,
+    //           10.572018672501972,
+    //           -0.3266893091936809
+    //         ],
+    //         "Face Count": [
+    //           48918,
+    //           false
+    //         ],
+    //         "Surface Area": [
+    //           267.17847867213436,
+    //           true
+    //         ],
+    //         "Vertex Count": [
+    //           24461,
+    //           true
+    //         ],
+    //         "File Size (MB)": [
+    //           2.4621667861938477,
+    //           true
+    //         ],
+    //         "Watertight Status": [
+    //           "",
+    //           true
+    //         ],
+    //         "Bounding Box Dimensions": [
+    //           11.685,
+    //           20.7407,
+    //           3.7701000000000002
+    //         ]
+    //       },
+    //       "valid": false
+    //     },
+    //     "modelOwner": {
+    //       "id": 1,
+    //       "displayName": "Jonx",
+    //       "biography": "Experienced software developer.",
+    //       "profilePicture": "https://example.com/profile.jpg",
+    //       "personalWebsite": "https://johndoe.com",
+    //       "twitterUsername": "johndoe",
+    //       "facebookUsername": "johndoe",
+    //       "linkedInUsername": "johndoe",
+    //       "skills": [
+    //         "JavaScript",
+    //         "TypeScript",
+    //         "Node.js"
+    //       ],
+    //       "contactNumber": "+1234567890",
+    //       "createdAt": "2024-11-27T16:47:21.617Z",
+    //       "updatedAt": "2024-11-27T16:47:21.617Z",
+    //       "bankName": "Bank ABC",
+    //       "accountNumber": "123456789",
+    //       "branch": "Downtown",
+    //       "accountName": "John Doe",
+    //       "accountBalance": 0
+    //     }
+    //   }
+    // ]
 
     // console.log(this.models);
   }
