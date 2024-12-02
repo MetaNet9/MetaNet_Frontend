@@ -62,7 +62,7 @@ export interface modelAdvanced{
     format?: string;
     price?: number;
     downloads?: number;
-    likes?: number;
+    likesCount?: number;
     createdAt?: string;
     review?: number;
 }
@@ -159,4 +159,66 @@ export interface ModeratorStats{
   modelsReview: number;
   recentActions: actions[];
   modelContributions: moderatorContributions[];
+}
+
+export interface ModelOwner {
+  id: number;
+  displayName: string;
+  biography: string;
+  profilePicture: string;
+  personalWebsite: string;
+  twitterUsername: string;
+  facebookUsername: string;
+  linkedInUsername: string;
+  skills: string[];
+  contactNumber: string;
+  createdAt: string;
+  updatedAt: string;
+  bankName: string;
+  accountNumber: string;
+  branch: string;
+  accountName: string;
+  accountBalance: number;
+}
+
+export interface Category {
+  id: number;
+  name: string;
+}
+
+export interface ModelFile {
+  id: number;
+  fileName: string;
+  parameters: any;
+  valid: boolean;
+}
+
+export interface Model {
+  id: number;
+  title: string;
+  description: string;
+  modelUrl: string;
+  image1Url: string;
+  image2Url: string;
+  image3Url: string;
+  tags: string[];
+  downloadType: string;
+  license: string;
+  format: string;
+  price: number;
+  downloads: number;
+  likesCount: number;
+  createdAt: string;
+  review: number;
+  modelOwner: ModelOwner;
+  category: Category;
+  model: ModelFile;
+}
+
+export interface ModelDetails {
+  model: Model;
+  isBought: boolean;
+  isLiked: boolean;
+  reviews: any[]; // Define a more specific review structure if needed
+  amIreviewed: boolean;
 }

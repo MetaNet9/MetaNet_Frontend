@@ -1,4 +1,18 @@
 button{
   padding: 10px 20px;
-  
+
+}
+.error {
+  color: red;
+  font-size: 0.9em;
+}
+input.ng-invalid.ng-touched {
+  border-color: red;
+}
+
+input{
+  padding: 5px 10px;
+  margin: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }

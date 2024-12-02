@@ -71,12 +71,32 @@
             </div>
           </div>
             <div  class="bg-metawhite rounded-lg shadow-md p-6 flex w-full h-fit justify-center gap-10 flex-row" >
-            <button class="bg-purple4 text-metawhite rounded-md hover:bg-purple2" >Accept</button>
-              <button class="bg-pink2 text-metawhite rounded-md hover:bg-pink3" >Reject</button>
+
+              <button class="bg-pink2 text-metawhite rounded-md hover:bg-pink3" (click)="reject()">Reject</button>
+              <button class="bg-purple4 text-metawhite rounded-md hover:bg-purple2" (click)="accept(model.id)" >Accept</button>
             </div>
           </div>
         </div>
       </div>
+      <p-dialog header="Confirm to Decline" [modal]="true" [(visible)]="visible" [style]="{ width: '20rem' }">
+        <form [formGroup]="formGroup" class="flex flex-col">
+          <label for="massage">Reason for Rejecting:</label>
+          <input
+            id="massage"
+            type="text"
+            formControlName="massage"
+            placeholder="Enter your message"
+          />
+          <div *ngIf="massage.invalid && (massage.dirty || massage.touched)" class="error">
+            <small *ngIf="massage.errors?.['required']">Message is required.</small>
+          </div>
+        </form>
+        <div class="flex flex-row w-full pt-5 justify-around items-center">
+          <button (click)="visible=false"  class="w-28 bg-lightpink text-metawhite rounded-md py-5 hover:bg-lightpurple">Cancel</button>
+          <button (click)="sendReject(model.id)"  class="w-28 bg-purple4 text-metawhite rounded-md py-[10px] hover:bg-purple2">Confirm</button>
+        </div>
+
+      </p-dialog>
     </div>
 
 
