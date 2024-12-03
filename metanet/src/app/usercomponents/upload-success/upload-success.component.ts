@@ -26,7 +26,7 @@ interface Model {
 @Component({
   selector: 'app-upload-success',
   standalone: true,
-  imports: [UserProfileHeaderComponent, UserNavbarComponent, FooterComponent],
+  imports: [UserNavbarComponent, FooterComponent],
   templateUrl: './upload-success.component.html',
   styleUrls: ['./upload-success.component.css']
 })

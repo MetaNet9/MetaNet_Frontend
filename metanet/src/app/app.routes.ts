@@ -75,8 +75,7 @@ export const routes: Routes = [
   { path: 'send-to-moderator', component: SendToModeratorComponent },
 // { path: 'sent-to-moderator', component: SentToModeratorComponent },
   { path: 'sent-to-moderator', component: SendToModeratorComponent },
-  { path: 'creator-application', component: CreatorApplicationComponent },
-
+  // { path: 'creator-application', component: CreatorApplicationComponent },
   { path: 'email-varification', component: EmailVerificationComponent },
 
 
