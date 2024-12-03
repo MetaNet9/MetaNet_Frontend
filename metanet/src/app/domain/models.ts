@@ -231,9 +231,17 @@ export interface ModelDetails {
 
 export interface CartItem {
   modelId: number;
+  titile: string;
   price: number;
   userName: string;
   modelUrl: string;
   description: string;
+}
+
+export interface AISearchResponse {
+  frequency: number;
+  modelID: number;
+  score: number;
+  model?: modelAdvanced;
 }
 

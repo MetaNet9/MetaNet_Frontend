@@ -1,12 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
 import { UserNavbarComponent } from '../user-navbar/user-navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { PaginatorModule } from 'primeng/paginator';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {CommonModule, isPlatformBrowser} from '@angular/common';
+import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
+import {routes} from "../../app.routes";
+import {DialogModule} from "primeng/dialog";
+import {FloatLabelModule} from "primeng/floatlabel";
+import {InputTextareaModule} from "primeng/inputtextarea";
+import {DividerModule} from "primeng/divider";
+import {TagModule} from "primeng/tag";
+import {AISearchResponse} from "../../domain/models";
+import {BASE_url} from "../../app.config";
+import {ProgressSpinnerModule} from "primeng/progressspinner";
 
 interface ModelPageEvent {
   first?: number;
@@ -46,12 +55,21 @@ interface Model {
     FormsModule,
     RouterModule,
     HttpClientModule,
+    DialogModule,
+    FloatLabelModule,
+    InputTextareaModule,
+    ReactiveFormsModule,
+    DividerModule,
+    TagModule,
+    ProgressSpinnerModule,
   ],
   templateUrl: './marketplace-products.component.html',
   styleUrls: ['./marketplace-products.component.css'],
 })
 
 export class MarketplaceProductsComponent implements OnInit {
+  request!:FormGroup;
+  isBrowser = false;
   first: number = 0;
   rows: number = 12;
   searchQuery: string = '';
@@ -63,6 +81,8 @@ export class MarketplaceProductsComponent implements OnInit {
   selectedRating: string = 'Any';
   selectedSort: string = 'Relevance';
 
+  AiSearchResults!: AISearchResponse[] ;
+
   categories: string[] = ['Any', 'Architectural', 'Character', 'Vehicles', 'Furniture', 'Nature', 'Environment', 'Props', 'Weapons', 'Animals'];
   formats: string[] = ['Any', 'GLB', 'OBJ', 'GLTF'];
   licenses: string[] = [
@@ -71,7 +91,7 @@ export class MarketplaceProductsComponent implements OnInit {
   ratings: string[] = ['Any', '1 Star', '2 Stars', '3 Stars', '4 Stars', '5 Stars'];
   sortOptions: string[] = ['Relevance', 'Price: Low to High', 'Price: High to Low'];
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router,@Inject(PLATFORM_ID) private platformId: object) {}
 
 
   filteredModels: Model[] = [];
@@ -79,18 +99,24 @@ export class MarketplaceProductsComponent implements OnInit {
   // totalModelRecords: number = this.models.length;
   totalModelRecords: number = 0;
   models: Model[] = [];
+  openDialog: boolean = false;
 
   ngOnInit() {
+    this.isBrowser = isPlatformBrowser(this.platformId);
     this.applyFilters();
+    this.request = new FormGroup({
+      query: new FormControl("",[Validators.required]),
+    });
   }
 
   // Model Pagination
+
   onModelPageChange(event: ModelPageEvent) {
     this.first = event.first || 0;
     this.rows = event.rows || 12;
     this.applyFilters(); // Re-fetch data with updated pagination
   }
-  
+
 
   updatePaginatedModels() {
     this.paginatedModels = this.filteredModels.slice(this.first, this.first + this.rows);
@@ -108,12 +134,12 @@ export class MarketplaceProductsComponent implements OnInit {
       pageSize: this.rows,
       keyword: this.searchQuery || '', // Pass the search query as a parameter
     };
-  
+
     // Remove empty parameters
     Object.keys(params).forEach((key) => {
       if (params[key] === '') delete params[key];
     });
-  
+
     this.http
       .get<{ data: any[]; total: number }>(
         'http://localhost:3000/vebxrmodel/modelsWithLikes',
@@ -153,14 +179,14 @@ export class MarketplaceProductsComponent implements OnInit {
         }
       );
   }
-  
-  
-  
+
+
+
   toggleLike(model: Model) {
     const likeUrl = model.isLiked
       ? `http://localhost:3000/likes/dislike/${model.id}`
       : `http://localhost:3000/likes/like/${model.id}`;
-  
+
     this.http.post(likeUrl, {}, { withCredentials: true }).subscribe(
       () => {
         console.log('Like toggled successfully'); // Debug log
@@ -172,8 +198,8 @@ export class MarketplaceProductsComponent implements OnInit {
         console.error('Error toggling like:', error);
       }
     );
-  }  
-  
+  }
+
 
   sortFilteredModels() {
     if (this.selectedSort === 'Price: Low to High') {
@@ -186,6 +212,56 @@ export class MarketplaceProductsComponent implements OnInit {
   }
 
   navigateToDescription(modelId: number): void {
-    this.router.navigate(['/marketplace-product-description', modelId]);
+    this.router.navigate(['/marketplace-product-description'],{ queryParams: { id: modelId } });
   }
+
+  isLoading=false;
+  SearchAI() {
+    if (this.request.invalid) {
+      console.log('Invalid AI search request');
+      return;
+    }
+    this.isLoading=true;
+    this.http.post<AISearchResponse[]>(BASE_url+'/vebxrmodel/searchwithAi', this.request.value).subscribe({
+      next: (response) => {
+        this.AiSearchResults = response;
+        this.isLoading=false;
+        console.log(this.AiSearchResults);
+      },
+      error: (error) => {
+        console.error('Error fetching AI search results:', error);
+      },
+    });
+
+  }
+
+  getSeerveritybyScore(score: number) {
+
+    if (score < 0.3) {
+      return 'danger';
+    } else if (score < 0.4) {
+      return 'warning';
+    } else if (score < 0.5) {
+      return 'secondary';
+    } else if (score < 0.7) {
+      return 'info';
+    }else {
+      return 'success';
+    }
+  }
+  getSerevitybyFrequency(frequency: number) {
+
+    if (frequency < 1) {
+      return 'warning';
+    } else if (frequency < 2) {
+      return 'info';
+    }else if (frequency < 3) {
+      return 'success';
+    }else {
+      return 'success';
+    }
+  }
+
+
+
 }
