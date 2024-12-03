@@ -71,7 +71,7 @@ export const routes: Routes = [
   { path: 'new-password', component: NewPasswordComponent },
   { path: 'become-creator', component: BecomeCreatorComponent },
   { path: 'register-creator', component: SellerRegisterComponent },
-  { path: 'upload-success', component: UploadSuccessComponent },
+  { path: 'upload-success/:id', component: UploadSuccessComponent },
   { path: 'send-to-moderator', component: SendToModeratorComponent },
 // { path: 'sent-to-moderator', component: SentToModeratorComponent },
   { path: 'sent-to-moderator', component: SendToModeratorComponent },
