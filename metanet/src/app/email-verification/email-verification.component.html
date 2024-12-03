@@ -1,0 +1,21 @@
+<div class="bg-bgpurple p-5 text-center h-screen justify-center align-middle mt-auto">
+  <div *ngIf="isEmailVerified; else notVerified" class="alert alert-success text-3xl">
+    ✅ Your email is verified!
+
+
+    <br>
+
+  </div>
+
+  <ng-template #notVerified>
+    <div class="alert alert-warning">
+      ⚠️ Your email is not verified. Please verify your email to access full features.
+    </div>
+  </ng-template>
+
+
+
+  <button  (click)="navigateToHome()"  class=" h-8 w-60 mt-60 bg-darkpink hover:bg-darkpurple hover:text-metawhite text-xl text-metablack  rounded-full transition duration-200">Go to Home Page</button>
+
+</div>
+

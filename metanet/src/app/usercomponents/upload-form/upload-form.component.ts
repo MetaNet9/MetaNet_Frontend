@@ -10,6 +10,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 import { ThreeDViewerComponent } from 'src/app/three-dviewer/three-dviewer.component';
 import {ToastService} from "angular-toastify";
+import { Router } from '@angular/router';
 import {SellerNavbarComponent} from "../seller-navbar/seller-navbar.component";
 
 @Component({
@@ -56,7 +57,7 @@ export class UploadFormComponent implements AfterViewInit {
   // dynamicModelUrl: string = 'http://localhost:3000/uploads/herbie_the_love_bug_2024-12-01T05-13-26-023Z.glb';
   dynamicModelUrl: string = '';
 
-  constructor(private _toastService: ToastService) {}
+  constructor(private _toastService: ToastService, private router: Router) {}
 
   ngAfterViewInit() {
 
@@ -253,6 +254,8 @@ export class UploadFormComponent implements AfterViewInit {
       if (!response.ok) throw new Error('Failed to submit the form');
 
       this._toastService.success('Model uploaded successfully!');
+      this.router.navigate(['/upload-success/', this.modelId]);
+
     } catch (error) {
       console.error('Error submitting form:', error);
       this._toastService.error('Failed to submit the form.');

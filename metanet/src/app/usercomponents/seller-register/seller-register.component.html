@@ -14,17 +14,20 @@
             <h2 class="text-3xl text-center text-darkgray  mb-4">Create Your Creator Profile</h2>
 
             <h3 class="text-xl  text-start font-bold text-pink3  mt-12 mb-4">Personal Details</h3>
+
             <div class="">
               <div class="mb-4 justify-center">
-                <!-- <div class="flex mb-4  justify-center">
-                  <img src="assets/images/img03.png" alt="profile-picture"
-                    class="rounded-full border border-pink1 focus:border-pink1 w-40 h-40" />
-                </div> -->
                 <div class=" flex justify-center">
                   <h2 class="mt-2   text-metawhite font-bold py-2 "> Upload  Profile Picture</h2>
                 </div>
                 <div class="flex justify-center">
-                  <input class=" rounded w-2/3 bg-pink3 hover:bg-pink1" formControlName="profilePicture" type="file">
+                  <input class=" rounded w-2/3 bg-pink3 hover:bg-pink1" 
+                    id="imageFile"
+                    type="file"
+                    multiple
+                    (change)="onFileSelect($event, 'images')"
+                    required
+                  >
                 </div>
                 <h6 class="block text-center text-metawhite mb-2" for="profile-picture">JPG or PNG and 10MB Max</h6>
               </div>
