@@ -4,6 +4,7 @@ import { UserProfileHeaderComponent } from "../user-profile-header/user-profile-
 import { FooterComponent } from "../footer/footer.component";
 import { TabViewModule } from 'primeng/tabview';
 import { FormControl, FormControlStatus, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-settings',
@@ -33,6 +34,7 @@ export class SettingsComponent {
     linkedInAcc: new FormControl(''),
   })
 
+  constructor(private http: HttpClient) {}
 
   newEmailAddress = new FormGroup({
     currentEmail: new FormControl(''),
@@ -45,8 +47,35 @@ export class SettingsComponent {
     currentPassword: new FormControl(''),
     newPassword: new FormControl(''),
     confirmPassword: new FormControl(''),
-    apiToken: new FormControl(''),
     
-  })
+    
+  });
+
+  resetPassword() {
+    // Ensure the new password and confirm password match
+    if (this.changePassword.value.newPassword !== this.changePassword.value.confirmPassword) {
+      alert('New Password and Confirm Password do not match!');
+      return;
+    }
+  
+    // Create the payload
+    const payload = {
+      oldPassword: this.changePassword.value.currentPassword,
+      newPassword: this.changePassword.value.newPassword,
+    };
+  
+    // Make the HTTP POST request
+    this.http.post('http://localhost:3000/auth/change-password', payload, {withCredentials: true}).subscribe({
+      next: (response) => {
+        console.log('Password reset successful:', response);
+        alert('Password has been reset successfully!');
+        this.changePassword.reset(); // Clear the form after success
+      },
+      error: (error) => {
+        console.error('Password reset failed:', error);
+        alert(`Error resetting password: ${error.error?.message || 'Unexpected error occurred'}`);
+      },
+    });
+  }  
 
 }
