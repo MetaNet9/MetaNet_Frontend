@@ -13,47 +13,58 @@
   <!-- details - panel -->
   <div class="bg-purple1  mt-3  p-6 rounded-lg shadow-lg">
     <p-tabView selectOnFocus="true">
-      <p-tabPanel header="Purchases">
+      <p-tabPanel header="My Models">
         <div class="flex justify-between mb-6 text-metawhite">
-          <div>
-            <span class="text-metawhite">Status</span>
-            <select class="bg-purple1 ml-6 border-background rounded">
-              <option>All</option>
-              <option>Favorites</option>
-              <option>Recent</option>
-            </select>
-          </div>
-
-          <div>
-            Sort By
-            <p-button icon="pi pi-star"></p-button>
-            <p-button icon="pi pi-eye"></p-button>
-            <p-button icon="pi pi-clock"></p-button>
-          </div>
         </div>
+
+        <div class="flex justify-center mb-6 text-metawhite">
+          <!-- Center-aligned Upload Models button -->
+          <button 
+            (click)="onUploadModelClick()" 
+            class="bg-darkpink text-metawhite rounded-lg px-6 py-4 flex items-center w-1/4 justify-center hover:bg-pink1 transition-transform transform hover:scale-105 shadow-lg upload-button"
+          >
+            <i class="pi pi-upload"></i>
+            <span class="ml-3 text-lg font-semibold">Upload Model</span>
+          </button>
+        </div>
+        
 
         <div class="flex justify-center">
           <div class="grid gap-4 mb-10 text-metawhite sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            
             <!-- Use ngFor to iterate over models array -->
-            <div *ngFor="let model of paginatedModels"
-              class="w-full h-80 mx-auto rounded-lg shadow-lg overflow-hidden hover:scale-105 transition-transform">
-              <div class="relative">
-                <img src="{{model.image}}" alt="{{model.name}}" class="w-full h-60 object-cover" />
-                <span class="absolute top-2 left-2 bg-pink1 text-white text-xs px-2 py-1 rounded-lg">-20%</span>
-                <button
-                  class="absolute top-2 right-2 bg-darkpurple hover:bg-pink1 text-metawhite rounded-full w-8 h-8 flex justify-center items-center">
-                  <i class="pi pi-heart" style="font-size: 1rem"></i>
-                </button>
+            <div
+              *ngFor="let model of paginatedModels"
+              class="w-64 h-80 mx-auto rounded-lg shadow-lg overflow-hidden hover:scale-105 transition-transform"
+            >
+            
+              <div class="relative w-full h-3/4">
+                <img
+                  src="{{ model.image1Url }}"
+                  alt="{{ model.title }}"
+                  class="w-full h-full object-cover"
+                />
+                <span
+                  class="absolute top-2 left-2 bg-pink1 text-white text-xs px-2 py-1 rounded-lg"
+                  >{{ model.review }}⭐</span
+                >
               </div>
-              <div class="px-4 py-2 bg-purple2 flex justify-between items-end h-20">
+              <div class="px-4 py-2 bg-purple2 flex justify-between items-end h-1/4">
                 <div>
-                  <h2 class="text-lg font-semibold text-metawhite">{{model.name}}</h2>
-                  <p class="text-lg font-bold text-lightgray">{{model.price}}</p>
+                  <h2 class="text-lg font-semibold text-metawhite truncate" style="width: 100%;">
+                    {{ model.title }}
+                  </h2>
+                  <p 
+                    class="text-lg font-bold" 
+                    [ngClass]="{ 'text-green-500': model.price === 0, 'text-lightgray': model.price !== 0 }">
+                    {{ model.price === 0 ? 'Free' : model.price + ' $' }}
+                  </p>
+
                 </div>
-                <button
-                  class="mt-4 bg-darkpurple text-metawhite hover:bg-darkpink rounded-full w-8 h-8 flex justify-center items-center">
-                  <i class="pi pi-cart-plus" style="font-size: 1rem"></i>
-                </button>
+                <div class="flex items-center">
+                  <span class="mr-2 text-lightgray">{{ model.likesCount }}</span>
+                  <i class="pi pi-heart" style="color: red;"></i>
+                </div>
               </div>
             </div>
           </div>
@@ -64,6 +75,7 @@
             [totalRecords]="totalModelRecords" [rowsPerPageOptions]="[4,8,12]"></p-paginator>
         </div>
       </p-tabPanel>
+      
       <p-tabPanel header="Sales">
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-6">
 
@@ -71,11 +83,7 @@
             class="bg-purple1 text-metawhite p-4 grid grid-cols-2 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite border border-darkpink">
             <div>
               <h2 class="text-lg font-semibold ">Total Models</h2>
-              <p class="text-2xl lg:text-2xl">25</p>
-              <p class="text-sm text-pink1">+12% ↑</p>
-            </div>
-            <div class="card">
-              <p-chart type="line" [data]="totalmodeldata" [options]="options" height="100" />
+              <p class="text-2xl lg:text-2xl">{{totalModels}}</p>
             </div>
           </div>
 
@@ -83,35 +91,23 @@
             class="bg-purple1 text-metawhite p-4 grid grid-cols-2 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite border border-darkpink">
             <div>
               <h2 class="text-lg font-semibold ">Total Earnings</h2>
-              <p class="text-2xl lg:text-2xl">$250</p>
-              <p class="text-sm text-pink1">+12% ↑</p>
-            </div>
-            <div class="card">
-              <p-chart type="line" [data]="totalmodeldata" [options]="options" height="100" />
+              <p class="text-2xl lg:text-2xl">{{totalEarnings}}</p>
             </div>
           </div>
 
           <div
             class="bg-purple1 text-metawhite p-4 grid grid-cols-2 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite border border-darkpink">
             <div>
-              <h2 class="text-lg font-semibold ">Total Models</h2>
-              <p class="text-2xl lg:text-2xl">25</p>
-              <p class="text-sm text-pink1">+12% ↑</p>
-            </div>
-            <div class="card">
-              <p-chart type="line" [data]="totalmodeldata" [options]="options" height="100" />
+              <h2 class="text-lg font-semibold ">Rejected Models</h2>
+              <p class="text-2xl lg:text-2xl">{{totalRejected}}</p>
             </div>
           </div>
 
           <div
             class="bg-purple1 text-metawhite p-4 grid grid-cols-2 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite border border-darkpink">
             <div>
-              <h2 class="text-lg font-semibold ">Total Models</h2>
-              <p class="text-2xl lg:text-2xl">25</p>
-              <p class="text-sm text-pink1">+12% ↑</p>
-            </div>
-            <div class="card">
-              <p-chart type="line" [data]="totalmodeldata" [options]="options" height="100" />
+              <h2 class="text-lg font-semibold ">Total Likes</h2>
+              <p class="text-2xl lg:text-2xl">{{totalLikes}}</p>
             </div>
           </div>
 
@@ -133,8 +129,82 @@
         </div>
 
       </p-tabPanel>
+      
       <p-tabPanel header="Withdrawal">
+        <!-- User Balance Section -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          <div
+            class="bg-purple1 text-metawhite p-4 rounded-lg shadow-md hover:bg-darkpurple border border-darkpink">
+            <h2 class="text-lg font-semibold">User Balance</h2>
+            <p class="text-2xl lg:text-2xl">${{ balance }}</p>
+          </div>
+          <div
+            class="bg-purple1 text-metawhite p-4 rounded-lg shadow-md hover:bg-darkpurple border border-darkpink">
+            <h2 class="text-lg font-semibold">Pending Withdrawals</h2>
+            <p class="text-2xl lg:text-2xl">${{ pendingWithdrawals }}</p>
+          </div>
+          <div
+            class="bg-purple1 text-metawhite p-4 rounded-lg shadow-md hover:bg-darkpurple border border-darkpink">
+            <h2 class="text-lg font-semibold">Total Withdrawals</h2>
+            <p class="text-2xl lg:text-2xl">${{ totalWithdrawals }}</p>
+          </div>
+        </div>
+      
+        <!-- Conditional Amount Input and Button Section -->
+        <div *ngIf="balance > 19" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 items-center">
+          <!-- Enter Amount Box -->
+          <div>
+            <input
+              type="number"
+              class="bg-purple1 text-metawhite px-6 py-3 rounded-lg shadow-md w-full"
+              placeholder="Enter Amount"
+              [(ngModel)]="withdrawalAmount"
+              min="21"
+              (input)="validateAmount()"
+            />
+            <small *ngIf="withdrawalAmount < 20 && withdrawalAmount > 0" class="text-red-500">
+              Minimum withdrawal amount is 20.
+            </small>
+          </div>
+      
+          <!-- Withdrawal Button -->
+          <div class="text-center">
+            <button
+              class="bg-darkpink text-metawhite px-6 py-3 rounded-lg shadow-md hover:bg-pink1 withdrawbutton"
+              [disabled]="withdrawalAmount < 20"
+              (click)="makeWithdrawal()">
+              Make a Withdrawal
+            </button>
+          </div>
+        </div>
+      
+        <!-- Withdrawals List -->
+        <div>
+          <h2 class="text-lg font-semibold text-metawhite mb-4">Past Withdrawals</h2>
+          <div class="bg-purple1 text-metawhite p-4 rounded-lg shadow-md">
+            <table class="w-full table-auto border-collapse">
+              <thead>
+                <tr class="text-left bg-darkpurple">
+                  <th class="px-4 py-2">Date</th>
+                  <th class="px-4 py-2">Amount</th>
+                  <th class="px-4 py-2">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let withdrawal of pastWithdrawals" class="hover:bg-darkpink">
+                  <td class="px-4 py-2">{{ withdrawal.createdAt | date:'short' }}</td>
+                  <td class="px-4 py-2">{{ withdrawal.amount }}</td>
+                  <td class="px-4 py-2">{{ withdrawal.status }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </p-tabPanel>
+      
+      
+      
+      
     </p-tabView>
   </div>
 

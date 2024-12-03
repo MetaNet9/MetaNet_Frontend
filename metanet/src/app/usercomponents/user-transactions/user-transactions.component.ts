@@ -9,6 +9,9 @@ import { CommonModule } from '@angular/common';
 import { ChartModule } from 'primeng/chart';
 import { WeeklyRevenueChartComponent } from "../../commonComponents/weekly-revenue-chart/weekly-revenue-chart.component";
 import { SalesByCategoryPieChartComponent } from "../../commonComponents/sales-by-category-pie-chart/sales-by-category-pie-chart.component";
+import { HttpClient } from '@angular/common/http';
+import { BASE_url } from 'src/app/app.config';
+import { Router } from '@angular/router';
 
 interface PageEvent {
   first?: number;
@@ -18,11 +21,39 @@ interface PageEvent {
 }
 
 interface Model {
-  image: string;
+  id: number;
+  title: string;
+  image1Url: string;
   name: string;
-  price: string;
+  price: number;
+  review: number;
+  likesCount: number;
 }
 
+interface DailyEarnings {
+  date: string;
+  earnings: number;
+}
+
+interface ModelEarnings {
+  modelId: number;
+  modelName: string;
+  earnings: number;
+}
+
+interface WithdrawalDetails {
+  balance: number;
+  pendingWithdrawals: number;
+  totalWithdrawals: number;
+  pastWithdrawals: {
+    id: number;
+    amount: number;
+    status: string;
+    stripeTransactionId: string | null;
+    createdAt: string;
+    updatedAt: string;
+  }[];
+}
 @Component({
   selector: 'app-user-transactions',
   standalone: true,
@@ -36,187 +67,50 @@ interface Model {
     PaginatorModule,
     ChartModule,
     WeeklyRevenueChartComponent,
-    SalesByCategoryPieChartComponent
-],
+    SalesByCategoryPieChartComponent,
+  ],
   templateUrl: './user-transactions.component.html',
   styleUrls: ['./user-transactions.component.css'],
 })
 export class UserTransactionsComponent {
   first: number = 0;
-  rows: number = 4;
-  models: Model[] = [
-    {
-      image:
-        'https://media.sketchfab.com/models/dda567d1ffbd40eabbce7625a48a39ef/thumbnails/84f3614735f048b5838b45f5eb5aa430/01ec6878522a49bc956f9ba4b9fe08f8.jpeg',
-      name: 'Elephant',
-      price: '$2.99',
-    },
-    {
-      image:
-        'https://media.sketchfab.com/models/73bf025d4a51401caa36c3e5950b4e65/thumbnails/81416d40064344ffb054042ae09194a9/822364e76c7642579e5831a8744016b5.jpeg',
-      name: 'Tiger',
-      price: '$3.99',
-    },
-    {
-      image:
-        'https://media.sketchfab.com/models/5e89e6689c134d54860e38eb35761ffe/thumbnails/d71ad53ff8dd48f084b667f77b90847c/56b5db8e8e7b46f1b41b9dc6355d06e9.jpeg',
-      name: 'Home',
-      price: '$4.99',
-    },
-    {
-      image:
-        'https://media.sketchfab.com/models/dda567d1ffbd40eabbce7625a48a39ef/thumbnails/84f3614735f048b5838b45f5eb5aa430/01ec6878522a49bc956f9ba4b9fe08f8.jpeg',
-      name: 'Elephant',
-      price: '$2.99',
-    },
-    {
-      image:
-        'https://media.sketchfab.com/models/73bf025d4a51401caa36c3e5950b4e65/thumbnails/81416d40064344ffb054042ae09194a9/822364e76c7642579e5831a8744016b5.jpeg',
-      name: 'Tiger',
-      price: '$3.99',
-    },
-    {
-      image:
-        'https://media.sketchfab.com/models/5e89e6689c134d54860e38eb35761ffe/thumbnails/d71ad53ff8dd48f084b667f77b90847c/56b5db8e8e7b46f1b41b9dc6355d06e9.jpeg',
-      name: 'Home',
-      price: '$4.99',
-    },
-    // Add more models here
-  ];
+  rows: number = 8;
+
+  balance: number = 0;
+  pendingWithdrawals: number = 0;
+  totalWithdrawals: number = 0;
+  pastWithdrawals: any[] = [];
+  withdrawalAmount: number = 20;
+
+  totalModels: number = 0;
+  totalLikes: number = 0;
+  totalEarnings: number = 0;
+  totalRejected: number = 0;
+  dailyEarnings: DailyEarnings[] = [];
+  modelEarnings: ModelEarnings[] = [];
+
+  models: Model[] = []
+  //   {
+  //     image:
+  //       'https://media.sketchfab.com/models/dda567d1ffbd40eabbce7625a48a39ef/thumbnails/84f3614735f048b5838b45f5eb5aa430/01ec6878522a49bc956f9ba4b9fe08f8.jpeg',
+  //     name: 'Elephant',
+  //     price: '$2.99',
+  //   },
+  // ];
   paginatedModels: Model[] = [];
   totalModelRecords: number = this.models.length;
 
-  totalmodeldata: any;
-  options: any;
+  totalmodeldata: any = { labels: [], datasets: [] };
+  options: any = {};
+
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
     this.updatePaginatedModels();
-
-    // Chart data and options
-    if (typeof window !== 'undefined' && typeof document !== 'undefined') {
-      const documentStyle = getComputedStyle(document.documentElement);
-      // const textColor = documentStyle.getPropertyValue('--text-color');
-      // const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
-      // const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
-
-      this.totalmodeldata = {
-        labels: [
-          'January',
-          'February',
-          'March',
-          'April',
-          'May',
-          'June',
-          'July',
-        ],
-        datasets: [
-          {
-            // label: 'First Dataset',
-            data: [65, 59, 80, 81, 56, 55, 100],
-            fill: false,
-            borderColor: documentStyle.getPropertyValue('--pink-500'),
-            tension: 0.5,
-            pointRadius: 0,
-            pointHoverRadius: 0,
-          },
-        ],
-      };
-
-      const totalDuration = 1000;
-      const delayBetweenPoints =
-        totalDuration / this.totalmodeldata.datasets[0].data.length;
-      const previousY = (ctx: {
-        index: number;
-        chart: {
-          scales: { y: { getPixelForValue: (arg0: number) => any } };
-          getDatasetMeta: (arg0: any) => {
-            (): any;
-            new (): any;
-            data: {
-              getProps: (
-                arg0: string[],
-                arg1: boolean
-              ) => { (): any; new (): any; y: any };
-            }[];
-          };
-        };
-        datasetIndex: any;
-      }) =>
-        ctx.index === 0
-          ? ctx.chart.scales.y.getPixelForValue(100)
-          : ctx.chart
-              .getDatasetMeta(ctx.datasetIndex)
-              .data[ctx.index - 1].getProps(['y'], true).y;
-      const animation = {
-        x: {
-          type: 'number',
-          easing: 'linear',
-          duration: delayBetweenPoints,
-          from: NaN, // the point is initially skipped
-          delay(ctx: { type: string; xStarted: boolean; index: number }) {
-            if (ctx.type !== 'data' || ctx.xStarted) {
-              return 0;
-            }
-            ctx.xStarted = true;
-            return ctx.index * delayBetweenPoints;
-          },
-        },
-        y: {
-          type: 'number',
-          easing: 'linear',
-          duration: delayBetweenPoints,
-          from: previousY,
-          delay(ctx: { type: string; yStarted: boolean; index: number }) {
-            if (ctx.type !== 'data' || ctx.yStarted) {
-              return 0;
-            }
-            ctx.yStarted = true;
-            return ctx.index * delayBetweenPoints;
-          },
-        },
-      };
-
-      this.options = {
-        maintainAspectRatio: true,
-        aspectRatio: 0.6,
-        plugins: {
-          legend: {
-            labels: {
-              // color: textColor
-              display: false,
-            },
-            display: false,
-          },
-        },
-        scales: {
-          x: {
-            ticks: {
-              // color: textColorSecondary
-              display: false,
-            },
-            grid: {
-              // color: surfaceBorder,
-              // drawBorder: false,
-              display: false,
-            },
-            display: false,
-          },
-          y: {
-            ticks: {
-              // color: textColorSecondary
-              display: false,
-            },
-            grid: {
-              // color: surfaceBorder,
-              // drawBorder: false
-              display: false,
-            },
-            display: false,
-          },
-        },
-        animation,
-      };
-    }
+    this.fetchWithdrawalDetails();
+    this.fetchAccountDetails();
+    this.initializeChartOptions();
+    this.getAllmyModels();
   }
 
   onModelPageChange(event: PageEvent) {
@@ -231,4 +125,136 @@ export class UserTransactionsComponent {
       this.first + this.rows
     );
   }
+
+  fetchWithdrawalDetails() {
+    this.http
+      .get<WithdrawalDetails>(
+        'http://localhost:3000/transactions/withdrawal-details',
+        { withCredentials: true }
+      )
+      .subscribe(
+        (response) => {
+          this.balance = response.balance;
+          this.pendingWithdrawals = response.pendingWithdrawals;
+          this.totalWithdrawals = response.totalWithdrawals;
+          this.pastWithdrawals = response.pastWithdrawals;
+        },
+        (error) => {
+          console.error('Error fetching withdrawal details:', error);
+        }
+      );
+  }
+
+  validateAmount() {
+    if (this.withdrawalAmount < 21) {
+      console.error('Withdrawal amount must be at least 21.');
+    }
+  }
+
+  makeWithdrawal() {
+    if (this.withdrawalAmount >= 20 && this.withdrawalAmount <= this.balance) {
+      this.http
+        .post(
+          'http://localhost:3000/transactions/withdraw',
+          { amount: this.withdrawalAmount },
+          { withCredentials: true }
+        )
+        .subscribe(
+          (response: any) => {
+            console.log('Withdrawal successful:', response);
+            this.fetchWithdrawalDetails();
+          },
+          (error) => {
+            console.error('Error making withdrawal:', error);
+          }
+        );
+    } else {
+      console.error('Invalid withdrawal amount.');
+    }
+  }
+
+  fetchAccountDetails() {
+    this.http
+      .get<{
+        totalModels: number;
+        totalLikes: number;
+        totalEarnings: number;
+        dailyEarnings: DailyEarnings[];
+        totalRejected: number;
+        modelEarnings: ModelEarnings[];
+      }>('http://localhost:3000/sellers/modelsDashboard', { withCredentials: true })
+      .subscribe(
+        (response) => {
+          this.totalModels = response.totalModels;
+          this.totalLikes = response.totalLikes;
+          this.totalEarnings = response.totalEarnings;
+          this.totalRejected = response.totalRejected;
+          this.dailyEarnings = response.dailyEarnings;
+          this.modelEarnings = response.modelEarnings;
+
+          this.updateChartData();
+        },
+        (error) => {
+          console.error('Error fetching account details:', error);
+        }
+      );
+  }
+
+  getAllmyModels() {
+    this.http
+      .get<Model[]>(BASE_url+'/sellers/mymodels', {
+        withCredentials: true,
+      })
+      .subscribe(
+        (response) => {
+          this.models = response;
+          this.totalModelRecords = this.models.length;
+          this.updatePaginatedModels();
+        },
+        (error) => {
+          console.error('Error fetching models:', error);
+        }
+      );
+  }
+
+  initializeChartOptions() {
+    const documentStyle = getComputedStyle(document.documentElement);
+
+    this.options = {
+      maintainAspectRatio: true,
+      aspectRatio: 0.6,
+      plugins: {
+        legend: { display: false },
+      },
+      scales: {
+        x: { ticks: { display: false }, grid: { display: false } },
+        y: { ticks: { display: false }, grid: { display: false } },
+      },
+    };
+  }
+
+  updateChartData() {
+    const labels = this.dailyEarnings.map((entry) =>
+      new Date(entry.date).toLocaleDateString()
+    );
+    const data = this.dailyEarnings.map((entry) => entry.earnings);
+
+    this.totalmodeldata = {
+      labels,
+      datasets: [
+        {
+          data,
+          borderColor: '#FF6384',
+          tension: 0.5,
+          fill: false,
+        },
+      ],
+    };
+  }
+
+  onUploadModelClick() {
+    this.router.navigate(['/upload-form']);
+  }
+  
+  
 }
