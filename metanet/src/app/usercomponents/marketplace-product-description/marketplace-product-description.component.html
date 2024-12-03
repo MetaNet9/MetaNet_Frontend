@@ -2,11 +2,11 @@
 <app-user-navbar></app-user-navbar>
 
 <!-- main -->
-<div class="bg-metablack py-6 mt-16">
+<div class="bg-metablack py-6 mt-16 min-h-[300px]" >
 
 
   <!-- product -->
-  <div class="bg-purple1 mx-6 p-6 rounded-lg shadow-lg">
+  <div class="bg-purple1 mx-6 p-6 rounded-lg shadow-lg" *ngIf="data">
     <a href="#" class="text-pink2 text-sm mb-4 inline-block"></a>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 ">
       <div class="flex items-center justify-center">
@@ -76,10 +76,10 @@
     <div class="flex items-center mt-4" >
       </div>
 
-  </div>
+  </div >
 
   <!-- tabs -->
-  <div class="bg-purple1 mx-6 mt-3  p-6 rounded-lg shadow-lg">
+  <div class="bg-purple1 mx-6 mt-3  p-6 rounded-lg shadow-lg" *ngIf="data">
     <p-tabView selectOnFocus="true">
 
       <p-tabPanel header="Advanced Information">

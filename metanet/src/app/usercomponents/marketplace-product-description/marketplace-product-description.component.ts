@@ -94,6 +94,7 @@ export class MarketplaceProductDescriptionComponent {
   }
 
   getData(){
+    // this.toastService.error("Something went wrong")
     this.http.get<ModelDetails>(BASE_url+"/vebxrmodel/"+this.id,{withCredentials:true}).subscribe({
       next: (data) => {
         console.log(data);
@@ -103,7 +104,7 @@ export class MarketplaceProductDescriptionComponent {
       },
       error: (error) => {
         console.error(error);
-        this.toastService.error(error.error.message||"Something went wrong")
+
       },
     })
   }

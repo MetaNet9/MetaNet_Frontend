@@ -227,3 +227,13 @@ export interface ModelDetails {
   reviews: any[]; // Define a more specific review structure if needed
   amIreviewed: boolean;
 }
+
+
+export interface CartItem {
+  modelId: number;
+  price: number;
+  userName: string;
+  modelUrl: string;
+  description: string;
+}
+
