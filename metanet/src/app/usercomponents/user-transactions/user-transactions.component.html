@@ -13,47 +13,58 @@
   <!-- details - panel -->
   <div class="bg-purple1  mt-3  p-6 rounded-lg shadow-lg">
     <p-tabView selectOnFocus="true">
-      <p-tabPanel header="Purchases">
+      <p-tabPanel header="My Models">
         <div class="flex justify-between mb-6 text-metawhite">
-          <div>
-            <span class="text-metawhite">Status</span>
-            <select class="bg-purple1 ml-6 border-background rounded">
-              <option>All</option>
-              <option>Favorites</option>
-              <option>Recent</option>
-            </select>
-          </div>
-
-          <div>
-            Sort By
-            <p-button icon="pi pi-star"></p-button>
-            <p-button icon="pi pi-eye"></p-button>
-            <p-button icon="pi pi-clock"></p-button>
-          </div>
         </div>
+
+        <div class="flex justify-center mb-6 text-metawhite">
+          <!-- Center-aligned Upload Models button -->
+          <button 
+            (click)="onUploadModelClick()" 
+            class="bg-darkpink text-metawhite rounded-lg px-6 py-4 flex items-center w-1/4 justify-center hover:bg-pink1 transition-transform transform hover:scale-105 shadow-lg upload-button"
+          >
+            <i class="pi pi-upload"></i>
+            <span class="ml-3 text-lg font-semibold">Upload Model</span>
+          </button>
+        </div>
+        
 
         <div class="flex justify-center">
           <div class="grid gap-4 mb-10 text-metawhite sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            
             <!-- Use ngFor to iterate over models array -->
-            <div *ngFor="let model of paginatedModels"
-              class="w-full h-80 mx-auto rounded-lg shadow-lg overflow-hidden hover:scale-105 transition-transform">
-              <div class="relative">
-                <img src="{{model.image}}" alt="{{model.name}}" class="w-full h-60 object-cover" />
-                <span class="absolute top-2 left-2 bg-pink1 text-white text-xs px-2 py-1 rounded-lg">-20%</span>
-                <button
-                  class="absolute top-2 right-2 bg-darkpurple hover:bg-pink1 text-metawhite rounded-full w-8 h-8 flex justify-center items-center">
-                  <i class="pi pi-heart" style="font-size: 1rem"></i>
-                </button>
+            <div
+              *ngFor="let model of paginatedModels"
+              class="w-64 h-80 mx-auto rounded-lg shadow-lg overflow-hidden hover:scale-105 transition-transform"
+            >
+            
+              <div class="relative w-full h-3/4">
+                <img
+                  src="{{ model.image1Url }}"
+                  alt="{{ model.title }}"
+                  class="w-full h-full object-cover"
+                />
+                <span
+                  class="absolute top-2 left-2 bg-pink1 text-white text-xs px-2 py-1 rounded-lg"
+                  >{{ model.review }}⭐</span
+                >
               </div>
-              <div class="px-4 py-2 bg-purple2 flex justify-between items-end h-20">
+              <div class="px-4 py-2 bg-purple2 flex justify-between items-end h-1/4">
                 <div>
-                  <h2 class="text-lg font-semibold text-metawhite">{{model.name}}</h2>
-                  <p class="text-lg font-bold text-lightgray">{{model.price}}</p>
+                  <h2 class="text-lg font-semibold text-metawhite truncate" style="width: 100%;">
+                    {{ model.title }}
+                  </h2>
+                  <p 
+                    class="text-lg font-bold" 
+                    [ngClass]="{ 'text-green-500': model.price === 0, 'text-lightgray': model.price !== 0 }">
+                    {{ model.price === 0 ? 'Free' : model.price + ' $' }}
+                  </p>
+
                 </div>
-                <button
-                  class="mt-4 bg-darkpurple text-metawhite hover:bg-darkpink rounded-full w-8 h-8 flex justify-center items-center">
-                  <i class="pi pi-cart-plus" style="font-size: 1rem"></i>
-                </button>
+                <div class="flex items-center">
+                  <span class="mr-2 text-lightgray">{{ model.likesCount }}</span>
+                  <i class="pi pi-heart" style="color: red;"></i>
+                </div>
               </div>
             </div>
           </div>

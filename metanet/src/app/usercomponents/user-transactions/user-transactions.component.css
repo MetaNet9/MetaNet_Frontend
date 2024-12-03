@@ -70,3 +70,13 @@
   background : #9855b263;
   color: #cc8ad9;
 } */
+
+.upload-button {
+  background-color: #6a097d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin: 10px 0;
+}

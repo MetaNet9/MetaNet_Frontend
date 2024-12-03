@@ -10,6 +10,8 @@ import { ChartModule } from 'primeng/chart';
 import { WeeklyRevenueChartComponent } from "../../commonComponents/weekly-revenue-chart/weekly-revenue-chart.component";
 import { SalesByCategoryPieChartComponent } from "../../commonComponents/sales-by-category-pie-chart/sales-by-category-pie-chart.component";
 import { HttpClient } from '@angular/common/http';
+import { BASE_url } from 'src/app/app.config';
+import { Router } from '@angular/router';
 
 interface PageEvent {
   first?: number;
@@ -19,9 +21,13 @@ interface PageEvent {
 }
 
 interface Model {
-  image: string;
+  id: number;
+  title: string;
+  image1Url: string;
   name: string;
-  price: string;
+  price: number;
+  review: number;
+  likesCount: number;
 }
 
 interface DailyEarnings {
@@ -68,7 +74,7 @@ interface WithdrawalDetails {
 })
 export class UserTransactionsComponent {
   first: number = 0;
-  rows: number = 4;
+  rows: number = 8;
 
   balance: number = 0;
   pendingWithdrawals: number = 0;
@@ -83,27 +89,28 @@ export class UserTransactionsComponent {
   dailyEarnings: DailyEarnings[] = [];
   modelEarnings: ModelEarnings[] = [];
 
-  models: Model[] = [
-    {
-      image:
-        'https://media.sketchfab.com/models/dda567d1ffbd40eabbce7625a48a39ef/thumbnails/84f3614735f048b5838b45f5eb5aa430/01ec6878522a49bc956f9ba4b9fe08f8.jpeg',
-      name: 'Elephant',
-      price: '$2.99',
-    },
-  ];
+  models: Model[] = []
+  //   {
+  //     image:
+  //       'https://media.sketchfab.com/models/dda567d1ffbd40eabbce7625a48a39ef/thumbnails/84f3614735f048b5838b45f5eb5aa430/01ec6878522a49bc956f9ba4b9fe08f8.jpeg',
+  //     name: 'Elephant',
+  //     price: '$2.99',
+  //   },
+  // ];
   paginatedModels: Model[] = [];
   totalModelRecords: number = this.models.length;
 
   totalmodeldata: any = { labels: [], datasets: [] };
   options: any = {};
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
     this.updatePaginatedModels();
     this.fetchWithdrawalDetails();
     this.fetchAccountDetails();
     this.initializeChartOptions();
+    this.getAllmyModels();
   }
 
   onModelPageChange(event: PageEvent) {
@@ -193,6 +200,23 @@ export class UserTransactionsComponent {
       );
   }
 
+  getAllmyModels() {
+    this.http
+      .get<Model[]>(BASE_url+'/sellers/mymodels', {
+        withCredentials: true,
+      })
+      .subscribe(
+        (response) => {
+          this.models = response;
+          this.totalModelRecords = this.models.length;
+          this.updatePaginatedModels();
+        },
+        (error) => {
+          console.error('Error fetching models:', error);
+        }
+      );
+  }
+
   initializeChartOptions() {
     const documentStyle = getComputedStyle(document.documentElement);
 
@@ -227,4 +251,10 @@ export class UserTransactionsComponent {
       ],
     };
   }
+
+  onUploadModelClick() {
+    this.router.navigate(['/upload-form']);
+  }
+  
+  
 }
