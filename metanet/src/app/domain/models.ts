@@ -254,3 +254,10 @@ export interface LikedModels {
   id: number;
   model: modelAdvanced;
 }
+
+export interface UserRole{
+  id: number;
+  firstName: string;
+  lastName: string;
+  roles: string[];
+}

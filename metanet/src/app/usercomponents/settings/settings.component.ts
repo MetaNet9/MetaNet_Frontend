@@ -1,10 +1,14 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { UserNavbarComponent } from "../user-navbar/user-navbar.component";
 import { UserProfileHeaderComponent } from "../user-profile-header/user-profile-header.component";
 import { FooterComponent } from "../footer/footer.component";
 import { TabViewModule } from 'primeng/tabview';
 import { FormControl, FormControlStatus, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import {ModelOwner} from "../../domain/models";
+import {BASE_url} from "../../app.config";
+import {SellerNavbarComponent} from "../seller-navbar/seller-navbar.component";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-settings',
@@ -14,42 +18,45 @@ import { HttpClient } from '@angular/common/http';
     UserProfileHeaderComponent,
     FooterComponent,
     TabViewModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SellerNavbarComponent,
+    NgIf
   ],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.css'
 })
-export class SettingsComponent {
-  profileDetails = new FormGroup({
-    userName: new FormControl('metanet.com/Josaphine5'),
-    displayName: new FormControl('Josaphine54'),
-    tagline: new FormControl('Describe your tagline within 150 words'),
-    accType: new FormControl(''),
-    bio: new FormControl('Describe yourself within 150 words'),
-    location: new FormControl('Enter your location'),
-    personalWebsite: new FormControl(''),
-    twitterAcc: new FormControl(''),
-    fbAcc: new FormControl(''),
-    instaAcc: new FormControl(''),
-    linkedInAcc: new FormControl(''),
-  })
+export class SettingsComponent implements OnInit {
+
+
+  ngOnInit() {
+    this.loadProfile();
+  }
+
+  data!: ModelOwner;
 
   constructor(private http: HttpClient) {}
 
-  newEmailAddress = new FormGroup({
-    currentEmail: new FormControl(''),
-    newEmail: new FormControl(''),
-    password: new FormControl(''),
-    
-  })
+
 
   changePassword = new FormGroup({
     currentPassword: new FormControl(''),
     newPassword: new FormControl(''),
     confirmPassword: new FormControl(''),
-    
-    
+
+
   });
+
+  loadProfile() {
+    this.http.get<ModelOwner>(BASE_url+'/sellers/myaccount',{withCredentials:true}).subscribe( {
+      next: (data) => {
+        console.log(data);
+        this.data= data;
+      },error: (error) => {
+        console.log(error);
+      }
+    });
+
+  }
 
   resetPassword() {
     // Ensure the new password and confirm password match
@@ -57,13 +64,13 @@ export class SettingsComponent {
       alert('New Password and Confirm Password do not match!');
       return;
     }
-  
+
     // Create the payload
     const payload = {
       oldPassword: this.changePassword.value.currentPassword,
       newPassword: this.changePassword.value.newPassword,
     };
-  
+
     // Make the HTTP POST request
     this.http.post('http://localhost:3000/auth/change-password', payload, {withCredentials: true}).subscribe({
       next: (response) => {
@@ -76,6 +83,6 @@ export class SettingsComponent {
         alert(`Error resetting password: ${error.error?.message || 'Unexpected error occurred'}`);
       },
     });
-  }  
+  }
 
 }

@@ -1,4 +1,4 @@
-<nav class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-4 py-2 bg-background">
+<nav class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-8 py-2 bg-background">
   <div class="flex items-center space-x-4">
     <a class="font-bold text-metawhite" href="#">
       <img class="h-12" src="./assets/images/navlogo.png" alt="logo"> <!-- Logo here -->
@@ -7,17 +7,15 @@
 
   <div class="flex items-center space-x-8">
 
-    <button routerLink="/marketplace-shoppingcart" class="flex items-center text-metawhite">
-      <i class="text-2xl pi pi-shopping-cart" pBadge value="{{getCartCount()}}"></i>
-    </button>
+
 
 
 
     <!-- Become Creator Button -->
     <button
       (click)="navigateTo()"
-      class="w-32 h-10 mx-10  text-sm font-medium transition-all duration-300 border rounded-md shadow-md  text-metawhite bg-background border-spacing-1 border-darkpurple hover:bg-lightpink">
-      Become Creator
+      class="w-32 h-10 mx-10 text-sm font-medium transition-all duration-300 border rounded-md shadow-md  text-metawhite bg-background border-spacing-1 border-darkpurple hover:bg-lightpink">
+      Switch to Buyer
     </button>
     <div class="flex card justify-content-center">
       <!-- Menu -->
@@ -49,11 +47,7 @@
     </div>
   </div>
 
-  <ul
-    class="absolute hidden transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/4 lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-16">
-    <li><a routerLink="/marketplace-products" class="text-sm text-metawhite hover:text-lightpink">Marketplace</a></li>
-    <li><a routerLink="/userprofile" class="text-sm text-metawhite hover:text-lightpink">Purchases</a></li>
-  </ul>
+
 </nav>
 
 <!-- mobile - view -->
@@ -67,16 +61,11 @@
       </a>
       <button id="navbar-close" class="navbar-close">
         <svg class="w-6 h-6 cursor-pointer text-metawhite hover:text-lightpink" xmlns="http://www.w3.org/2000/svg"
-          fill="none" viewBox="0 0 24 24" stroke="currentColor">
+             fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
         </svg>
       </button>
     </div>
-    <div class="flex items-center justify-center text-center">
-      <ul>
-        <li class="mb-1"><a routerLink="/marketplace-products" class="block p-4 text-sm font-semibold rounded text-metawhite hover:text-lightpink">Marketplace</a></li>
-        <li class="mb-1"><a routerLink="/marketplace-categories" class="block p-4 text-sm font-semibold rounded text-metawhite hover:text-lightpink">Explore</a></li>
-      </ul>
-    </div>
+
   </nav>
 </div>

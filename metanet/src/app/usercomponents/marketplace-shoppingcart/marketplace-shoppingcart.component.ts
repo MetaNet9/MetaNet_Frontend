@@ -64,9 +64,10 @@ export class MarketplaceShoppingcartComponent implements OnInit{
   ProceedtoCheckout(cartItems: CartItem[]) {
     const modeIDs = cartItems.map(item=>item.modelId)
 
-    this.http.post(BASE_url+'/payment/buy',{modelIds:modeIDs,paymentMethod:"card"},{withCredentials:true}).subscribe({
+    this.http.post<{session:{url:string}}>(BASE_url+'/payment/buy',{modelIds:modeIDs,paymentMethod:"card"},{withCredentials:true}).subscribe({
       next: (data) => {
         this.toast.success("Payment Successful")
+        window.location.href=data.session.url
       },
       error: (error: any) => {
         console.log(error)

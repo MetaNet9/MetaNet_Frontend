@@ -21,7 +21,7 @@ export class ThreeDViewerComponent implements OnInit, AfterViewInit {
   @Input() width = 400;
   @Input() height = 400;
 
-
+  size: number = 0
 
 
   constructor(
@@ -101,20 +101,22 @@ export class ThreeDViewerComponent implements OnInit, AfterViewInit {
           box.getSize(size);
           const center = new THREE.Vector3();
           box.getCenter(center);
-          runAnimation()
+
           // Reposition the model to center it in the scene
-          model.position.x -= center.x;
-          model.position.y -= center.y;
-          model.position.z -= center.z;
+          // model.position.x -= center.x;
+          // model.position.y -= center.y;
+          // model.position.z -= center.z;
 
-          const maxSize = Math.max(size.z, size.y, size.x)
-
+          this.size = Math.max(size.z, size.y, size.x)
+          runAnimation()
           //Camera Position: 1.037624207443426, 20.88440636040267, 24.07223165866557
           //Camera Rotation: -0.24198931504696503, -0.005746296144976582, -0.0014183275707196983
           // camera.position.set(1.037624207443426, 20.88440636040267, 24.07223165866557)
 
           // Set camera position based on the size of the model
-          camera.position.z = maxSize ;
+
+          console.log(this.size)
+          camera.position.z = this.size ;
           camera.position.y = size.y ;
           camera.position.x = size.x+10;
 
@@ -156,10 +158,15 @@ export class ThreeDViewerComponent implements OnInit, AfterViewInit {
     };
     animate();
     const runAnimation = () => {
+      console.log(this.size)
+      let scaler = 8-this.size
+      if(this.size>8){
+          scaler = 1.5
+      }
       if (modelREF) {
-        gsap.to(modelREF.scale, { x: 1.5, y: 1.5, z: 1.5, duration: 2, ease: 'power1.inOut' });
+        gsap.to(modelREF.scale, { x: scaler, y: scaler, z: scaler, duration: 2, ease: 'power1.inOut' });
         gsap.to(modelREF.rotation, { y: Math.PI * 2, duration: 2, ease: 'power1.inOut' });
-        gsap.to(modelREF.position, { x: 2,y:-15, duration: 2, ease: 'power1.inOut' });
+        gsap.to(modelREF.position, { x: 2, duration: 2, ease: 'power1.inOut' });
       }
     };
   }
