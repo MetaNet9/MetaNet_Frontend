@@ -1,5 +1,5 @@
 <!-- nav - bar -->
-<app-user-navbar></app-user-navbar>
+<app-seller-navbar></app-seller-navbar>
 
 <!-- main -->
 <div class="bg-background pb-6 mt-16">
@@ -19,25 +19,25 @@
 
         <div class="flex justify-center mb-6 text-metawhite">
           <!-- Center-aligned Upload Models button -->
-          <button 
-            (click)="onUploadModelClick()" 
+          <button
+            (click)="onUploadModelClick()"
             class="bg-darkpink text-metawhite rounded-lg px-6 py-4 flex items-center w-1/4 justify-center hover:bg-pink1 transition-transform transform hover:scale-105 shadow-lg upload-button"
           >
             <i class="pi pi-upload"></i>
             <span class="ml-3 text-lg font-semibold">Upload Model</span>
           </button>
         </div>
-        
+
 
         <div class="flex justify-center">
           <div class="grid gap-4 mb-10 text-metawhite sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            
+
             <!-- Use ngFor to iterate over models array -->
             <div
               *ngFor="let model of paginatedModels"
               class="w-64 h-80 mx-auto rounded-lg shadow-lg overflow-hidden hover:scale-105 transition-transform"
             >
-            
+
               <div class="relative w-full h-3/4">
                 <img
                   src="{{ model.image1Url }}"
@@ -54,8 +54,8 @@
                   <h2 class="text-lg font-semibold text-metawhite truncate" style="width: 100%;">
                     {{ model.title }}
                   </h2>
-                  <p 
-                    class="text-lg font-bold" 
+                  <p
+                    class="text-lg font-bold"
                     [ngClass]="{ 'text-green-500': model.price === 0, 'text-lightgray': model.price !== 0 }">
                     {{ model.price === 0 ? 'Free' : model.price + ' $' }}
                   </p>
@@ -75,7 +75,7 @@
             [totalRecords]="totalModelRecords" [rowsPerPageOptions]="[4,8,12]"></p-paginator>
         </div>
       </p-tabPanel>
-      
+
       <p-tabPanel header="Sales">
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-6">
 
@@ -129,7 +129,7 @@
         </div>
 
       </p-tabPanel>
-      
+
       <p-tabPanel header="Withdrawal">
         <!-- User Balance Section -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
@@ -149,7 +149,7 @@
             <p class="text-2xl lg:text-2xl">${{ totalWithdrawals }}</p>
           </div>
         </div>
-      
+
         <!-- Conditional Amount Input and Button Section -->
         <div *ngIf="balance > 19" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 items-center">
           <!-- Enter Amount Box -->
@@ -166,7 +166,7 @@
               Minimum withdrawal amount is 20.
             </small>
           </div>
-      
+
           <!-- Withdrawal Button -->
           <div class="text-center">
             <button
@@ -177,7 +177,7 @@
             </button>
           </div>
         </div>
-      
+
         <!-- Withdrawals List -->
         <div>
           <h2 class="text-lg font-semibold text-metawhite mb-4">Past Withdrawals</h2>
@@ -201,10 +201,10 @@
           </div>
         </div>
       </p-tabPanel>
-      
-      
-      
-      
+
+
+
+
     </p-tabView>
   </div>
 

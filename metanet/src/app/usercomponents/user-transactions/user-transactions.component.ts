@@ -12,6 +12,7 @@ import { SalesByCategoryPieChartComponent } from "../../commonComponents/sales-b
 import { HttpClient } from '@angular/common/http';
 import { BASE_url } from 'src/app/app.config';
 import { Router } from '@angular/router';
+import {SellerNavbarComponent} from "../seller-navbar/seller-navbar.component";
 
 interface PageEvent {
   first?: number;
@@ -68,6 +69,7 @@ interface WithdrawalDetails {
     ChartModule,
     WeeklyRevenueChartComponent,
     SalesByCategoryPieChartComponent,
+    SellerNavbarComponent,
   ],
   templateUrl: './user-transactions.component.html',
   styleUrls: ['./user-transactions.component.css'],
@@ -255,6 +257,6 @@ export class UserTransactionsComponent {
   onUploadModelClick() {
     this.router.navigate(['/upload-form']);
   }
-  
-  
+
+
 }

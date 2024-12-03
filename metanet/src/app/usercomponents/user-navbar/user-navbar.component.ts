@@ -6,7 +6,7 @@ import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
 import { Router } from '@angular/router';
 import {HttpClient} from "@angular/common/http";
-import {CartItem, ModelDetails} from "../../domain/models";
+import {CartItem, ModelDetails, UserRole} from "../../domain/models";
 import {BASE_url} from "../../app.config";
 @Component({
   selector: 'app-user-navbar',
@@ -26,8 +26,8 @@ export class UserNavbarComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.LoadProfile();
     this.GetItems();
+    this.getRoles();
     if (isPlatformBrowser(this.platformId)) {
       // Client-side code
       document.addEventListener('DOMContentLoaded', () => {
@@ -80,17 +80,10 @@ export class UserNavbarComponent implements OnInit {
         // label: 'Guides',
         items: [
           {
-            label: 'Profile',
-            icon: 'pi pi-user',
+            label: 'My Files',
+            icon: 'pi pi-download',
             command: () => {
               this.router.navigate(['/userprofile']);
-            },
-          },
-          {
-            label: 'Settings',
-            icon: 'pi pi-cog',
-            command: () => {
-              this.router.navigate(['/settings']);
             },
           },
           {
@@ -104,17 +97,8 @@ export class UserNavbarComponent implements OnInit {
       },
     ];
   }
-  LoadProfile() {
-    this.http.get<ModelDetails>(BASE_url+"/vebxrmodel/"+4,{withCredentials:true}).subscribe({
-      next: (data) => {
-        console.log(data);
-      },
-      error: (error) => {
-        console.error(error);
 
-      },
-    })
-  }
+  roles!: string[];
   getCartCount() {
     if (this.cartItems === undefined) {
       return 0;
@@ -130,5 +114,25 @@ export class UserNavbarComponent implements OnInit {
         console.log(error)
       }
     })
+  }
+  getRoles() {
+    this.http.get<UserRole>(BASE_url+'/auth/profile',{withCredentials:true}).subscribe( {
+      next: (data) => {
+        this.roles = data.roles;
+      },error: (error) => {
+        console.log(error);
+      }
+    });
+  }
+  isSeller() {
+    return this.roles.includes('seller');
+  }
+
+  navigateTo() {
+    if (this.isSeller()) {
+      this.router.navigate(['/usertransactions']);
+    }else{
+      this.router.navigate(['/become-creator']);
+    }
   }
 }

@@ -10,11 +10,12 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 import { ThreeDViewerComponent } from 'src/app/three-dviewer/three-dviewer.component';
 import {ToastService} from "angular-toastify";
+import {SellerNavbarComponent} from "../seller-navbar/seller-navbar.component";
 
 @Component({
   selector: 'app-upload-form',
   standalone: true,
-  imports: [UserNavbarComponent, FooterComponent, SelectButtonModule, CommonModule, FormsModule, ThreeDViewerComponent],
+  imports: [UserNavbarComponent, FooterComponent, SelectButtonModule, CommonModule, FormsModule, ThreeDViewerComponent, SellerNavbarComponent],
   templateUrl: './upload-form.component.html',
   styleUrls: ['./upload-form.component.css']
 })
@@ -258,7 +259,15 @@ export class UploadFormComponent implements AfterViewInit {
     }
   }
 
+  objectKeys(obj: any): string[] {
+    return Object.keys(obj);
+  }
+
   isArray(value: any): boolean {
     return Array.isArray(value);
+  }
+
+  isBoolean(value: any): boolean {
+    return typeof value === 'boolean';
   }
 }

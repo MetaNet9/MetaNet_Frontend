@@ -1,4 +1,4 @@
-<app-user-navbar></app-user-navbar>
+<app-seller-navbar></app-seller-navbar>
 
 <div class="bg-background pb-6 mt-16">
   <div class="flex justify-center">
@@ -43,7 +43,7 @@
             <!-- <div>
               <app-three-d-viewer [modelUrl]="dynamicModelUrl"></app-three-d-viewer>
             </div> -->
-            
+
             <!-- Preview Section -->
             <div *ngIf="isModelUploaded">
               <app-three-d-viewer [modelUrl]="dynamicModelUrl"></app-three-d-viewer>
@@ -51,23 +51,34 @@
 
 
             <div class="parameters-section white-text" *ngIf="modelParameters">
-              <h3>Model Parameters</h3>
-              <ul>
-                <li *ngFor="let key of Object.keys(modelParameters)" [ngClass]="{
-                  'true-status': isArray(modelParameters[key]) && modelParameters[key][1] === true,
-                  'false-status': isArray(modelParameters[key]) && modelParameters[key][1] === false
-                }">
-                  <span>{{ key }}:</span>
-                  <span class="value">{{ isArray(modelParameters[key]) ? modelParameters[key][0] : modelParameters[key] }}</span>
-                  <span *ngIf="isArray(modelParameters[key])">
-                    <span *ngIf="modelParameters[key][1] === true" class="status-tick">✔️</span>
-                    <span *ngIf="modelParameters[key][1] === false" class="status-cross">❌</span>
-                  </span>
-                </li>
-              </ul>
+              <h3 class="text-lg mb-2">Model Parameters</h3>
+
+              <div *ngFor="let key of objectKeys(modelParameters)" class="mb-2 md:grid grid-cols-4 justify-between">
+                <strong>{{ key }}:</strong>
+                <!-- Handle Arrays -->
+                <ng-container *ngIf="isArray(modelParameters[key]); else singleValue">
+            <span *ngFor="let item of modelParameters[key]; let i = index">
+              <ng-container *ngIf="isBoolean(item); else showText">
+                <span *ngIf="item" class="text-green-500 font-semibold">✅</span>
+                <span *ngIf="!item" class="text-red-500 font-semibold">❌</span>
+              </ng-container>
+              <ng-template #showText>{{ item }}</ng-template>
+              <span *ngIf="i < modelParameters[key].length - 1">, </span>
+            </span>
+                </ng-container>
+                <!-- Handle Single Value -->
+                <ng-template #singleValue>
+                  <ng-container *ngIf="isBoolean(modelParameters[key]); else showSingleText">
+                    <span *ngIf="modelParameters[key]" class="text-green-500 font-semibold">✅</span>
+                    <span *ngIf="!modelParameters[key]" class="text-red-500 font-semibold">❌</span>
+                  </ng-container>
+                  <ng-template #showSingleText>{{ modelParameters[key] }}</ng-template>
+                </ng-template>
+              </div>
+
             </div>
-            
-            
+
+
             <!-- Upload Images -->
             <div class="mb-4">
               <label class="block text-metawhite mb-2">Upload Images (3)</label>
@@ -150,7 +161,7 @@
                 <option value="Proprietary">Proprietary</option>
               </select>
             </div>
-            
+
             <!-- <div class="mb-4">
               <label class="block text-metawhite mb-2">License</label>
               <input
