@@ -234,8 +234,7 @@ export interface CartItem {
   titile: string;
   price: number;
   userName: string;
-  modelUrl: string;
-  description: string;
+  imageUrl: string;
 }
 
 export interface AISearchResponse {
@@ -245,3 +244,13 @@ export interface AISearchResponse {
   model?: modelAdvanced;
 }
 
+
+export interface Purchases {
+  purchasedAt: string;
+  model: modelAdvanced;
+
+}
+export interface LikedModels {
+  id: number;
+  model: modelAdvanced;
+}

@@ -153,8 +153,9 @@
         class="w-64 h-80 mx-auto rounded-lg shadow-lg overflow-hidden hover:scale-105 transition-transform"
       >
 
-        <div (click)="navigateToDescription(model.id)" class="relative w-full h-3/4">
+        <div  class="relative w-full h-3/4">
           <img
+            (click)="navigateToDescription(model.id)"
             src="{{ model.image }}"
             alt="{{ model.name }}"
             class="w-full h-full object-cover"
@@ -175,7 +176,7 @@
           </button>
           <script>  </script>
         </div>
-        <div class="px-4 py-2 bg-purple2 flex justify-between items-end h-1/4">
+        <div class="px-4 py-2 bg-purple2 flex justify-between items-end h-1/4" (click)="navigateToDescription(model.id)">
           <div>
             <h2 class="text-lg font-semibold text-metawhite truncate" style="width: 100%;">
               {{ model.name }}

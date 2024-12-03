@@ -1,4 +1,4 @@
-import {Component, ElementRef, Renderer2} from '@angular/core';
+import {Component, ElementRef, Renderer2, ViewChild} from '@angular/core';
 import { FooterComponent } from '../footer/footer.component';
 import { UserNavbarComponent } from '../user-navbar/user-navbar.component';
 import {FormsModule, Validators} from '@angular/forms';
@@ -24,6 +24,7 @@ import {Model, ModelDetails, ModelFile} from "../../domain/models";
 import {ThreeDViewerComponent} from "../../three-dviewer/three-dviewer.component";
 import {ToastService} from "angular-toastify";
 import {animate, style, transition, trigger} from "@angular/animations";
+
 
 @Component({
   selector: 'app-marketplace-product-description',
@@ -68,6 +69,7 @@ export class MarketplaceProductDescriptionComponent {
     fourstar:0,
     fivestar:0
   };
+  @ViewChild(UserNavbarComponent) childComponent!: UserNavbarComponent;
 
 
   constructor(private route:ActivatedRoute,private http: HttpClient,private toastService: ToastService,private renderer: Renderer2, private el: ElementRef) {
@@ -223,5 +225,24 @@ export class MarketplaceProductDescriptionComponent {
       }, 16);
     }, 100);
 
+  }
+
+  AddToCart(id: number) {
+    this.http.post(BASE_url+"/cart",{modelId:id},{withCredentials:true}).subscribe({
+      next: (data) => {
+        this.childComponent.GetItems()
+        this.toastService.success("Item added to cart")
+      },
+      error: (error) => {
+        this.toastService.error(error.error.message||"Something went wrong")
+        console.error('There was an error!', error);
+      }
+    })
+
+  }
+
+
+  DownloadModel(url: string) {
+    window.open(url, '_blank')
   }
 }

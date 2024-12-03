@@ -55,15 +55,22 @@
           <div class="flex items-center space-x-5 mt-4 lg:mt-0">
             <button
               (click)="StartAnimation()"
-              class="bg-[#0a0066] l p-4 h-8 w-32 py-3 text-sm rounded-xl hover:bg-[#060038] text-metawhite items-center text-center space-x-2">
+              class=" btn-down bg-[#0a0066] l  text-[16px] rounded-md hover:bg-[#060038] text-metawhite items-center text-center space-x-2">
               <i class="pi pi-microchip-ai" style="font-size: 0.9rem"></i> Ask AI
             </button>
 
-            <button *ngIf="data.isBought"
-              class="bg-[#5e5e5e] p-4 h-8 w-32 py-2 text-sm rounded-xl cursor-not-allowed text-metawhite items-center text-center space-x-2">
-               You Owned
+            <button *ngIf="data.isBought||data.model.price==0"
+                    (click)="DownloadModel(data.model.modelUrl)"
+                    type="button"
+                    class="btn-down bg-[#2564eb] rounded-md text-metawhite outline-none  shadow-lg transform active:scale-x-75 transition-transform mx-5 flex"
+            >
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+
+              <span class="ml-2">Download</span>
             </button>
-            <button *ngIf="!data.isBought"
+            <button (click)="AddToCart(data.model.id)" *ngIf="!data.isBought&&data.model.price!=0"
                     class="bg-lightpurple p-4 h-8 w-32 py-2 text-sm rounded-xl hover:bg-darkpurple text-metawhite items-center text-center space-x-2">
               <i class="pi pi-shopping-cart" style="font-size: 0.9rem"></i> Add to Cart
             </button>

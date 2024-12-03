@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { HomepageComponent } from './usercomponents/homepage/homepage.component';
 import { AboutusComponent } from './usercomponents/aboutus/aboutus.component';
 import { ServicesComponent } from './usercomponents/services/services.component';
 import { ContactusComponent } from './usercomponents/contactus/contactus.component';
@@ -42,6 +41,7 @@ import { ThreeDViewerComponent } from './three-dviewer/three-dviewer.component';
 import { SellerRegisterComponent } from './usercomponents/seller-register/seller-register.component';
 import {ModManualVerifyComponent} from "./ModaratorComponents/mod-manual-verify/mod-manual-verify.component";
 import {RequestListComponent} from "./ModaratorComponents/request-list/request-list.component";
+import {HomepageComponent} from "./usercomponents/homepage/homepage.component";
 
 
 
@@ -49,7 +49,6 @@ import {RequestListComponent} from "./ModaratorComponents/request-list/request-l
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: '', component: HomepageComponent },
   { path: 'home', component: HomepageComponent },
   { path: 'aboutus', component: AboutusComponent },
   { path: 'services', component: ServicesComponent },
