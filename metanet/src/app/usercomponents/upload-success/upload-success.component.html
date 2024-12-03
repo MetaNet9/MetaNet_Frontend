@@ -21,26 +21,25 @@
 
   <div class="w-[350px] h-80 mt-[20px] mb-[20px] mx-auto rounded-lg shadow-lg overflow-hidden hover:scale-105 transition-transform">
     <div class="relative">
-      <img src="{{models[0].image}}" alt="{{models[0].name}}" class="w-full h-60 object-cover" />
-      <span class="absolute top-2 left-2 bg-pink1 text-white text-xs px-2 py-1 rounded-lg">
-        -{{models[0].discount}}%
-      </span>
-      <button
-        class="absolute top-2 right-2 bg-darkpurple hover:bg-pink1 text-metawhite rounded-full w-8 h-8 flex justify-center items-center">
-        <i class="pi pi-heart" style="font-size: 1rem"></i>
-      </button>
+      <img src="{{model?.image1Url}}" alt="{{model?.title}}" class="w-full h-60 object-cover" />
     </div>
     <div class="px-4 py-2 bg-purple2 flex justify-between items-end h-20">
       <div>
-        <h2 class="text-lg font-semibold text-metawhite">{{models[0].name}}</h2>
-        <p class="text-lg font-bold text-lightgray">{{models[0].price}}</p>
+        <h2 class="text-lg font-semibold text-metawhite">{{model?.title}}</h2>
+        <p class="text-lg font-bold text-lightgray">{{model?.price === 0 ? 'Free' : '$' + model?.price}}</p>
       </div>
-      <button
-        class="mt-4 bg-darkpurple text-metawhite hover:bg-darkpink rounded-full w-8 h-8 flex justify-center items-center">
-        <i class="pi pi-cart-plus" style="font-size: 1rem"></i>
-      </button>
     </div>
   </div>
+
+  <div class="flex justify-center">
+    <a 
+      href="/usertransactions" 
+      class="dashboard bg-pink3 hover:bg-darkpurple text-metawhite w-1/3 h-12 text-lg mt-4 rounded-lg font-bold py-2 px-10 flex items-center justify-center"
+    >
+      Go to Dashboard
+    </a>
+  </div>
+  
 
   <!-- footer -->
   <app-footer></app-footer>
