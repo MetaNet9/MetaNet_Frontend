@@ -14,7 +14,5 @@ import {RouterLink} from "@angular/router";
 })
 export class ModeratorSidebarComponent {
 
-  onParagraphClick() {
-    alert('UI is under development');
-  }
+
 }

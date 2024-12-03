@@ -5,6 +5,9 @@ import { BadgeModule } from 'primeng/badge';
 import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
 import { Router } from '@angular/router';
+import {HttpClient} from "@angular/common/http";
+import {CartItem, ModelDetails} from "../../domain/models";
+import {BASE_url} from "../../app.config";
 @Component({
   selector: 'app-user-navbar',
   standalone: true,
@@ -14,13 +17,17 @@ import { Router } from '@angular/router';
 })
 export class UserNavbarComponent implements OnInit {
   items: MenuItem[] | undefined;
+  private cartItems!: CartItem[];
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
-    private router: Router
+    private router: Router,
+    private http: HttpClient
   ) {}
 
   ngOnInit() {
+    this.LoadProfile();
+    this.GetItems();
     if (isPlatformBrowser(this.platformId)) {
       // Client-side code
       document.addEventListener('DOMContentLoaded', () => {
@@ -80,13 +87,6 @@ export class UserNavbarComponent implements OnInit {
             },
           },
           {
-            label: 'Transactions',
-            icon: 'pi pi-wallet',
-            command: () => {
-              this.router.navigate(['/usertransactions']);
-            },
-          },
-          {
             label: 'Settings',
             icon: 'pi pi-cog',
             command: () => {
@@ -103,5 +103,32 @@ export class UserNavbarComponent implements OnInit {
         ],
       },
     ];
+  }
+  LoadProfile() {
+    this.http.get<ModelDetails>(BASE_url+"/vebxrmodel/"+4,{withCredentials:true}).subscribe({
+      next: (data) => {
+        console.log(data);
+      },
+      error: (error) => {
+        console.error(error);
+
+      },
+    })
+  }
+  getCartCount() {
+    if (this.cartItems === undefined) {
+      return 0;
+    }
+    return this.cartItems.length;
+  }
+  GetItems(){
+    this.http.get<CartItem[]>(BASE_url+'/cart',{withCredentials:true}).subscribe( {
+      next: (data) => {
+        this.cartItems = data;
+      },
+      error: (error: any) => {
+        console.log(error)
+      }
+    })
   }
 }

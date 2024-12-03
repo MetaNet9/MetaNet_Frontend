@@ -25,36 +25,18 @@
             <div class="bg-darkpink p-4 rounded-t-xl text-wrap text-xl font-light flex justify-between">
               <span class="w-2/4">Product</span>
               <span class="w-1/4">Price</span>
-              <span class="w-1/4 text-center">Quantity</span>
-              <span class="w-1/4 text-center">Sub Total</span>
+              <span class="w-1/4 text-center">Action</span>
             </div>
 
-            <div class="p-4 flex justify-between items-center border-b border-purple-800">
+            <div *ngFor="let item of cartItems" class="p-4 flex justify-between items-center border-b border-purple-800">
               <span class="w-2/4 flex items-center"> Elephant
-                <img src="assets/images/s1.jpeg" alt="Elephant" class="w-20 h-20 ml-8"></span>
-              <span class="w-1/4">$25.34</span>
-              <div class="w-1/4 text-xs flex justify-center items-center text-metablack">
-                <!-- primeng - component -->
-                <p-inputNumber [(ngModel)]="value1"  [showButtons]="true" size="2"
-                  buttonLayout="horizontal" spinnerMode="horizontal" inputId="horizontal"
-                  decrementButtonClass="p-button-secondary" incrementButtonClass="p-button-secondary"
-                  incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" />
-              </div>
-              <span class="w-1/4 justify-end text-center">$25.34</span>
+                <img src="{{item.imageUrl}}" alt="Elephant" class="w-20 h-20 ml-8"></span>
+              <span class="w-1/4">{{item.price==0?"Free":item.price+"$"}}</span>
+
+              <button (click)="removeItem(item.modelId)" class="w-1/4 rounded-xl h-10 text-center bg-pink2">Remove</button>
             </div>
 
-            <div class="p-4 flex justify-between items-center border-b border-purple-800">
-              <span class="w-2/4 flex items-center"> Elephant
-                <img src="assets/images/s1.jpeg" alt="Elephant" class="w-20 h-20 ml-8"></span>
-              <span class="w-1/4">$25.34</span>
-              <div class="w-1/4 text-xs flex justify-center items-center text-metablack">
-                <p-inputNumber [(ngModel)]="value1"  [showButtons]="true" size="2"
-                  buttonLayout="horizontal" spinnerMode="horizontal" inputId="horizontal"
-                  decrementButtonClass="p-button-secondary" incrementButtonClass="p-button-secondary"
-                  incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" />
-              </div>
-              <span class="w-1/4 justify-end text-center">$25.34</span>
-            </div>
+
 
           </div>
         </div>
@@ -70,26 +52,23 @@
             <div class="my-6 p-6">
               <div class="flex justify-between my-2">
                 <span>Sub Total</span>
-                <span>$76.04</span>
+                <span>${{getTotal()}}</span>
               </div>
 
-              <div class="flex justify-between my-2">
-                <span>Platform Charges</span>
-                <span>$10.00</span>
-              </div>
+
 
               <div class="flex justify-between my-2">
-                <span class="text-darkpink">Discounts →</span>
+                <span class="text-darkpink">Discounts </span>
                 <span></span>
               </div>
             </div>
 
             <div class="flex px-6 justify-between text-xl font-bold border-t border-white pt-4">
               <span>Total</span>
-              <span>$86.04</span>
+              <span>${{getTotal()}}</span>
             </div>
             <div class="flex  justify-center text-xl  p-4">
-              <button class="bg-darkpink px-10 rounded-xl text-metawhite  text-center w-3/4 text-lg mt-4">
+              <button (click)="ProceedtoCheckout(cartItems)" class="bg-darkpink px-10 rounded-xl text-metawhite  text-center w-3/4 text-lg mt-4">
                 Proceed to Checkout
               </button>
             </div>

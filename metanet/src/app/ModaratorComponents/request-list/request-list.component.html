@@ -1,0 +1,10 @@
+<app-moderator-sidebar></app-moderator-sidebar>
+<div class="p-6 bg-lightpink/5 lg:ml-80 min-h-[100vh]">
+  <!-- topbar -->
+  <app-adminnavbar [bcitems]="[{label:'Review'}]"></app-adminnavbar>
+
+  <div class="flex items-center mb-6">
+    <h1 class="text-2xl font-bold text-primary">Review Requests</h1>
+  </div>
+  <app-mod-review-table></app-mod-review-table>
+</div>

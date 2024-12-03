@@ -9,6 +9,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 import { ThreeDViewerComponent } from 'src/app/three-dviewer/three-dviewer.component';
+import {ToastService} from "angular-toastify";
 
 @Component({
   selector: 'app-upload-form',
@@ -54,13 +55,13 @@ export class UploadFormComponent implements AfterViewInit {
   // dynamicModelUrl: string = 'http://localhost:3000/uploads/herbie_the_love_bug_2024-12-01T05-13-26-023Z.glb';
   dynamicModelUrl: string = '';
 
-  constructor() {}
+  constructor(private _toastService: ToastService) {}
 
   ngAfterViewInit() {
-    
+
   }
 
-  
+
 
   onFileSelect(event: any, type: string): void {
     const files = event.target.files;
@@ -80,57 +81,57 @@ export class UploadFormComponent implements AfterViewInit {
 
   async uploadModel(): Promise<string> {
     if (!this.formData.modelFile) {
-      alert('Please select a model to upload!');
+      this._toastService.warn('Please select a model to upload!');
       return '';
     }
-  
+
     const formData = new FormData();
     formData.append('file', this.formData.modelFile);
-  
+
     try {
       this.loadingParameters = true;
-  
+
       const response = await fetch(this.modelUploadUrl, {
         method: 'POST',
         body: formData,
         credentials: 'include'
       });
-  
+
       if (!response.ok) {
         throw new Error('Failed to upload the model file');
       }
-  
+
       const result = await response.json();
       this.modelParameters = result.savedModel.parameters;
-  
+
       // Update the validity status based on the response
       this.isValidModel = result.savedModel.valid;
       this.modelId = result.savedModel.id;
       this.dynamicModelUrl = result.fileAccessUrl;
       this.isModelUploaded = true;
-  
+
       return result.fileAccessUrl;
     } catch (error) {
       console.error('Error uploading model:', error);
-      alert('Failed to upload the model. Please try again.');
+      this._toastService.error('Failed to upload the model. Please try again.');
       return '';
     } finally {
       this.loadingParameters = false;
     }
   }
-  
+
   // Function to request moderator review
   async requestModeratorReview(): Promise<void> {
 
     const modelUrl = this.dynamicModelUrl;
 
     if (!modelUrl) {
-      alert('Model upload failed.');
+      this._toastService.error('Model upload failed.');
       return;
     }
 
     if (this.formData.images.length !== 3) {
-      alert('Please upload at least 3 images.');
+      this._toastService.warn('Please upload at least 3 images.');
       return;
     }
 
@@ -149,8 +150,8 @@ export class UploadFormComponent implements AfterViewInit {
     //get the extention from the modelUrl. split by . and get the last element
     let extention = modelUrl.split('.').pop();
 
-    const formData = { 
-      ...this.formData, 
+    const formData = {
+      ...this.formData,
       modelUrl: modelUrl,
       image1Url: this.formData.images[0],
       image2Url: this.formData.images[1],
@@ -169,10 +170,10 @@ export class UploadFormComponent implements AfterViewInit {
 
       if (!response.ok) throw new Error('Failed to submit the form');
 
-      alert('Review Request Created successfully!');
+      this._toastService.success('Review Request Created successfully!');
     } catch (error) {
       console.error('Error submitting form:', error);
-      alert('Failed to submit the form.');
+      this._toastService.error('Failed to submit the form.');
     }
   }
 
@@ -195,7 +196,7 @@ export class UploadFormComponent implements AfterViewInit {
       return result.fileAccessUrl;
     } catch (error) {
       console.error('Error uploading image:', error);
-      alert('Failed to upload the image. Please try again.');
+      this._toastService.error('Failed to upload the image. Please try again.');
       return '';
     }
   }
@@ -206,12 +207,12 @@ export class UploadFormComponent implements AfterViewInit {
     const modelUrl = this.dynamicModelUrl;
 
     if (!modelUrl) {
-      alert('Model upload failed.');
+      this._toastService.error('Model upload failed.');
       return;
     }
 
     if (this.formData.images.length !== 3) {
-      alert('Please upload at least 3 images.');
+      this._toastService.warn('Please upload at least 3 images.');
       return;
     }
 
@@ -230,8 +231,8 @@ export class UploadFormComponent implements AfterViewInit {
     //get the extention from the modelUrl. split by . and get the last element
     let extention = modelUrl.split('.').pop();
 
-    const formData = { 
-      ...this.formData, 
+    const formData = {
+      ...this.formData,
       modelUrl: modelUrl,
       image1Url: this.formData.images[0],
       image2Url: this.formData.images[1],
@@ -250,10 +251,10 @@ export class UploadFormComponent implements AfterViewInit {
 
       if (!response.ok) throw new Error('Failed to submit the form');
 
-      alert('Model uploaded successfully!');
+      this._toastService.success('Model uploaded successfully!');
     } catch (error) {
       console.error('Error submitting form:', error);
-      alert('Failed to submit the form.');
+      this._toastService.error('Failed to submit the form.');
     }
   }
 

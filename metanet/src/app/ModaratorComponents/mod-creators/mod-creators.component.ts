@@ -23,6 +23,15 @@ export class ModCreatorsComponent implements OnInit{
   response: UserList={users:[],total2:0,activeUsers:0,deactivatedUsers:0};
   constructor(private http:HttpClient) { }
   ngOnInit() {
+
+    this.getUsers();
+
+
+
+  }
+
+
+  getUsers(){
     this.http.get<UserList>(BASE_url+"/auth/users?role=seller",{withCredentials:true}).subscribe({
       next: (data) => {
         this.response = data;
@@ -31,10 +40,6 @@ export class ModCreatorsComponent implements OnInit{
         console.error('There was an error!', error);
       }
     })
-
-
-
-
   }
 
 }

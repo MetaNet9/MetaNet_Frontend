@@ -36,7 +36,7 @@
 
     <!-- table -->
     <div class="flex flex-col items-center justify-center mb-6">
-      <app-admin-user-table [customers]="response.users"></app-admin-user-table>
+      <app-admin-user-table (callParent)="getUsers()"  [customers]="response.users" ></app-admin-user-table>
     </div>
   </div>
 </div>

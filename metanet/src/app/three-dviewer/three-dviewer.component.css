@@ -1,7 +1,6 @@
 .viewer-container {
-    width: 400px;
-    height: 400px;
+    width: fit-content;
+    height: fit-content;
     margin: 0 auto; /* Optional: Centers the viewer container */
     position: relative;
   }
-  

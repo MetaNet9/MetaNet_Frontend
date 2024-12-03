@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { HomepageComponent } from './usercomponents/homepage/homepage.component';
 import { AboutusComponent } from './usercomponents/aboutus/aboutus.component';
 import { ServicesComponent } from './usercomponents/services/services.component';
 import { ContactusComponent } from './usercomponents/contactus/contactus.component';
@@ -40,6 +39,10 @@ import { UploadSuccessComponent } from './usercomponents/upload-success/upload-s
 import { SendToModeratorComponent } from './usercomponents/send-to-moderator/send-to-moderator.component';
 import { ThreeDViewerComponent } from './three-dviewer/three-dviewer.component';
 import { SellerRegisterComponent } from './usercomponents/seller-register/seller-register.component';
+import {ModManualVerifyComponent} from "./ModaratorComponents/mod-manual-verify/mod-manual-verify.component";
+import {RequestListComponent} from "./ModaratorComponents/request-list/request-list.component";
+import {HomepageComponent} from "./usercomponents/homepage/homepage.component";
+
 import { CreatorApplicationComponent } from './usercomponents/creator-application/creator-application.component';
 
 
@@ -47,7 +50,6 @@ import { CreatorApplicationComponent } from './usercomponents/creator-applicatio
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: '', component: HomepageComponent },
   { path: 'home', component: HomepageComponent },
   { path: 'aboutus', component: AboutusComponent },
   { path: 'services', component: ServicesComponent },
@@ -71,7 +73,7 @@ export const routes: Routes = [
   { path: 'upload-success', component: UploadSuccessComponent },
   { path: 'send-to-moderator', component: SendToModeratorComponent },
 // { path: 'sent-to-moderator', component: SentToModeratorComponent },
-  { path: 'sent-to-moderator', component: SendToModeratorComponent }, 
+  { path: 'sent-to-moderator', component: SendToModeratorComponent },
   { path: 'creator-application', component: CreatorApplicationComponent },
 
 
@@ -93,7 +95,8 @@ export const routes: Routes = [
   { path: 'sysadmin_modarator', component: SysModaratorComponent },
 
   //moderator routes
-
+  {path: 'mod_manual_request', component: RequestListComponent},
+  {path: 'mod_manual_verify', component: ModManualVerifyComponent},
   { path: 'mod_dashboard', component: ModDashboardComponent },
   { path: 'mod_users', component: ModUsersComponent },
   { path: 'mod_creator', component: ModCreatorsComponent },
