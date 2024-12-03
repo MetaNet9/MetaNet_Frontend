@@ -44,6 +44,7 @@ import {RequestListComponent} from "./ModaratorComponents/request-list/request-l
 import {HomepageComponent} from "./usercomponents/homepage/homepage.component";
 
 import { CreatorApplicationComponent } from './usercomponents/creator-application/creator-application.component';
+import { EmailVerificationComponent } from './email-verification/email-verification.component';
 
 
 
@@ -75,6 +76,8 @@ export const routes: Routes = [
 // { path: 'sent-to-moderator', component: SentToModeratorComponent },
   { path: 'sent-to-moderator', component: SendToModeratorComponent },
   { path: 'creator-application', component: CreatorApplicationComponent },
+
+  { path: 'email-varification', component: EmailVerificationComponent },
 
 
 
