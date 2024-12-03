@@ -105,9 +105,9 @@ export class UploadFormComponent implements AfterViewInit {
 
       const result = await response.json();
       this.modelParameters = result.savedModel.parameters;
-
+      console.log('Model parameters:', result.savedModel);
       // Update the validity status based on the response
-      this.isValidModel = result.savedModel.valid;
+      this.isValidModel = result.savedModel.parameters.Valid;
       this.modelId = result.savedModel.id;
       this.dynamicModelUrl = result.fileAccessUrl;
       this.isModelUploaded = true;
