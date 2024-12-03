@@ -40,7 +40,7 @@ import { UploadSuccessComponent } from './usercomponents/upload-success/upload-s
 import { SendToModeratorComponent } from './usercomponents/send-to-moderator/send-to-moderator.component';
 import { ThreeDViewerComponent } from './three-dviewer/three-dviewer.component';
 import { SellerRegisterComponent } from './usercomponents/seller-register/seller-register.component';
-
+import { CreatorApplicationComponent } from './usercomponents/creator-application/creator-application.component';
 
 
 
@@ -70,7 +70,9 @@ export const routes: Routes = [
   { path: 'register-creator', component: SellerRegisterComponent },
   { path: 'upload-success', component: UploadSuccessComponent },
   { path: 'send-to-moderator', component: SendToModeratorComponent },
-  // { path: 'sent-to-moderator', component: SentToModeratorComponent },
+// { path: 'sent-to-moderator', component: SentToModeratorComponent },
+  { path: 'sent-to-moderator', component: SendToModeratorComponent }, 
+  { path: 'creator-application', component: CreatorApplicationComponent },
 
 
 
