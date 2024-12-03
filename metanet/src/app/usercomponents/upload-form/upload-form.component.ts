@@ -253,7 +253,8 @@ export class UploadFormComponent implements AfterViewInit {
       if (!response.ok) throw new Error('Failed to submit the form');
 
       this._toastService.success('Model uploaded successfully!');
-      this.router.navigate(['/upload-success/', this.modelId]);
+      const result = await response.json();
+      this.router.navigate(['/upload-success/', result.id]);
 
     } catch (error) {
       console.error('Error submitting form:', error);
