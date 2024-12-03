@@ -22,8 +22,8 @@ export class ContributionsModeratorPieChartComponent  implements OnInit {
 
   ngOnInit() {
 
-    let dataarray = this.dataset.map((item) => item.contributions);
-    let labels = this.dataset.map((item) => item.user);
+    let dataarray = this.dataset.map((item) => item.count);
+    let labels = this.dataset.map((item) => item.firstName);
 
 
 

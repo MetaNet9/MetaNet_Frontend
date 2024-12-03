@@ -15,18 +15,18 @@
     <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3F gap-4 mb-6">
       <div
         class="card bg-metawhite p-4 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite justify-center items-center ">
-        <h2 class="text-lg font-semibold text-metablack">Models to Review</h2>
-        <p class="text-xl lg:text-3xl font-bold text-purple1">48</p>
+        <h2 class="text-lg font-semibold text-metablack">Requests in Last Week</h2>
+        <p class="text-xl lg:text-3xl font-bold text-purple1">{{StatData.totalReviewRequestsLastWeek}}</p>
       </div><div
       class="card bg-metawhite p-4 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite justify-center items-center ">
-      <h2 class="text-lg font-semibold text-metablack">Total Reviews</h2>
-      <p class="text-xl lg:text-3xl font-bold text-purple1">82</p>
-      <p class="text-xs text-pink1">+12% ↑</p>
+      <h2 class="text-lg font-semibold text-metablack">Total Approved in Last Week</h2>
+      <p class="text-xl lg:text-3xl font-bold text-purple1">{{StatData.totalApprovedLastWeek}}</p>
+      <p class="text-xs text-pink1">+{{StatData.improveofapprove}}% ↑</p>
     </div><div
       class="card bg-metawhite p-4 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite justify-center items-center ">
-      <h2 class="text-lg font-semibold text-metablack">Removed Models</h2>
-      <p class="text-xl lg:text-3xl font-bold text-purple1">3</p>
-      <p class="text-xs text-pink1">+12% ↑</p>
+      <h2 class="text-lg font-semibold text-metablack">Total Rejected in Last Week</h2>
+      <p class="text-xl lg:text-3xl font-bold text-purple1">{{StatData.totalRejectedLastWeek}}</p>
+      <p class="text-xs text-pink1">+{{StatData.improveofreject}}% ↑</p>
     </div>
 
     </div>
@@ -38,14 +38,12 @@
       <!-- weekly-revenue-bar-chart -->
       <div class="col-span-2  bg-metawhite p-4 rounded-lg shadow-md">
         <h2 class="text-lg font-semibold text-metablack">Recent Actions</h2>
-
-
-
+        <app-mod-recent-actions-table [Inputdata]="StatData.resolvedCountsLast7Days"></app-mod-recent-actions-table>
       </div>
 
       <div class="col-span-2 md:col-span-1 bg-metawhite p-4 rounded-lg shadow-md">
         <h2 class="text-lg font-semibold text-metablack">Review Ratio</h2>
-        <app-contributions-moderator-pie-chart [dataset]="sampleContributions"></app-contributions-moderator-pie-chart>
+        <app-contributions-moderator-pie-chart [dataset]="StatData.userContributions"></app-contributions-moderator-pie-chart>
       </div>
     </div>
   </div>

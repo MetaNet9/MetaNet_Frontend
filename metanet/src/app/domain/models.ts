@@ -144,21 +144,26 @@ export interface error {
   statusCode?: number;
 }
 export interface moderatorContributions{
-  user: string;
-  contributions: number;
+  firstName: string;
+  count: number;
 }
 
 export interface actions{
-  model: modelAdvanced;
-  action: string;
+  date: string;
+  count: number;
 }
 
 export interface ModeratorStats{
-  modelstoReview: number;
-  modelsReviewed: number;
-  modelsReview: number;
-  recentActions: actions[];
-  modelContributions: moderatorContributions[];
+  totalReviewRequests: number;
+  totalReviewRequestsLastWeek: number;
+  totalResolvedReviewRequests: number;
+  totalRejectedReviewRequests: number;
+  totalApprovedLastWeek: number;
+  totalRejectedLastWeek: number;
+  improveofreject: number;
+  improveofapprove: number;
+  resolvedCountsLast7Days: actions[];
+  userContributions: moderatorContributions[];
 }
 
 export interface ModelOwner {

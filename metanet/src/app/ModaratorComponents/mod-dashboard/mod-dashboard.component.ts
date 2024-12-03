@@ -13,7 +13,12 @@ import {ModeratorSidebarComponent} from "../../commonComponents/moderator-sideba
 import {
   ContributionsModeratorPieChartComponent
 } from "../../commonComponents/contributions-moderator-pie-chart/contributions-moderator-pie-chart.component";
-import {moderatorContributions} from "../../domain/models";
+import {moderatorContributions, ModeratorStats} from "../../domain/models";
+import {
+  ModRecentActionsTableComponent
+} from "../../commonComponents/mod-recent-actions-table/mod-recent-actions-table.component";
+import {HttpClient} from "@angular/common/http";
+import {BASE_url} from "../../app.config";
 
 @Component({
   selector: 'app-mod-dashboard',
@@ -26,22 +31,29 @@ import {moderatorContributions} from "../../domain/models";
     TopModelsTableComponent,
     WeeklyRevenueChartComponent,
     ModeratorSidebarComponent,
-    ContributionsModeratorPieChartComponent
+    ContributionsModeratorPieChartComponent,
+    ModRecentActionsTableComponent
   ],
   templateUrl: './mod-dashboard.component.html',
   styleUrl: './mod-dashboard.component.css'
 })
 export class ModDashboardComponent implements OnInit{
-  constructor() { }
 
-  sampleContributions!:moderatorContributions[]
+  StatData!:ModeratorStats;
+  constructor(private http:HttpClient) { }
+
+
   ngOnInit() {
-    this.sampleContributions = [
-      {user: "user1", contributions: 10},
-      {user: "user2", contributions: 20},
-      {user: "user3", contributions: 30},
-      {user: "user4", contributions: 40},
-      {user: "user5", contributions: 50}
-      ]
+    this.getData()
+  }
+  getData(){
+    this.http.get<ModeratorStats>(BASE_url+'/review-requests/moderator-dashboard',{withCredentials:true}).subscribe({
+      next: data => {
+        this.StatData = data;
+      },
+      error: error => {
+        console.error('There was an error!', error);
+      }
+    })
   }
 }

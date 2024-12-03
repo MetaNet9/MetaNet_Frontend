@@ -103,6 +103,7 @@ export class MarketplaceProductDescriptionComponent {
       },
       error: (error) => {
         console.error(error);
+        this.toastService.error(error.error.message||"Something went wrong")
       },
     })
   }
