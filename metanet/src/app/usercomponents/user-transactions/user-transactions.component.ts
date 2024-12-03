@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { ChartModule } from 'primeng/chart';
 import { WeeklyRevenueChartComponent } from "../../commonComponents/weekly-revenue-chart/weekly-revenue-chart.component";
 import { SalesByCategoryPieChartComponent } from "../../commonComponents/sales-by-category-pie-chart/sales-by-category-pie-chart.component";
+import { HttpClient } from '@angular/common/http';
 
 interface PageEvent {
   first?: number;
@@ -21,6 +22,26 @@ interface Model {
   image: string;
   name: string;
   price: string;
+}
+
+interface Withdrawal {
+  date: string;
+  amount: string;
+  status: string;
+}
+
+interface WithdrawalDetails {
+  balance: number;
+  pendingWithdrawals: number;
+  totalWithdrawals: number;
+  pastWithdrawals: {
+    id: number;
+    amount: number;
+    status: string;
+    stripeTransactionId: string | null;
+    createdAt: string;
+    updatedAt: string;
+  }[];
 }
 
 @Component({
@@ -44,6 +65,14 @@ interface Model {
 export class UserTransactionsComponent {
   first: number = 0;
   rows: number = 4;
+
+  //for the withdrawels page
+  balance: number = 0;
+  pendingWithdrawals: number = 0;
+  totalWithdrawals: number = 0;
+  pastWithdrawals: any[] = [];
+  withdrawalAmount: number = 20;
+
   models: Model[] = [
     {
       image:
@@ -51,37 +80,7 @@ export class UserTransactionsComponent {
       name: 'Elephant',
       price: '$2.99',
     },
-    {
-      image:
-        'https://media.sketchfab.com/models/73bf025d4a51401caa36c3e5950b4e65/thumbnails/81416d40064344ffb054042ae09194a9/822364e76c7642579e5831a8744016b5.jpeg',
-      name: 'Tiger',
-      price: '$3.99',
-    },
-    {
-      image:
-        'https://media.sketchfab.com/models/5e89e6689c134d54860e38eb35761ffe/thumbnails/d71ad53ff8dd48f084b667f77b90847c/56b5db8e8e7b46f1b41b9dc6355d06e9.jpeg',
-      name: 'Home',
-      price: '$4.99',
-    },
-    {
-      image:
-        'https://media.sketchfab.com/models/dda567d1ffbd40eabbce7625a48a39ef/thumbnails/84f3614735f048b5838b45f5eb5aa430/01ec6878522a49bc956f9ba4b9fe08f8.jpeg',
-      name: 'Elephant',
-      price: '$2.99',
-    },
-    {
-      image:
-        'https://media.sketchfab.com/models/73bf025d4a51401caa36c3e5950b4e65/thumbnails/81416d40064344ffb054042ae09194a9/822364e76c7642579e5831a8744016b5.jpeg',
-      name: 'Tiger',
-      price: '$3.99',
-    },
-    {
-      image:
-        'https://media.sketchfab.com/models/5e89e6689c134d54860e38eb35761ffe/thumbnails/d71ad53ff8dd48f084b667f77b90847c/56b5db8e8e7b46f1b41b9dc6355d06e9.jpeg',
-      name: 'Home',
-      price: '$4.99',
-    },
-    // Add more models here
+    
   ];
   paginatedModels: Model[] = [];
   totalModelRecords: number = this.models.length;
@@ -89,8 +88,11 @@ export class UserTransactionsComponent {
   totalmodeldata: any;
   options: any;
 
+  constructor(private http: HttpClient) {}
+
   ngOnInit() {
     this.updatePaginatedModels();
+    this.fetchWithdrawalDetails();
 
     // Chart data and options
     if (typeof window !== 'undefined' && typeof document !== 'undefined') {
@@ -231,4 +233,54 @@ export class UserTransactionsComponent {
       this.first + this.rows
     );
   }
+
+  fetchWithdrawalDetails() {
+    this.http
+      .get<WithdrawalDetails>('http://localhost:3000/transactions/withdrawal-details', {
+        withCredentials: true // Include credentials such as cookies
+      })
+      .subscribe(
+        (response) => {
+          // Bind data to properties
+          this.balance = response.balance;
+          this.pendingWithdrawals = response.pendingWithdrawals;
+          this.totalWithdrawals = response.totalWithdrawals;
+          this.pastWithdrawals = response.pastWithdrawals;
+        },
+        (error) => {
+          console.error('Error fetching withdrawal details:', error);
+        }
+      );
+  }
+  
+  validateAmount() {
+    if (this.withdrawalAmount < 21) {
+      console.log('Withdrawal amount must be at least 21.');
+    }
+  }
+
+  // Handle withdrawal request
+  makeWithdrawal() {
+    if (this.withdrawalAmount >= 21 && this.withdrawalAmount <= this.balance) {
+      this.http
+        .post(
+          'http://localhost:3000/transactions/withdraw',
+          { amount: this.withdrawalAmount },
+          { withCredentials: true }
+        )
+        .subscribe(
+          (response: any) => {
+            console.log('Withdrawal successful:', response);
+            this.fetchWithdrawalDetails(); // Refresh withdrawal details
+          },
+          (error) => {
+            console.error('Error making withdrawal:', error);
+          }
+        );
+    } else {
+      console.error('Invalid withdrawal amount.');
+    }
+  }
 }
+
+

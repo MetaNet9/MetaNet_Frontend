@@ -133,8 +133,82 @@
         </div>
 
       </p-tabPanel>
+      
       <p-tabPanel header="Withdrawal">
+        <!-- User Balance Section -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          <div
+            class="bg-purple1 text-metawhite p-4 rounded-lg shadow-md hover:bg-darkpurple border border-darkpink">
+            <h2 class="text-lg font-semibold">User Balance</h2>
+            <p class="text-2xl lg:text-2xl">${{ balance }}</p>
+          </div>
+          <div
+            class="bg-purple1 text-metawhite p-4 rounded-lg shadow-md hover:bg-darkpurple border border-darkpink">
+            <h2 class="text-lg font-semibold">Pending Withdrawals</h2>
+            <p class="text-2xl lg:text-2xl">${{ pendingWithdrawals }}</p>
+          </div>
+          <div
+            class="bg-purple1 text-metawhite p-4 rounded-lg shadow-md hover:bg-darkpurple border border-darkpink">
+            <h2 class="text-lg font-semibold">Total Withdrawals</h2>
+            <p class="text-2xl lg:text-2xl">${{ totalWithdrawals }}</p>
+          </div>
+        </div>
+      
+        <!-- Conditional Amount Input and Button Section -->
+        <div *ngIf="balance > 19" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 items-center">
+          <!-- Enter Amount Box -->
+          <div>
+            <input
+              type="number"
+              class="bg-purple1 text-metawhite px-6 py-3 rounded-lg shadow-md w-full"
+              placeholder="Enter Amount"
+              [(ngModel)]="withdrawalAmount"
+              min="21"
+              (input)="validateAmount()"
+            />
+            <small *ngIf="withdrawalAmount < 20 && withdrawalAmount > 0" class="text-red-500">
+              Minimum withdrawal amount is 20.
+            </small>
+          </div>
+      
+          <!-- Withdrawal Button -->
+          <div class="text-center">
+            <button
+              class="bg-darkpink text-metawhite px-6 py-3 rounded-lg shadow-md hover:bg-pink1 withdrawbutton"
+              [disabled]="withdrawalAmount < 21"
+              (click)="makeWithdrawal()">
+              Make a Withdrawal
+            </button>
+          </div>
+        </div>
+      
+        <!-- Withdrawals List -->
+        <div>
+          <h2 class="text-lg font-semibold text-metawhite mb-4">Past Withdrawals</h2>
+          <div class="bg-purple1 text-metawhite p-4 rounded-lg shadow-md">
+            <table class="w-full table-auto border-collapse">
+              <thead>
+                <tr class="text-left bg-darkpurple">
+                  <th class="px-4 py-2">Date</th>
+                  <th class="px-4 py-2">Amount</th>
+                  <th class="px-4 py-2">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let withdrawal of pastWithdrawals" class="hover:bg-darkpink">
+                  <td class="px-4 py-2">{{ withdrawal.createdAt | date:'short' }}</td>
+                  <td class="px-4 py-2">{{ withdrawal.amount }}</td>
+                  <td class="px-4 py-2">{{ withdrawal.status }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </p-tabPanel>
+      
+      
+      
+      
     </p-tabView>
   </div>
 

@@ -58,6 +58,9 @@
   width: 100%;
 }
 
+.withdrawbutton {
+  padding: 10px;
+}
 /* :host ::ng-deep .p-paginator .p-paginator-rpp-options{
   background : #9855b263;
   color: #cc8ad9;
