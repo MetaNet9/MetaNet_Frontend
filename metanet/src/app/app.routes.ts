@@ -73,9 +73,9 @@ export const routes: Routes = [
   { path: 'register-creator', component: SellerRegisterComponent },
   { path: 'upload-success/:id', component: UploadSuccessComponent },
   { path: 'send-to-moderator', component: SendToModeratorComponent },
-
-  { path: 'creator-application', component: CreatorApplicationComponent },
-
+// { path: 'sent-to-moderator', component: SentToModeratorComponent },
+  { path: 'sent-to-moderator', component: SendToModeratorComponent },
+  // { path: 'creator-application', component: CreatorApplicationComponent },
   { path: 'email-varification', component: EmailVerificationComponent },
 
 
