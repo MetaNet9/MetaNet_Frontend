@@ -5,12 +5,12 @@ import {TableAdmin4ColoumComponent} from "../../commonComponents/table-admin-4-c
 import {AdminUserTableComponent} from "../../commonComponents/admin-user-table/admin-user-table.component";
 import {Button} from "primeng/button";
 import {DialogModule} from "primeng/dialog";
-import {CommonModule} from "@angular/common";
+import {CommonModule, NgIf} from "@angular/common";
 import {InputTextModule} from "primeng/inputtext";
 import {InputGroupModule} from "primeng/inputgroup";
 import {InputGroupAddonModule} from "primeng/inputgroupaddon";
 import {PasswordModule} from "primeng/password";
-import {FormsModule} from "@angular/forms";
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {FloatLabelModule} from "primeng/floatlabel";
 import {DividerModule} from "primeng/divider";
 import {CheckboxModule} from "primeng/checkbox";
@@ -18,6 +18,10 @@ import {any} from "three/examples/jsm/nodes/math/MathNode";
 import {string} from "three/examples/jsm/nodes/shadernode/ShaderNode";
 import {MessageService} from "primeng/api";
 import {ToastModule} from "primeng/toast";
+import {HttpClient} from "@angular/common/http";
+import {BASE_url} from "../../app.config";
+import {error, UserList} from "../../domain/models";
+import {ToastService} from "angular-toastify";
 
 
 
@@ -40,7 +44,9 @@ import {ToastModule} from "primeng/toast";
     FloatLabelModule,
     DividerModule,
     CheckboxModule,
-    ToastModule
+    ToastModule,
+    NgIf,
+    ReactiveFormsModule
   ],
   providers: [MessageService],
   templateUrl: './admin-sys-admin.component.html',
@@ -49,47 +55,81 @@ import {ToastModule} from "primeng/toast";
 
 
 
-export class AdminSysAdminComponent {
+export class AdminSysAdminComponent implements OnInit{
   visible: boolean = false;
-  constructor(private messageService: MessageService) {
+  data:UserList={users:[],total2:0,activeUsers:0,deactivatedUsers:0};
+  adminForm: FormGroup;
+  constructor(private http: HttpClient,private _toastService: ToastService,private fb: FormBuilder) {
+    this.adminForm = this.fb.group({
+      firstName: ['', [Validators.required, Validators.minLength(2)]],
+      lastName: ['', [Validators.required, Validators.minLength(2)]],
+      userName: ['', [Validators.required, Validators.minLength(4)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      contactNo: ['', [Validators.required, Validators.pattern(/^\d+$/)]], // Pattern ensures numeric input
+      roles: ['sysadmin'],
+    });
   }
 
-  formdata = {
-    firstname: '',
-    lastname: '',
-    email: '',
-    contactno: '',
-    username: '',
-    password: '',
-    categories: ['']
+  ngOnInit() {
+      this.getUsers()
+  }
+  getUsers() {
+    this.http.get<UserList>(BASE_url+'/auth/users?role=sysadmin',{withCredentials:true}).subscribe({
+      next: (data: any) => {
+        this.data = data;
+        console.log(data);
 
-  };
+      },
+      error: (error: { error:error }) => {
+        if (error.error.statusCode == 401) {
+          this._toastService.error('You are not authorized to view this page');
+          console.log(error.error.statusCode);
+        }
+        // console.log(error);
+      }
 
-  selectedCategories: string[] = [];
+    });
+  }
 
-  categories: any[] = [
-    { name: 'Accounting', key: 'A' },
-    { name: 'Marketing', key: 'M' },
-    { name: 'Production', key: 'P' },
-    { name: 'Research', key: 'R' }
-  ];
+
+
+
 
   showDialog() {
     this.visible = true;
   }
 
   submit() {
-
-    this.formdata.categories = this.selectedCategories;
-    console.log(this.formdata);
-    this.showToast();
-    this.visible=false;
+    if (this.adminForm.valid) {
+      const formData = this.adminForm.value;
+      console.log('Form submitted successfully:', formData);
+      this.postAdmin()
+    } else {
+      console.log('Form is invalid');
+      this._toastService.error('Check the form for errors');
+      this.adminForm.markAllAsTouched(); // Mark all fields as touched to display errors
+    }
   }
 
+  postAdmin() {
+    this.http.post(BASE_url+'/auth/create-user', this.adminForm.value, { withCredentials: true }).subscribe({
+      next: (response) => {
+        console.log('Admin added successfully', response);
+        this._toastService.success('System Admin added successfully');
+        this.visible = false;
+        this.getUsers()
+      },
+      error: (error: { error: { message: string } }) => {
+        console.error('There was an error!', error.error.message);
+        this._toastService.error(error.error.message);
 
-  showToast() {
-    this.messageService.clear();
-    this.messageService.add({ key: 'toast1', severity: 'success', summary: 'Success', detail: 'You have successfully register a new System Administrator' });
-  }
+      }
+    });
+    }
+
+
+
+
 
 }

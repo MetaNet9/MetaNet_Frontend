@@ -10,6 +10,11 @@ import {
   AdminCardWithChartComponent
 } from "../../commonComponents/admin-card-with-chart/admin-card-with-chart.component";
 import {MenuItem} from "primeng/api";
+import _default from "chart.js/dist/core/core.interaction";
+import dataset = _default.modes.dataset;
+import {Statistics} from "../../domain/models";
+import {HttpClient} from "@angular/common/http";
+import {BASE_url} from "../../app.config";
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -33,11 +38,21 @@ export class AdminDashboardComponent implements OnInit {
   totalRevenue: any;
   monthlyRevenue: any;
   options: any;
+  statistics!:Statistics;
+  dataset!:number[]
+  labels!:string[]
 
 
-
+ constructor(private http: HttpClient) {
+ }
 
   ngOnInit() {
+
+    this.statisticsGet();
+    this.setCards();
+  }
+
+  private setCards() {
     if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       const documentStyle = getComputedStyle(document.documentElement);
       // const textColor = documentStyle.getPropertyValue('--text-color');
@@ -76,11 +91,11 @@ export class AdminDashboardComponent implements OnInit {
 
 
       this.totalRevenue = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        labels: this.labels,
         datasets: [
           {
             // label: 'First Dataset',
-            data: [65, 59, 80, 81, 56, 55, 70],
+            data: this.dataset,
             fill: false,
             borderColor: documentStyle.getPropertyValue('--pink-500'),
             tension: 0.5,
@@ -185,4 +200,24 @@ export class AdminDashboardComponent implements OnInit {
       };
     }
   }
+
+  private statisticsGet(){
+    this.http.get<Statistics>(BASE_url+"/statistics", { withCredentials: true })
+      .subscribe({
+        next: (response) => {
+          this.statistics = response;
+
+          console.log(this.statistics)
+          this.dataset = this.statistics.lastWeekRevenue?.map((value)=>value.value)||[];
+          this.labels = this.statistics.lastWeekRevenue?.map((value)=>value.day)||[];
+
+          console.log(this.statistics.lastMonthRevenue.at(0)?.totalRevenue)
+
+        },
+        error: (error:{error?:{massage?:string}}) => {
+          console.error('There was an error!', error.error?.massage);
+        }
+      });
+  }
+
 }

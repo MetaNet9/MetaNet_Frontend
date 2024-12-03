@@ -18,31 +18,30 @@
       <div
         class="card bg-metawhite p-4 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite justify-center items-center ">
         <h2 class="text-lg font-semibold text-metablack">Total Models</h2>
-        <p class="text-xl lg:text-3xl font-bold text-purple1">86</p>
-
+        <p class="text-xl lg:text-3xl font-bold text-purple1">{{statistics.totalModels}}</p>
       </div>
 
       <div
         class="card bg-metawhite p-4 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite justify-center items-center ">
-        <h2 class="text-lg font-semibold text-metablack">Total Categories</h2>
-        <p class="text-xl lg:text-3xl font-bold text-purple1">15</p>
+        <h2 class="text-lg font-semibold text-metablack">Total Purchases</h2>
+        <p class="text-xl lg:text-3xl font-bold text-purple1">{{statistics.totalPurchases}}</p>
       </div>
 
       <div
         class="card bg-metawhite p-4 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite justify-center items-center ">
-        <h2 class="text-lg font-semibold text-metablack">Pending Models</h2>
-        <p class="text-xl lg:text-3xl font-bold text-purple1">3</p>
+        <h2 class="text-lg font-semibold text-metablack">Total Likes</h2>
+        <p class="text-xl lg:text-3xl font-bold text-purple1">{{statistics.totalLikes}}</p>
       </div>
 
       <div
         class="card bg-metawhite p-4 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite justify-center items-center ">
-        <h2 class="text-lg font-semibold text-metablack">Approved Models</h2>
-        <p class="text-xl lg:text-3xl font-bold text-purple1">25</p>
+        <h2 class="text-lg font-semibold text-metablack">Total Downloads</h2>
+        <p class="text-xl lg:text-3xl font-bold text-purple1">{{statistics.totalDownloads}}</p>
       </div>
       <div
         class="card bg-metawhite p-4 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite justify-center items-center ">
-        <h2 class="text-lg font-semibold text-metablack">Rejected Models</h2>
-        <p class="text-xl lg:text-3xl font-bold text-purple1">15</p>
+        <h2 class="text-lg font-semibold text-metablack">New Models Last Week</h2>
+        <p class="text-xl lg:text-3xl font-bold text-purple1">{{statistics.newModelsLastWeek}}</p>
       </div>
     </div>
 
@@ -51,38 +50,38 @@
 
       <app-models-by-user-table (rowSelected)="onRowSelect($event)" ></app-models-by-user-table>
     </div>
-    <p-dialog [(visible)]="vix" [style]="{ width: '40rem',height:'420px' }" [draggable]="true" >
-      <ng-template pTemplate="headless"  class="w-full h-full">
-        <div class="flex justify-between items-center backdrop-blur-sm bg-metawhite/70 w-full h-full">
+<!--    <p-dialog [(visible)]="vix" [style]="{ width: '40rem',height:'420px' }" [draggable]="true" >-->
+<!--      <ng-template pTemplate="headless"  class="w-full h-full">-->
+<!--        <div class="flex justify-between items-center backdrop-blur-sm bg-metawhite/70 w-full h-full">-->
 
-          <div class="w-full h-full mx-auto  rounded-lg p-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <img class="bg-primary h-40 rounded-lg mb-4 md:mb-0" src="https://primefaces.org/cdn/primeng/images/demo/product/{{selectedProduct.image}}"/>
-              <div>
-                <div class="flex items-center mb-2">
-                  <img src="{{selectedProduct.user.image}}" alt="Creator Avatar" class="rounded-full mr-2" />
-                  <span class="text-lg font-semibold text-foreground">{{selectedProduct.user.name}}</span>
-                </div>
-                <p class="text-muted-foreground">Uploaded Date: 2024-05-25</p>
-                <p class="text-muted-foreground">Status: <span class="text-green500">Approved</span></p>
-                <p class="text-muted-foreground">Model Name: {{selectedProduct.name}}</p>
-                <p class="text-muted-foreground">Category: {{selectedProduct.category}}</p>
-              </div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-              <div class="text-center">
-                <p class="text-lg font-bold text-foreground">Sales from this model</p>
-                <p class="text-xl text-foreground">$86 <span class="text-green-500">(+12%)</span></p>
-              </div>
-              <div class="text-center">
-                <p class="text-lg font-bold text-foreground">Downloads</p>
-                <p class="text-xl text-foreground">82 <span class="text-green-500">(+22%)</span></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </ng-template>
-    </p-dialog>
+<!--          <div class="w-full h-full mx-auto  rounded-lg p-4">-->
+<!--            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">-->
+<!--              <img class="bg-primary h-40 rounded-lg mb-4 md:mb-0" src="https://primefaces.org/cdn/primeng/images/demo/product/{{selectedProduct.image}}"/>-->
+<!--              <div>-->
+<!--                <div class="flex items-center mb-2">-->
+<!--                  <img src="{{selectedProduct.user.image}}" alt="Creator Avatar" class="rounded-full mr-2" />-->
+<!--                  <span class="text-lg font-semibold text-foreground">{{selectedProduct.user.name}}</span>-->
+<!--                </div>-->
+<!--                <p class="text-muted-foreground">Uploaded Date: 2024-05-25</p>-->
+<!--                <p class="text-muted-foreground">Status: <span class="text-green500">Approved</span></p>-->
+<!--                <p class="text-muted-foreground">Model Name: {{selectedProduct.name}}</p>-->
+<!--                <p class="text-muted-foreground">Category: {{selectedProduct.category}}</p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">-->
+<!--              <div class="text-center">-->
+<!--                <p class="text-lg font-bold text-foreground">Sales from this model</p>-->
+<!--                <p class="text-xl text-foreground">$86 <span class="text-green-500">(+12%)</span></p>-->
+<!--              </div>-->
+<!--              <div class="text-center">-->
+<!--                <p class="text-lg font-bold text-foreground">Downloads</p>-->
+<!--                <p class="text-xl text-foreground">82 <span class="text-green-500">(+22%)</span></p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </ng-template>-->
+<!--    </p-dialog>-->
 
   </div>
 </div>

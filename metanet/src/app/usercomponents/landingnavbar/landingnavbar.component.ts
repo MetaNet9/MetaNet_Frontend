@@ -8,6 +8,7 @@ import { Injectable } from '@angular/core';
 import {AngularToastifyModule, ToastService} from "angular-toastify";
 import { Router } from '@angular/router';
 import {CheckboxModule} from "primeng/checkbox";
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -33,6 +34,8 @@ import {CheckboxModule} from "primeng/checkbox";
 export class LandingnavbarComponent implements OnInit {
 
   title = 'metanet';
+
+  private baseUrl = 'http://localhost:3000/auth';
 
   loginForm!: FormGroup;
   registerForm!: FormGroup;
@@ -122,11 +125,29 @@ export class LandingnavbarComponent implements OnInit {
             if (role === 'user') {
               this.router.navigate(['/marketplace-products']);
             }
+            if (role === 'seller') {
+              this.router.navigate(['/upload-form']);
+            }
+            if (role === 'admin') {
+              this.router.navigate(['/admindashboard']);
+            }
+            if (role === 'sysadmin') {
+              this.router.navigate(['/sysadmin_dashboard']);
+            }
+            if (role === 'moderator') {
+              this.router.navigate(['/mod_dashboard']);
+            }
+
             console.log('Login successful!', role);
             this.visibleLogin = false;  // Close login dialog on success
           },
-          error: (error) => {
+          error: (error:{error?:{message?:string}}) => {
+            console.log(error.error?.message)
             console.error('Login failed:', error);
+            if (error.error?.message) {
+              this._toastService.error(error.error.message);
+            }
+
           }
         });
     } else {
@@ -148,6 +169,7 @@ export class LandingnavbarComponent implements OnInit {
   }
 
   public register() {
+    console.log(this.checkagree)
     const isFormValid = this.registerForm.valid;
     if (!isFormValid) {
      console.log('Invalid form data');
@@ -170,10 +192,11 @@ export class LandingnavbarComponent implements OnInit {
           console.log('Login successful!', response);
           if (response.success) {
             this.visibleRegister = false;
-            this.router.navigate(['/marketplace-products']);// Close login dialog on success
+            this.router.navigate(['/registrationsuccess']);// Close login dialog on success
           }
         },
-        error: (error) => {
+        error: (error:{error?:{massage?:string}}) => {
+          console.log(error.error)
           console.error('Login failed:', error);
         }
       });
@@ -185,6 +208,23 @@ export class LandingnavbarComponent implements OnInit {
     this.forgotPasswordForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
     });
+  }
+
+  public forgotPassword(email: string) {
+    if (this.forgotPasswordForm.valid) {
+      const email = this.forgotPasswordForm.get('email')?.value;
+      this.sendResetPasswordEmail(email).subscribe({
+        next: (response) => {
+          console.log(response);
+          this.showResetPassword();
+        },
+        error: (error) => console.error(error),
+      });
+    }
+  }
+
+  sendResetPasswordEmail(email: string): Observable<any> {
+    return this.http.post(`${this.baseUrl}/forgot-password`, { email });
   }
 
   // Reset password form
@@ -248,7 +288,7 @@ export class LandingnavbarComponent implements OnInit {
   // Show reset password dialog
   showResetPassword() {
     this.visibleForgotPassword = false;
-    this.visibleResetPassword = true;
+    // this.visibleResetPassword = true;
   }
 
   // Close reset password dialog
@@ -265,7 +305,7 @@ export class LandingnavbarComponent implements OnInit {
   }
 
   // Close login and open forgot password dialog
-  checkagree: boolean = false;
+  checkagree: boolean = true;
   openForgotPassword() {
     this.visibleForgotPassword = true;
     this.visibleLogin = false;

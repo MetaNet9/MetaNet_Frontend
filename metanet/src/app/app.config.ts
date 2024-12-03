@@ -13,3 +13,6 @@ import {MessageModule} from "primeng/message";
 export const appConfig: ApplicationConfig = {
   providers: [provideHttpClient(),provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration(),provideAnimations(), provideAnimationsAsync()]
 };
+
+
+export const BASE_url = 'http://localhost:3000';

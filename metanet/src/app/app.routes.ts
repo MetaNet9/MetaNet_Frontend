@@ -38,8 +38,9 @@ import { NewPasswordComponent } from './usercomponents/new-password/new-password
 import { BecomeCreatorComponent } from './usercomponents/become-creator/become-creator.component';
 import { UploadSuccessComponent } from './usercomponents/upload-success/upload-success.component';
 import { SendToModeratorComponent } from './usercomponents/send-to-moderator/send-to-moderator.component';
+import { ThreeDViewerComponent } from './three-dviewer/three-dviewer.component';
+import { SellerRegisterComponent } from './usercomponents/seller-register/seller-register.component';
 import { CreatorApplicationComponent } from './usercomponents/creator-application/creator-application.component';
-
 
 
 
@@ -66,8 +67,10 @@ export const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'new-password', component: NewPasswordComponent },
   { path: 'become-creator', component: BecomeCreatorComponent },
+  { path: 'register-creator', component: SellerRegisterComponent },
   { path: 'upload-success', component: UploadSuccessComponent },
   { path: 'send-to-moderator', component: SendToModeratorComponent },
+// { path: 'sent-to-moderator', component: SentToModeratorComponent },
   { path: 'sent-to-moderator', component: SendToModeratorComponent }, 
   { path: 'creator-application', component: CreatorApplicationComponent },
 
@@ -94,6 +97,7 @@ export const routes: Routes = [
   { path: 'mod_dashboard', component: ModDashboardComponent },
   { path: 'mod_users', component: ModUsersComponent },
   { path: 'mod_creator', component: ModCreatorsComponent },
+  { path: 'threedviewver', component: ThreeDViewerComponent}
 
 
 ];
