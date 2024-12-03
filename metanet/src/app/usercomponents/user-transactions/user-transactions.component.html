@@ -64,6 +64,7 @@
             [totalRecords]="totalModelRecords" [rowsPerPageOptions]="[4,8,12]"></p-paginator>
         </div>
       </p-tabPanel>
+      
       <p-tabPanel header="Sales">
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-6">
 
@@ -71,11 +72,7 @@
             class="bg-purple1 text-metawhite p-4 grid grid-cols-2 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite border border-darkpink">
             <div>
               <h2 class="text-lg font-semibold ">Total Models</h2>
-              <p class="text-2xl lg:text-2xl">25</p>
-              <p class="text-sm text-pink1">+12% ↑</p>
-            </div>
-            <div class="card">
-              <p-chart type="line" [data]="totalmodeldata" [options]="options" height="100" />
+              <p class="text-2xl lg:text-2xl">{{totalModels}}</p>
             </div>
           </div>
 
@@ -83,35 +80,23 @@
             class="bg-purple1 text-metawhite p-4 grid grid-cols-2 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite border border-darkpink">
             <div>
               <h2 class="text-lg font-semibold ">Total Earnings</h2>
-              <p class="text-2xl lg:text-2xl">$250</p>
-              <p class="text-sm text-pink1">+12% ↑</p>
-            </div>
-            <div class="card">
-              <p-chart type="line" [data]="totalmodeldata" [options]="options" height="100" />
+              <p class="text-2xl lg:text-2xl">{{totalEarnings}}</p>
             </div>
           </div>
 
           <div
             class="bg-purple1 text-metawhite p-4 grid grid-cols-2 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite border border-darkpink">
             <div>
-              <h2 class="text-lg font-semibold ">Total Models</h2>
-              <p class="text-2xl lg:text-2xl">25</p>
-              <p class="text-sm text-pink1">+12% ↑</p>
-            </div>
-            <div class="card">
-              <p-chart type="line" [data]="totalmodeldata" [options]="options" height="100" />
+              <h2 class="text-lg font-semibold ">Rejected Models</h2>
+              <p class="text-2xl lg:text-2xl">{{totalRejected}}</p>
             </div>
           </div>
 
           <div
             class="bg-purple1 text-metawhite p-4 grid grid-cols-2 rounded-lg shadow-md hover:bg-darkpurple hover:text-metawhite border border-darkpink">
             <div>
-              <h2 class="text-lg font-semibold ">Total Models</h2>
-              <p class="text-2xl lg:text-2xl">25</p>
-              <p class="text-sm text-pink1">+12% ↑</p>
-            </div>
-            <div class="card">
-              <p-chart type="line" [data]="totalmodeldata" [options]="options" height="100" />
+              <h2 class="text-lg font-semibold ">Total Likes</h2>
+              <p class="text-2xl lg:text-2xl">{{totalLikes}}</p>
             </div>
           </div>
 
@@ -175,7 +160,7 @@
           <div class="text-center">
             <button
               class="bg-darkpink text-metawhite px-6 py-3 rounded-lg shadow-md hover:bg-pink1 withdrawbutton"
-              [disabled]="withdrawalAmount < 21"
+              [disabled]="withdrawalAmount < 20"
               (click)="makeWithdrawal()">
               Make a Withdrawal
             </button>
