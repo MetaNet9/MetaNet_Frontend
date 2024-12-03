@@ -43,6 +43,7 @@ import {ModManualVerifyComponent} from "./ModaratorComponents/mod-manual-verify/
 import {RequestListComponent} from "./ModaratorComponents/request-list/request-list.component";
 import {HomepageComponent} from "./usercomponents/homepage/homepage.component";
 
+import { CreatorApplicationComponent } from './usercomponents/creator-application/creator-application.component';
 
 
 
@@ -71,7 +72,9 @@ export const routes: Routes = [
   { path: 'register-creator', component: SellerRegisterComponent },
   { path: 'upload-success', component: UploadSuccessComponent },
   { path: 'send-to-moderator', component: SendToModeratorComponent },
-  // { path: 'sent-to-moderator', component: SentToModeratorComponent },
+// { path: 'sent-to-moderator', component: SentToModeratorComponent },
+  { path: 'sent-to-moderator', component: SendToModeratorComponent },
+  { path: 'creator-application', component: CreatorApplicationComponent },
 
 
 
