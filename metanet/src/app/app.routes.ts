@@ -41,6 +41,7 @@ import { SendToModeratorComponent } from './usercomponents/send-to-moderator/sen
 import { ThreeDViewerComponent } from './three-dviewer/three-dviewer.component';
 import { SellerRegisterComponent } from './usercomponents/seller-register/seller-register.component';
 import { CreatorApplicationComponent } from './usercomponents/creator-application/creator-application.component';
+import { EmailVerificationComponent } from './email-verification/email-verification.component';
 
 
 
@@ -71,8 +72,10 @@ export const routes: Routes = [
   { path: 'upload-success', component: UploadSuccessComponent },
   { path: 'send-to-moderator', component: SendToModeratorComponent },
 // { path: 'sent-to-moderator', component: SentToModeratorComponent },
-  { path: 'sent-to-moderator', component: SendToModeratorComponent }, 
+  { path: 'sent-to-moderator', component: SendToModeratorComponent },
   { path: 'creator-application', component: CreatorApplicationComponent },
+
+  { path: 'email-varification', component: EmailVerificationComponent },
 
 
 
